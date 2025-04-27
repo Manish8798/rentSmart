@@ -4,6 +4,31 @@ import ProductGrid from "./components/ProductGrid";
 import products from "./data/products";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    if (query.trim() === "") {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(query) ||
+          product.description.toLowerCase().includes(query) ||
+          product.category.toLowerCase().includes(query)
+      );
+      setFilteredProducts(filtered);
+    }
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    // Prevent form submission
+  };
+
   return (
     <div className="app">
       {/* Header */}
@@ -16,9 +41,14 @@ function App() {
               </div>
             </a>
           </div>
-          <div className="search-bar">
-            <input type="text" placeholder="Search luxury products..." />
-            <button className="search-button">
+          <form className="search-bar" onSubmit={handleSearchSubmit}>
+            <input
+              type="text"
+              placeholder="Search luxury products..."
+              value={searchQuery}
+              onChange={handleSearch}
+            />
+            <button type="submit" className="search-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -34,7 +64,7 @@ function App() {
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
             </button>
-          </div>
+          </form>
           <div className="nav-buttons">
             <a href="#how-it-works">How It Works</a>
             <button className="language-button">EN</button>
@@ -252,7 +282,7 @@ function App() {
       {/* Products Section */}
       <section className="products-section container">
         <h2>Available for Rent</h2>
-        <ProductGrid products={products} />
+        <ProductGrid products={filteredProducts} />
       </section>
 
       {/* Featured Categories */}
