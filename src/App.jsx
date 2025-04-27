@@ -6,6 +6,7 @@ import products from "./data/products";
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(products);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
@@ -29,8 +30,80 @@ function App() {
     // Prevent form submission
   };
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = mobileMenuOpen ? "auto" : "hidden";
+  };
+
   return (
     <div className="app">
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`overlay ${mobileMenuOpen ? "active" : ""}`}
+        onClick={toggleMobileMenu}
+      />
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${mobileMenuOpen ? "active" : ""}`}>
+        <div className="mobile-menu-header">
+          <div className="logo-circle">
+            <span>L</span>
+          </div>
+          <button className="close-menu" onClick={toggleMobileMenu}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div className="mobile-menu-links">
+          <a href="#all" className="mobile-menu-link">
+            All Categories
+          </a>
+          <a href="#phones" className="mobile-menu-link">
+            Phones & Tablets
+          </a>
+          <a href="#computer" className="mobile-menu-link">
+            Computers
+          </a>
+          <a href="#cameras" className="mobile-menu-link">
+            Cameras
+          </a>
+          <a href="#gaming" className="mobile-menu-link">
+            Gaming & VR
+          </a>
+          <a href="#audio" className="mobile-menu-link">
+            Audio & Music
+          </a>
+          <a href="#wearables" className="mobile-menu-link">
+            Wearables
+          </a>
+          <a href="#how-it-works" className="mobile-menu-link">
+            How It Works
+          </a>
+          <a href="#account" className="mobile-menu-link">
+            My Account
+          </a>
+          <a href="#wishlist" className="mobile-menu-link">
+            Wishlist
+          </a>
+          <a href="#cart" className="mobile-menu-link">
+            Cart
+          </a>
+        </div>
+      </div>
+
       {/* Header */}
       <header className="header">
         <div className="container header-container">
@@ -116,7 +189,7 @@ function App() {
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
             </button>
-            <button className="menu-button">
+            <button className="menu-button" onClick={toggleMobileMenu}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
