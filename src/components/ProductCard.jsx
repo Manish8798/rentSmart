@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product-card">
       <div className="product-image">
-        <img src={image} alt={name} />
+        <img src={`${window.location.origin}${image}`} alt={name} />
       </div>
       <div className="product-info">
         <h3>{name}</h3>
