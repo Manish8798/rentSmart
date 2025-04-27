@@ -15,7 +15,7 @@ const products = [
     priority: "Low",
     description: "Racing wheel for immersive gaming experience",
     price: 15.99,
-    image: "/images/gaming-wheel.jpg",
+    image: "/images/gaming_wheel.jpg",
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const products = [
     priority: "High",
     description: "Latest iPad with Apple Pencil for creative work",
     price: 32.99,
-    image: "/images/ipad.jpg",
+    image: "/images/ipad_and_pencil.jpg",
   },
   {
     id: 5,
@@ -42,16 +42,16 @@ const products = [
     priority: "Low",
     description: "Apple Watch for fitness tracking and notifications",
     price: 18.99,
-    image: "/images/apple-watch.jpg",
+    image: "/images/apple_watch.jpeg",
   },
   {
     id: 6,
     category: "Home",
     name: "TV",
     priority: "Medium",
-    description: "Smart TV with 4K resolution",
+    description: "Smart TV with 4K resolution (55-inch)",
     price: 27.99,
-    image: "/images/tv.jpg",
+    image: "/images/smart_tv.jpg",
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ const products = [
     priority: "High",
     description: "HEPA filter air purifier for clean indoor air",
     price: 14.99,
-    image: "/images/air-purifier.jpg",
+    image: "/images/air_purifier.jpeg",
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ const products = [
     priority: "High",
     description: "Surround sound system for immersive audio experience",
     price: 35.99,
-    image: "/images/home-theater.jpg",
+    image: "/images/home_theater.jpg",
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ const products = [
     priority: "High",
     description: "Action camera for adventure recording",
     price: 22.99,
-    image: "/images/gopro.jpg",
+    image: "/images/goPro.jpg",
   },
   {
     id: 10,
@@ -96,7 +96,7 @@ const products = [
     priority: "Medium",
     description: "Comfortable chair for home office",
     price: 19.99,
-    image: "/images/ergonomic-chair.jpg",
+    image: "/images/chair.jpg",
   },
   {
     id: 12,
@@ -105,7 +105,7 @@ const products = [
     priority: "High",
     description: "Durable waterproof shoes for hiking and trekking",
     price: 12.99,
-    image: "/images/waterproof-shoes.jpg",
+    image: "/images/waterproof_shoes.jpg",
   },
   {
     id: 13,
@@ -114,7 +114,7 @@ const products = [
     priority: "High",
     description: "Durable backpack for hiking adventures",
     price: 9.99,
-    image: "/images/backpack.jpg",
+    image: "/images/bagpack.jpg",
   },
   {
     id: 14,
@@ -123,7 +123,7 @@ const products = [
     priority: "High",
     description: "Adjustable trekking poles for stability",
     price: 7.99,
-    image: "/images/trekking-stick.jpg",
+    image: "/images/trekking_stick.jpg",
   },
   {
     id: 15,
@@ -132,7 +132,7 @@ const products = [
     priority: "High",
     description: "Insulated sleeping bag for camping",
     price: 12.99,
-    image: "/images/sleeping-bag.jpg",
+    image: "/images/sleeping_bag.jpg",
   },
   {
     id: 16,
@@ -141,7 +141,7 @@ const products = [
     priority: "High",
     description: "Insulated jacket for cold weather adventures",
     price: 19.99,
-    image: "/images/winter-jacket.jpg",
+    image: "/images/winter_jacket.jpg",
   },
   {
     id: 17,
@@ -150,7 +150,7 @@ const products = [
     priority: "High",
     description: "Ice traction cleats for hiking boots",
     price: 8.99,
-    image: "/images/shoes-chain.jpg",
+    image: "/images/shoes_chain.jpg",
   },
 ];
 

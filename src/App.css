@@ -380,11 +380,14 @@ button {
 }
 
 .product-image {
-  height: 200px;
+  height: 250px;
   overflow: hidden;
   position: relative;
   border-radius: 8px 8px 0 0;
-  background-color: #f5f5f5;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-image img {
@@ -393,6 +396,7 @@ button {
   object-fit: cover;
   transition: transform 0.3s ease;
   display: block;
+  padding: 0;
 }
 
 .product-card:hover .product-image img {
@@ -685,4 +689,94 @@ button {
     flex-direction: column;
     align-items: center;
   }
+}
+
+.product-image.loading {
+  background-color: white;
+}
+
+.image-loading-placeholder {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--secondary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.product-image.tv-image {
+  position: relative;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.tv-img {
+  object-position: center;
+  object-fit: contain !important;
+  max-height: 90%;
+  max-width: 90%;
+}
+
+.product-card:hover .tv-img {
+  transform: scale(1.02);
+}
+
+/* Remove the 55inch label from TV product */
+.tv-image::before {
+  content: none;
+}
+
+/* VR Headset styling */
+.product-image.vr-image {
+  background-color: white;
+}
+
+.vr-img {
+  object-fit: cover;
+  object-position: center top;
+  height: 100%;
+  width: 100%;
+}
+
+/* GoPro styling */
+.product-image.gopro-image {
+  background-color: white;
+}
+
+.gopro-img {
+  object-fit: contain;
+  max-height: 85%;
+  max-width: 85%;
+}
+
+/* Apple product styling */
+.product-image.apple-image {
+  background-color: white;
+}
+
+.apple-img {
+  object-fit: contain;
+  max-height: 90%;
+  max-width: 90%;
+}
+
+/* Default product image (for all other products) */
+.product-image:not(.tv-image):not(.vr-image):not(.gopro-image):not(.apple-image)
+  img {
+  object-fit: contain;
+  max-height: 90%;
+  max-width: 90%;
 }
