@@ -8,6 +8,14 @@ const ProductCard = ({ product }) => {
     setImageLoaded(true);
   };
 
+  const handleRentNow = () => {
+    const phoneNumber = "917053911337"; // Remove the + symbol for WhatsApp web links
+    const message = `I'm interested in renting the ${name}. Please provide more details.`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(whatsappURL, "_blank");
+  };
+
   // Determine special product types for custom styling
   const isTV = name === "TV";
   const isVR = name === "VR";
@@ -53,7 +61,9 @@ const ProductCard = ({ product }) => {
         <p className="product-description">{description}</p>
         <div className="product-footer">
           <span className="product-price">${price}/month</span>
-          <button className="rent-button">Rent Now</button>
+          <button className="rent-button" onClick={handleRentNow}>
+            Rent Now
+          </button>
         </div>
       </div>
     </div>
