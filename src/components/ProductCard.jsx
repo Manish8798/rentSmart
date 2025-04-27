@@ -48,7 +48,7 @@ const ProductCard = ({ product }) => {
         } ${getSpecialImageClass()}`}
       >
         <img
-          src={`${window.location.origin}${image}`}
+          src={image}
           alt={name}
           onLoad={handleImageLoad}
           loading="lazy"
