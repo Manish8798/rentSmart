@@ -644,11 +644,18 @@ button {
     padding: 0.5rem 0;
   }
 
-  .search-bar {
-    order: 3;
-    margin: 1rem 0 0;
-    max-width: 100%;
+  .search-bar-desktop {
+    display: none !important;
+  }
+  .search-bar-mobile {
+    display: flex !important;
     width: 100%;
+    max-width: 100%;
+    margin: 1rem 0 0 0;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 0;
   }
 
   .nav-buttons {
@@ -1012,4 +1019,28 @@ button {
   object-fit: contain;
   max-height: 90%;
   max-width: 90%;
+}
+
+/* Responsive search bar visibility */
+.search-bar-mobile {
+  display: none;
+}
+.search-bar-desktop {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .search-bar-desktop {
+    display: none !important;
+  }
+  .search-bar-mobile {
+    display: flex !important;
+    width: 100%;
+    max-width: 100%;
+    margin: 1rem 0 0 0;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 0;
+  }
 }

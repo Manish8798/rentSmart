@@ -114,7 +114,10 @@ function App() {
               </div>
             </a>
           </div>
-          <form className="search-bar" onSubmit={handleSearchSubmit}>
+          <form
+            className="search-bar search-bar-desktop"
+            onSubmit={handleSearchSubmit}
+          >
             <input
               type="text"
               placeholder="Search luxury products..."
@@ -208,6 +211,34 @@ function App() {
             </button>
           </div>
         </div>
+        {/* Mobile search bar (hidden on desktop) */}
+        <form
+          className="search-bar search-bar-mobile"
+          onSubmit={handleSearchSubmit}
+        >
+          <input
+            type="text"
+            placeholder="Search luxury products..."
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+          <button type="submit" className="search-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </form>
       </header>
 
       {/* Categories */}
