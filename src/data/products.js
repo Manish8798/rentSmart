@@ -1,3 +1,4 @@
+const base = import.meta.env.BASE_URL || "/";
 const products = [
   {
     id: 1,
@@ -6,7 +7,7 @@ const products = [
     priority: "High",
     description: "Latest PlayStation gaming console",
     price: 25.99,
-    image: "/images/ps5.jpg",
+    image: base + "images/ps5.jpg",
   },
   {
     id: 2,
@@ -15,7 +16,7 @@ const products = [
     priority: "Low",
     description: "Racing wheel for immersive gaming experience",
     price: 15.99,
-    image: "/images/gaming_wheel.jpg",
+    image: base + "images/gaming_wheel.jpg",
   },
   {
     id: 3,
@@ -24,7 +25,7 @@ const products = [
     priority: "Medium",
     description: "Virtual reality headset for immersive experiences",
     price: 29.99,
-    image: "/images/vr.jpg",
+    image: base + "images/vr.jpg",
   },
   {
     id: 4,
@@ -33,7 +34,7 @@ const products = [
     priority: "High",
     description: "Latest iPad with Apple Pencil for creative work",
     price: 32.99,
-    image: "/images/ipad_and_pencil.jpg",
+    image: base + "images/ipad_and_pencil.jpg",
   },
   {
     id: 5,
@@ -42,7 +43,7 @@ const products = [
     priority: "Low",
     description: "Apple Watch for fitness tracking and notifications",
     price: 18.99,
-    image: "/images/apple_watch.jpeg",
+    image: base + "images/apple_watch.jpeg",
   },
   {
     id: 6,
@@ -51,7 +52,7 @@ const products = [
     priority: "Medium",
     description: "Smart TV with 4K resolution (55-inch)",
     price: 27.99,
-    image: "/images/smart_tv.jpg",
+    image: base + "images/smart_tv.jpg",
   },
   {
     id: 7,
@@ -60,7 +61,7 @@ const products = [
     priority: "High",
     description: "HEPA filter air purifier for clean indoor air",
     price: 14.99,
-    image: "/images/air_purifier.jpeg",
+    image: base + "images/air_purifier.jpeg",
   },
   {
     id: 8,
@@ -69,7 +70,7 @@ const products = [
     priority: "High",
     description: "Surround sound system for immersive audio experience",
     price: 35.99,
-    image: "/images/home_theater.jpg",
+    image: base + "images/home_theater.jpg",
   },
   {
     id: 9,
@@ -78,7 +79,7 @@ const products = [
     priority: "High",
     description: "Action camera for adventure recording",
     price: 22.99,
-    image: "/images/goPro.jpg",
+    image: base + "images/goPro.jpg",
   },
   {
     id: 10,
@@ -87,7 +88,7 @@ const products = [
     priority: "Medium",
     description: "Camera drone for aerial photography",
     price: 39.99,
-    image: "/images/drone.jpg",
+    image: base + "images/drone.jpg",
   },
   {
     id: 11,
@@ -96,7 +97,7 @@ const products = [
     priority: "Medium",
     description: "Comfortable chair for home office",
     price: 19.99,
-    image: "/images/chair.jpg",
+    image: base + "images/chair.jpg",
   },
   {
     id: 12,
@@ -105,7 +106,7 @@ const products = [
     priority: "High",
     description: "Durable waterproof shoes for hiking and trekking",
     price: 12.99,
-    image: "/images/waterproof_shoes.jpg",
+    image: base + "images/waterproof_shoes.jpg",
   },
   {
     id: 13,
@@ -114,7 +115,7 @@ const products = [
     priority: "High",
     description: "Durable backpack for hiking adventures",
     price: 9.99,
-    image: "/images/bagpack.jpg",
+    image: base + "images/bagpack.jpg",
   },
   {
     id: 14,
@@ -123,7 +124,7 @@ const products = [
     priority: "High",
     description: "Adjustable trekking poles for stability",
     price: 7.99,
-    image: "/images/trekking_stick.jpg",
+    image: base + "images/trekking_stick.jpg",
   },
   {
     id: 15,
@@ -132,7 +133,7 @@ const products = [
     priority: "High",
     description: "Insulated sleeping bag for camping",
     price: 12.99,
-    image: "/images/sleeping_bag.jpg",
+    image: base + "images/sleeping_bag.jpg",
   },
   {
     id: 16,
@@ -141,7 +142,7 @@ const products = [
     priority: "High",
     description: "Insulated jacket for cold weather adventures",
     price: 19.99,
-    image: "/images/winter_jacket.jpg",
+    image: base + "images/winter_jacket.jpg",
   },
   {
     id: 17,
@@ -150,7 +151,7 @@ const products = [
     priority: "High",
     description: "Ice traction cleats for hiking boots",
     price: 8.99,
-    image: "/images/shoes_chain.jpg",
+    image: base + "images/shoes_chain.jpg",
   },
 ];
 
