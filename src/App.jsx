@@ -443,7 +443,7 @@ function App() {
               <div className="logo-circle">
                 <span>L</span>
               </div>
-              <h3>LuxeRent</h3>
+              <h3>RentSmart</h3>
             </div>
             <div className="footer-links">
               <div className="footer-column">
@@ -500,7 +500,7 @@ function App() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2023 LuxeRent. All rights reserved.</p>
+            <p>&copy; 2023 RentSmart. All rights reserved.</p>
           </div>
         </div>
       </footer>
