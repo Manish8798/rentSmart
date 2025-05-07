@@ -68,27 +68,6 @@ function App() {
           </button>
         </div>
         <div className="mobile-menu-links">
-          <a href="#all" className="mobile-menu-link">
-            All Categories
-          </a>
-          <a href="#phones" className="mobile-menu-link">
-            Phones & Tablets
-          </a>
-          <a href="#computer" className="mobile-menu-link">
-            Computers
-          </a>
-          <a href="#cameras" className="mobile-menu-link">
-            Cameras
-          </a>
-          <a href="#gaming" className="mobile-menu-link">
-            Gaming & VR
-          </a>
-          <a href="#audio" className="mobile-menu-link">
-            Audio & Music
-          </a>
-          <a href="#wearables" className="mobile-menu-link">
-            Wearables
-          </a>
           <a href="#how-it-works" className="mobile-menu-link">
             How It Works
           </a>
@@ -240,42 +219,6 @@ function App() {
           </button>
         </form>
       </header>
-
-      {/* Categories */}
-      <div className="categories">
-        <div className="container categories-container">
-          <a href="#all" className="category-item">
-            All categories
-          </a>
-          <a href="#phones" className="category-item">
-            Phones & Tablets
-          </a>
-          <a href="#computer" className="category-item">
-            Computers
-          </a>
-          <a href="#cameras" className="category-item">
-            Cameras
-          </a>
-          <a href="#gaming" className="category-item">
-            Gaming & VR
-          </a>
-          <a href="#audio" className="category-item">
-            Audio & Music
-          </a>
-          <a href="#wearables" className="category-item">
-            Wearables
-          </a>
-          <a href="#brands" className="category-item">
-            Brands
-          </a>
-          <a href="#products" className="category-item">
-            Top Products
-          </a>
-          <a href="#deals" className="category-item">
-            Deals %
-          </a>
-        </div>
-      </div>
 
       {/* Hero Section */}
       <section className="hero">
