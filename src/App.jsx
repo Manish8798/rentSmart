@@ -48,7 +48,7 @@ function App() {
       <div className={`mobile-menu ${mobileMenuOpen ? "active" : ""}`}>
         <div className="mobile-menu-header">
           <div className="logo-circle">
-            <span>L</span>
+            <span>RS</span>
           </div>
           <button className="close-menu" onClick={toggleMobileMenu}>
             <svg
@@ -89,7 +89,7 @@ function App() {
           <div className="logo">
             <a href="/" aria-label="RentSmart Home">
               <div className="logo-circle">
-                <span>L</span>
+                <span>RS</span>
               </div>
             </a>
           </div>
@@ -403,7 +403,7 @@ function App() {
           <div className="footer-content">
             <div className="footer-logo">
               <div className="logo-circle" aria-hidden="true">
-                <span>L</span>
+                <span>RS</span>
               </div>
               <h3>RentSmart</h3>
             </div>
