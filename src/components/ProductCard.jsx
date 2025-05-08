@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const ProductCard = ({ product }) => {
-  const { name, description, price, image, priority } = product;
+  const { name, description, price, image, priority, category } = product;
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState(null);
 
@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
   }, [image]);
 
   const handleRentNow = () => {
-    const phoneNumber = "917053911337"; // Remove the + symbol for WhatsApp web links
+    const phoneNumber = "917053911337";
     const message = `I'm interested in renting the ${name}. Please provide more details.`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -53,7 +53,11 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="product-card">
+    <article
+      className="product-card"
+      itemScope
+      itemType="https://schema.org/Product"
+    >
       <div
         className={`product-image ${
           !imageLoaded ? "loading" : ""
@@ -62,25 +66,47 @@ const ProductCard = ({ product }) => {
         {imageSrc && (
           <img
             src={imageSrc}
-            alt={name}
+            alt={`${name} - ${description}`}
             loading="lazy"
             className={getSpecialImgClass()}
             onLoad={() => setImageLoaded(true)}
+            itemProp="image"
           />
         )}
-        {!imageLoaded && <div className="image-loading-placeholder"></div>}
+        {!imageLoaded && (
+          <div className="image-loading-placeholder" aria-hidden="true"></div>
+        )}
       </div>
       <div className="product-info">
-        <h3>{name}</h3>
-        <p className="product-description">{description}</p>
+        <h3 itemProp="name">{name}</h3>
+        <p className="product-description" itemProp="description">
+          {description}
+        </p>
         <div className="product-footer">
-          <span className="product-price">${price}/month</span>
-          <button className="rent-button" onClick={handleRentNow}>
+          <div
+            className="product-price"
+            itemProp="offers"
+            itemScope
+            itemType="https://schema.org/Offer"
+          >
+            <span itemProp="price" content={price}>
+              ${price}
+            </span>
+            <span itemProp="priceCurrency" content="USD">
+              /month
+            </span>
+          </div>
+          <button
+            className="rent-button"
+            onClick={handleRentNow}
+            aria-label={`Rent ${name} for $${price} per month`}
+          >
             Rent Now
           </button>
         </div>
+        <meta itemProp="category" content={category} />
       </div>
-    </div>
+    </article>
   );
 };
 

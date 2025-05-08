@@ -84,10 +84,10 @@ function App() {
       </div>
 
       {/* Header */}
-      <header className="header">
+      <header className="header" role="banner">
         <div className="container header-container">
           <div className="logo">
-            <a href="/">
+            <a href="/" aria-label="RentSmart Home">
               <div className="logo-circle">
                 <span>L</span>
               </div>
@@ -96,14 +96,21 @@ function App() {
           <form
             className="search-bar search-bar-desktop"
             onSubmit={handleSearchSubmit}
+            role="search"
+            aria-label="Search products"
           >
             <input
               type="text"
               placeholder="Search luxury products..."
               value={searchQuery}
               onChange={handleSearch}
+              aria-label="Search products"
             />
-            <button type="submit" className="search-button">
+            <button
+              type="submit"
+              className="search-button"
+              aria-label="Submit search"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -221,22 +228,24 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="hero">
+      <section className="hero" role="banner" aria-label="Main banner">
         <div className="hero-content">
           <h1>Luxury Products on Demand</h1>
           <p>
             Experience premium technology without commitment. Rent the finest
             devices with flexible terms and impeccable service.
           </p>
-          <button className="cta-button">Explore Collection</button>
+          <button className="cta-button" aria-label="Explore our collection">
+            Explore Collection
+          </button>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="stats">
+      <section className="stats" aria-label="Company statistics">
         <div className="container stats-container">
           <div className="stat-item">
-            <div className="stat-icon">
+            <div className="stat-icon" aria-hidden="true">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -327,13 +336,19 @@ function App() {
       </section>
 
       {/* Products Section */}
-      <section className="products-section container">
+      <section
+        className="products-section container"
+        aria-label="Available products"
+      >
         <h2>Available for Rent</h2>
         <ProductGrid products={filteredProducts} />
       </section>
 
       {/* Featured Categories */}
-      <section className="featured-categories container">
+      <section
+        className="featured-categories container"
+        aria-label="Popular categories"
+      >
         <h2>Popular Categories</h2>
         <div className="category-cards">
           <div className="category-card">
@@ -352,7 +367,11 @@ function App() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="how-it-works container">
+      <section
+        id="how-it-works"
+        className="how-it-works container"
+        aria-label="How RentSmart works"
+      >
         <h2>How RentSmart Works</h2>
         <div className="steps">
           <div className="step">
@@ -379,30 +398,38 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="footer" role="contentinfo">
         <div className="container">
           <div className="footer-content">
             <div className="footer-logo">
-              <div className="logo-circle">
+              <div className="logo-circle" aria-hidden="true">
                 <span>L</span>
               </div>
               <h3>RentSmart</h3>
             </div>
-            <div className="footer-links">
+            <nav className="footer-links" aria-label="Footer navigation">
               <div className="footer-column">
                 <h4>Company</h4>
                 <ul>
                   <li>
-                    <a href="#">About Us</a>
+                    <a href="/about" aria-label="About RentSmart">
+                      About Us
+                    </a>
                   </li>
                   <li>
-                    <a href="#">Blog</a>
+                    <a href="/blog" aria-label="Read our blog">
+                      Blog
+                    </a>
                   </li>
                   <li>
-                    <a href="#">Careers</a>
+                    <a href="/careers" aria-label="View career opportunities">
+                      Careers
+                    </a>
                   </li>
                   <li>
-                    <a href="#">Contact Us</a>
+                    <a href="/contact" aria-label="Contact RentSmart">
+                      Contact Us
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -440,7 +467,7 @@ function App() {
                   </li>
                 </ul>
               </div>
-            </div>
+            </nav>
           </div>
           <div className="footer-bottom">
             <p>&copy; 2023 RentSmart. All rights reserved.</p>
