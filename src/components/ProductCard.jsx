@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 const ProductCard = ({ product }) => {
-  const { name, description, price, image, priority, category } = product;
+  const {
+    name,
+    description,
+    price,
+    priceUnit,
+    image,
+    priority,
+    category,
+    features,
+  } = product;
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState(null);
 
@@ -22,7 +31,7 @@ const ProductCard = ({ product }) => {
 
   const handleRentNow = () => {
     const phoneNumber = "917053911337";
-    const message = `I'm interested in renting the ${name}. Please provide more details.`;
+    const message = `I'm interested in renting the ${name} at ₹${price}/${priceUnit}. Please provide more details.`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappURL, "_blank");
@@ -82,6 +91,15 @@ const ProductCard = ({ product }) => {
         <p className="product-description" itemProp="description">
           {description}
         </p>
+        {features && features.length > 0 && (
+          <div className="product-features">
+            {features.map((feature, index) => (
+              <span key={index} className="feature-tag">
+                {feature}
+              </span>
+            ))}
+          </div>
+        )}
         <div className="product-footer">
           <div
             className="product-price"
@@ -90,16 +108,16 @@ const ProductCard = ({ product }) => {
             itemType="https://schema.org/Offer"
           >
             <span itemProp="price" content={price}>
-              ${price}
+              ₹{price}
             </span>
-            <span itemProp="priceCurrency" content="USD">
-              /month
+            <span itemProp="priceCurrency" content="INR">
+              /{priceUnit}
             </span>
           </div>
           <button
             className="rent-button"
             onClick={handleRentNow}
-            aria-label={`Rent ${name} for $${price} per month`}
+            aria-label={`Rent ${name} for ₹${price} per ${priceUnit}`}
           >
             Rent Now
           </button>
