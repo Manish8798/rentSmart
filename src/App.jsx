@@ -235,7 +235,15 @@ function App() {
             Experience premium technology without commitment. Rent the finest
             devices with flexible terms and impeccable service.
           </p>
-          <button className="cta-button" aria-label="Explore our collection">
+          <button
+            className="cta-button"
+            aria-label="Explore our collection"
+            onClick={() => {
+              document
+                .getElementById("products-section")
+                .scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             Explore Collection
           </button>
         </div>
@@ -337,6 +345,7 @@ function App() {
 
       {/* Products Section */}
       <section
+        id="products-section"
         className="products-section container"
         aria-label="Available products"
       >
