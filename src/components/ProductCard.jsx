@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const ProductCard = ({ product }) => {
   const { name, description, price, image, priority } = product;
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageSrc, setImageSrc] = useState(null);
 
-  const handleImageLoad = () => {
-    setImageLoaded(true);
-  };
+  useEffect(() => {
+    // Preload image
+    const img = new Image();
+    img.src = image;
+    img.onload = () => {
+      setImageSrc(image);
+      setImageLoaded(true);
+    };
+    img.onerror = () => {
+      // Fallback to a placeholder if image fails to load
+      setImageSrc("/images/placeholder.jpg");
+      setImageLoaded(true);
+    };
+  }, [image]);
 
   const handleRentNow = () => {
     const phoneNumber = "917053911337"; // Remove the + symbol for WhatsApp web links
@@ -47,13 +59,15 @@ const ProductCard = ({ product }) => {
           !imageLoaded ? "loading" : ""
         } ${getSpecialImageClass()}`}
       >
-        <img
-          src={image}
-          alt={name}
-          onLoad={handleImageLoad}
-          loading="lazy"
-          className={getSpecialImgClass()}
-        />
+        {imageSrc && (
+          <img
+            src={imageSrc}
+            alt={name}
+            loading="lazy"
+            className={getSpecialImgClass()}
+            onLoad={() => setImageLoaded(true)}
+          />
+        )}
         {!imageLoaded && <div className="image-loading-placeholder"></div>}
       </div>
       <div className="product-info">

@@ -79,7 +79,7 @@ const products = [
     priority: "High",
     description: "Action camera for adventure recording",
     price: 22.99,
-    image: base + "images/goPro.jpg",
+    image: base + "images/gopro.jpg",
   },
   {
     id: 10,
