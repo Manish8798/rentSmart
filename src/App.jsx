@@ -201,33 +201,54 @@ function App() {
       {/* Header */}
       <header className="header" role="banner">
         <div className="container header-container">
-          <div className="logo">
+          <div className="header-logo-container">
             <a href="/" aria-label="RentSmart Home">
               <div className="logo-circle">
                 <span>RS</span>
               </div>
             </a>
           </div>
-          {/* Desktop search bar */}
-          <form
-            className="search-bar search-bar-desktop"
-            onSubmit={handleSearchSubmit}
-            role="search"
-            aria-label="Search products"
-          >
-            <input
-              type="text"
-              placeholder="Search premium products..."
-              value={searchQuery}
-              onChange={handleSearch}
+          <div className="header-search-container">
+            <form
+              className="search-bar search-bar-desktop"
+              onSubmit={handleSearchSubmit}
+              role="search"
               aria-label="Search products"
-            />
-            {searchQuery && (
+            >
+              <input
+                type="text"
+                placeholder="Search premium products..."
+                value={searchQuery}
+                onChange={handleSearch}
+                aria-label="Search products"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  className="clear-button"
+                  onClick={handleClearSearch}
+                  aria-label="Clear search"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              )}
               <button
-                type="button"
-                className="clear-button"
-                onClick={handleClearSearch}
-                aria-label="Clear search"
+                type="submit"
+                className="search-button"
+                aria-label="Submit search"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -240,100 +261,34 @@ function App() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
               </button>
-            )}
-            <button
-              type="submit"
-              className="search-button"
-              aria-label="Submit search"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </button>
-          </form>
-          <div className="nav-buttons">
-            <a href="#how-it-works">How It Works</a>
-            <button className="language-button">EN</button>
-            {/* <button className="account-button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-            </button>
-            <button className="wishlist-button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-              </svg>
-            </button>
-            <button className="cart-button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-              </svg>
-            </button> */}
-            <button className="menu-button" onClick={toggleMobileMenu}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </svg>
-            </button>
+            </form>
+          </div>
+          <div className="header-nav-container">
+            <div className="nav-buttons">
+              <a href="#how-it-works">How It Works</a>
+              <button className="language-button">EN</button>
+              <button className="menu-button" onClick={toggleMobileMenu}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
         {/* Mobile search bar (hidden on desktop) */}
