@@ -8,6 +8,25 @@ function App() {
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Clear cache on page load/refresh
+  useEffect(() => {
+    // Clear service worker cache
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.ready.then((registration) => {
+        registration.active?.postMessage("CLEAR_CACHE");
+      });
+    }
+
+    // Clear browser cache for the current page
+    if ("caches" in window) {
+      caches.keys().then((cacheNames) => {
+        cacheNames.forEach((cacheName) => {
+          caches.delete(cacheName);
+        });
+      });
+    }
+  }, []);
+
   // Add structured data for better SEO
   const structuredData = {
     "@context": "https://schema.org",

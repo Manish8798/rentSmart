@@ -30,14 +30,14 @@ self.addEventListener("activate", (event) => {
 
 // Fetch event - handle requests
 self.addEventListener("fetch", (event) => {
-  // Handle image requests with a cache-first strategy
+  // For images, use cache-first strategy
   if (event.request.destination === "image") {
     event.respondWith(
       caches.open(IMAGE_CACHE_NAME).then((cache) => {
-        return cache.match(event.request).then((response) => {
+        return cache.match(event.request).then((cachedResponse) => {
           // Return cached image if found
-          if (response) {
-            return response;
+          if (cachedResponse) {
+            return cachedResponse;
           }
 
           // If not in cache, fetch from network
@@ -59,7 +59,7 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          // Cache successful responses
+          // If we get a valid response, clone it and cache it
           if (response.status === 200) {
             const responseClone = response.clone();
             caches.open(CACHE_NAME).then((cache) => {
@@ -69,8 +69,31 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(() => {
-          return caches.match(event.request);
+          // If network fails, try to get from cache
+          return caches.match(event.request).then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+            // For other resources, return a basic offline page
+            return new Response("Offline - Please check your connection");
+          });
         })
     );
+  }
+});
+
+// Listen for messages from the client
+self.addEventListener("message", (event) => {
+  if (event.data === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+  if (event.data === "CLEAR_CACHE") {
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          return caches.delete(cacheName);
+        })
+      );
+    });
   }
 });
