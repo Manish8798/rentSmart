@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onRentNow }) => {
   const {
     name,
     description,
@@ -28,14 +28,6 @@ const ProductCard = ({ product }) => {
       setImageLoaded(true);
     };
   }, [image]);
-
-  const handleRentNow = () => {
-    const phoneNumber = "917053911337";
-    const message = `I'm interested in renting the ${name} at ₹${price}/${priceUnit}. Please provide more details.`;
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    window.open(whatsappURL, "_blank");
-  };
 
   // Determine special product types for custom styling
   const isTV = name === "TV";
@@ -116,7 +108,7 @@ const ProductCard = ({ product }) => {
           </div>
           <button
             className="rent-button"
-            onClick={handleRentNow}
+            onClick={() => onRentNow(product)}
             aria-label={`Rent ${name} for ₹${price} per ${priceUnit}`}
           >
             Rent Now
