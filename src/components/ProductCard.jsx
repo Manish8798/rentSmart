@@ -12,22 +12,6 @@ const ProductCard = ({ product, onRentNow }) => {
     features,
   } = product;
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageSrc, setImageSrc] = useState(null);
-
-  useEffect(() => {
-    // Preload image
-    const img = new Image();
-    img.src = image;
-    img.onload = () => {
-      setImageSrc(image);
-      setImageLoaded(true);
-    };
-    img.onerror = () => {
-      // Fallback to a placeholder if image fails to load
-      setImageSrc("/images/placeholder.jpg");
-      setImageLoaded(true);
-    };
-  }, [image]);
 
   // Determine special product types for custom styling
   const isTV = name === "TV";
@@ -64,16 +48,14 @@ const ProductCard = ({ product, onRentNow }) => {
           !imageLoaded ? "loading" : ""
         } ${getSpecialImageClass()}`}
       >
-        {imageSrc && (
-          <img
-            src={imageSrc}
-            alt={`${name} - ${description}`}
-            loading="lazy"
-            className={getSpecialImgClass()}
-            onLoad={() => setImageLoaded(true)}
-            itemProp="image"
-          />
-        )}
+        <img
+          src={image}
+          alt={`${name} - ${description}`}
+          loading="lazy"
+          className={getSpecialImgClass()}
+          onLoad={() => setImageLoaded(true)}
+          itemProp="image"
+        />
         {!imageLoaded && (
           <div className="image-loading-placeholder" aria-hidden="true"></div>
         )}

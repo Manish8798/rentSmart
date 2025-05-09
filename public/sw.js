@@ -1,4 +1,4 @@
-const CACHE_NAME = "rentsmart-image-cache-v1";
+const CACHE_NAME = "rentsmart-cache-v1";
 const IMAGE_CACHE_NAME = "rentsmart-images-v1";
 
 // List of URLs to cache immediately
@@ -28,9 +28,9 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Fetch event - handle image caching
+// Fetch event - handle requests
 self.addEventListener("fetch", (event) => {
-  // Only handle image requests
+  // Handle image requests with a cache-first strategy
   if (event.request.destination === "image") {
     event.respondWith(
       caches.open(IMAGE_CACHE_NAME).then((cache) => {
@@ -41,20 +41,36 @@ self.addEventListener("fetch", (event) => {
           }
 
           // If not in cache, fetch from network
-          return fetch(event.request).then((networkResponse) => {
-            // Cache the new image
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          });
+          return fetch(event.request)
+            .then((networkResponse) => {
+              // Cache the new image
+              cache.put(event.request, networkResponse.clone());
+              return networkResponse;
+            })
+            .catch(() => {
+              // If network fails, return a placeholder image
+              return cache.match("/images/placeholder.jpg");
+            });
         });
       })
     );
   } else {
     // For non-image requests, use network-first strategy
     event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match(event.request);
-      })
+      fetch(event.request)
+        .then((response) => {
+          // Cache successful responses
+          if (response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request);
+        })
     );
   }
 });
