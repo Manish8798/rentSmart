@@ -542,7 +542,7 @@ function App() {
             </nav>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2023 RentSmart. All rights reserved.</p>
+            <p>&copy; 2025 RentSmart. All rights reserved.</p>
           </div>
         </div>
       </footer>
