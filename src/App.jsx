@@ -323,7 +323,7 @@ function App() {
                 <line x1="15" y1="9" x2="15.01" y2="9"></line>
               </svg>
             </div>
-            <p>Trusted by 500,000+ clients</p>
+            <p>Premium Products On Demand</p>
           </div>
           <div className="stat-item">
             <div className="stat-icon">
