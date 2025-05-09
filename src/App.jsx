@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import ProductGrid from "./components/ProductGrid";
 import products from "./data/products";
@@ -7,6 +7,86 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Add structured data for better SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "RentSmart",
+    "description": "Premium product rental service offering PS5, Apple products, and trekking equipment on flexible rental terms.",
+    "url": "https://rentsmart.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://rentsmart.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "availability": "https://schema.org/InStock",
+      "category": ["Gaming Consoles", "Apple Products", "Trekking Equipment"]
+    }
+  };
+
+  useEffect(() => {
+    // Update meta tags
+    document.title = "RentSmart - Premium PS5, Apple Products & Trekking Equipment Rental Service";
+    
+    // Update or create meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.name = "description";
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.content = "Rent premium PS5 consoles, Apple products (iPads, watches), and trekking equipment with flexible terms. No commitment, white glove service included.";
+
+    // Update or create meta keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.name = "keywords";
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.content = "PS5 rental, Apple products rental, trekking equipment rental, gaming console rental, iPad rental, Apple Watch rental, adventure gear rental";
+
+    // Add Open Graph tags
+    const ogTags = [
+      { property: 'og:title', content: 'RentSmart - Premium Product Rental Service' },
+      { property: 'og:description', content: 'Rent premium PS5 consoles, Apple products, and trekking equipment with flexible terms.' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://rentsmart.com' }
+    ];
+
+    ogTags.forEach(tag => {
+      let metaTag = document.querySelector(`meta[property="${tag.property}"]`);
+      if (!metaTag) {
+        metaTag = document.createElement('meta');
+        metaTag.setAttribute('property', tag.property);
+        document.head.appendChild(metaTag);
+      }
+      metaTag.content = tag.content;
+    });
+
+    // Add canonical URL
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.rel = 'canonical';
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = 'https://rentsmart.com';
+
+    // Add structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+
+    // Cleanup function
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
