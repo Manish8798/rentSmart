@@ -84,6 +84,7 @@ button {
   border-radius: 100px;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.05);
+  position: relative;
 }
 
 .search-bar input {
@@ -98,6 +99,21 @@ button {
 
 .search-bar input::placeholder {
   color: rgba(255, 255, 255, 0.6);
+}
+
+.clear-button {
+  padding: 0.75rem;
+  background-color: transparent;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.clear-button:hover {
+  opacity: 1;
 }
 
 .search-button {
