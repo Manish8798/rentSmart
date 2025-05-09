@@ -101,7 +101,7 @@ function App() {
           >
             <input
               type="text"
-              placeholder="Search luxury products..."
+              placeholder="Search premium products..."
               value={searchQuery}
               onChange={handleSearch}
               aria-label="Search products"
@@ -204,7 +204,7 @@ function App() {
         >
           <input
             type="text"
-            placeholder="Search luxury products..."
+            placeholder="Search premium products..."
             value={searchQuery}
             onChange={handleSearch}
           />
@@ -230,7 +230,7 @@ function App() {
       {/* Hero Section */}
       <section className="hero" role="banner" aria-label="Main banner">
         <div className="hero-content">
-          <h1>Luxury Products on Demand</h1>
+          <h1>Premium Products on Demand</h1>
           <p>
             Experience premium technology without commitment. Rent the finest
             devices with flexible terms and impeccable service.
