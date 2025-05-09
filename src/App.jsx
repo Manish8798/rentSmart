@@ -483,12 +483,18 @@ function App() {
                     </a>
                   </li>
                   <li>
-                    <a href="/careers" aria-label="View career opportunities">
+                    <a
+                      href="mailto:rentsmart007@gmail.com"
+                      aria-label="Contact RentSmart for career opportunities"
+                    >
                       Careers
                     </a>
                   </li>
                   <li>
-                    <a href="/contact" aria-label="Contact RentSmart">
+                    <a
+                      href="mailto:rentsmart007@gmail.com"
+                      aria-label="Contact RentSmart"
+                    >
                       Contact Us
                     </a>
                   </li>
@@ -515,7 +521,12 @@ function App() {
                 <h4>Support</h4>
                 <ul>
                   <li>
-                    <a href="#">Help Center</a>
+                    <a
+                      href="mailto:rentsmart007@gmail.com"
+                      aria-label="Get help from RentSmart"
+                    >
+                      Help Center
+                    </a>
                   </li>
                   <li>
                     <a href="#">FAQs</a>
