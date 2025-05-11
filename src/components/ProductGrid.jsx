@@ -32,7 +32,7 @@ const ProductGrid = ({ products }) => {
   const handleRentalConfirm = (startDate, endDate, duration) => {
     if (!selectedProduct) return;
     const { name, price, priceUnit } = selectedProduct;
-    const phoneNumber = "917053911337";
+    const phoneNumber = "918448347366";
     const message = `I'm interested in renting the ${name} at ₹${price}/${priceUnit}.\n\nRental Details:\nStart Date: ${startDate.toLocaleDateString()}\nEnd Date: ${endDate.toLocaleDateString()}\nDuration: ${duration} days\nTotal Amount: ₹${
       price * duration
     }\n\nPlease provide more details.`;
