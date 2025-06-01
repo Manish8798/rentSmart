@@ -3,7 +3,7 @@ const products = [
   {
     id: 1,
     category: "Gaming",
-    name: "PS5",
+    name: "Sony PS5",
     priority: "High",
     description: "Latest PlayStation gaming console with DualSense controller",
     price: 1000,
