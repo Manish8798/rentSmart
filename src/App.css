@@ -67,12 +67,13 @@ button {
 /* Header */
 .header {
   background-color: var(--bg-black);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.2);
   padding: 1rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
   color: var(--text-light);
+  /* Psychology: Dark professional background with warm gold accent - builds authority and warmth */
 }
 
 .header-container {
@@ -103,7 +104,11 @@ button {
 }
 
 .logo-circle {
-  background-color: var(--secondary-color);
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--secondary-bright)
+  );
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -113,17 +118,20 @@ button {
   color: var(--bg-black);
   font-weight: bold;
   font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  /* Psychology: Gold gradient suggests premium value and trustworthy investment - perfect for rental logo */
 }
 
 .search-bar {
   flex: 1;
   max-width: 500px;
   display: flex;
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  border: 1px solid rgba(245, 158, 11, 0.3);
   border-radius: 100px;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.05);
   position: relative;
+  /* Psychology: Gold border suggests valuable search results */
 }
 
 .search-bar input {
@@ -162,6 +170,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Psychology: Gold search icon suggests finding valuable rental opportunities */
 }
 
 .nav-buttons {
@@ -179,6 +188,7 @@ button {
 
 .nav-buttons a:hover {
   color: var(--secondary-color);
+  /* Psychology: Gold hover suggests valuable interactions and premium service */
 }
 
 .language-button {
@@ -203,13 +213,15 @@ button {
 .cart-button:hover,
 .menu-button:hover {
   color: var(--secondary-color);
+  /* Psychology: Consistent gold interactions build trust and suggest valuable engagement */
 }
 
 /* Categories */
 .categories {
   padding: 0.5rem 0;
   border-bottom: 1px solid var(--border-color);
-  background-color: var(--primary-color);
+  background-color: var(--bg-dark);
+  /* Psychology: Slightly lighter dark creates visual hierarchy while maintaining professional feel */
 }
 
 .categories-container {
@@ -234,6 +246,7 @@ button {
 
 .category-item:hover {
   color: var(--secondary-color);
+  /* Psychology: Gold category hover suggests valuable rental categories */
 }
 
 /* Hero Section */
@@ -495,7 +508,7 @@ button {
 }
 
 .priority-low {
-  background-color: var(--prosperity-green);
+  background-color: var(--trust-blue);
   color: var(--text-light);
 }
 
@@ -727,6 +740,7 @@ button {
 
 .footer-column a:hover {
   color: var(--secondary-color);
+  /* Psychology: Consistent gold hover throughout site builds trust and suggests value */
 }
 
 .footer-bottom {
@@ -1339,8 +1353,8 @@ button {
 }
 
 .prosperity-indicator {
-  color: var(--prosperity-green);
-  /* Indicates growth, success, and positive outcomes */
+  color: var(--secondary-color);
+  /* Indicates value, success, and positive outcomes with gold instead of green */
 }
 
 .urgency-creator {
@@ -1360,10 +1374,10 @@ button {
 }
 
 .success-state {
-  background-color: var(--bg-success);
-  color: var(--prosperity-green);
-  border: 1px solid var(--prosperity-green);
-  /* Positive reinforcement for completed actions */
+  background-color: var(--bg-warning);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  /* Positive reinforcement for completed actions using warm gold theme */
 }
 
 .conversion-button {
@@ -1384,4 +1398,64 @@ button {
   border-radius: 1rem;
   font-size: 0.875rem;
   /* Builds confidence in service reliability */
+}
+
+/* Alternative Option B: Premium White Header */
+.header-premium {
+  background-color: var(--bg-light);
+  border-bottom: 2px solid var(--border-color);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  color: var(--text-dark);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Psychology: White = spaciousness, cleanliness, premium feel */
+}
+
+.logo-circle-premium {
+  background-color: var(--primary-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  font-weight: bold;
+  font-size: 1.2rem;
+  /* Psychology: Deep blue in white space = ultimate trust and professionalism */
+}
+
+/* Alternative Option A: Trust Blue Logo */
+.logo-circle-blue {
+  background: linear-gradient(135deg, var(--trust-blue), var(--primary-color));
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  /* Psychology: Blue gradient emphasizes maximum trust and reliability */
+}
+
+/* Alternative Option B: Premium White Logo */
+.logo-circle-white {
+  background-color: var(--bg-light);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* Psychology: White with gold border suggests premium, clean service */
 }
