@@ -1,6 +1,6 @@
 :root {
   --primary-color: #102542; /* Deep blue */
-  --secondary-color: #f5a623; /* Changed from #d4af37 to #F5A623 */
+  --secondary-color: #ffd712; /* Changed from #F5A623 to #FFD712 */
   --accent-color: #ba9832; /* Darker gold for accents */
   --text-color: #0a3348; /* Changed from #333333 to #0A3348 */
   --bg-black: #121212; /* Off-black for backgrounds */
@@ -521,7 +521,7 @@ button {
 .product-price {
   font-weight: bold;
   font-size: 1.2rem;
-  color: var(--secondary-color);
+  color: #262626;
   display: flex;
   align-items: baseline;
   gap: 0.25rem;
