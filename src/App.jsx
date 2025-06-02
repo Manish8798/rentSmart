@@ -7,6 +7,50 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+
+  // Product names for animation
+  const productNames = [
+    "Sony PS5",
+    "iPad & Pencil",
+    "Apple Watch",
+    "VR Headset",
+    "Gaming Wheel",
+    "Home Theater",
+    "Trekking Gear",
+    "Air Purifier",
+  ];
+
+  // Typewriter animation effect
+  useEffect(() => {
+    const currentProduct = productNames[currentProductIndex];
+    let timeoutId;
+
+    if (isTyping) {
+      if (displayText.length < currentProduct.length) {
+        timeoutId = setTimeout(() => {
+          setDisplayText(currentProduct.slice(0, displayText.length + 1));
+        }, 100);
+      } else {
+        timeoutId = setTimeout(() => {
+          setIsTyping(false);
+        }, 2000);
+      }
+    } else {
+      if (displayText.length > 0) {
+        timeoutId = setTimeout(() => {
+          setDisplayText(displayText.slice(0, -1));
+        }, 50);
+      } else {
+        setCurrentProductIndex((prev) => (prev + 1) % productNames.length);
+        setIsTyping(true);
+      }
+    }
+
+    return () => clearTimeout(timeoutId);
+  }, [displayText, isTyping, currentProductIndex, productNames]);
 
   // Clear cache on page load/refresh
   useEffect(() => {
@@ -347,7 +391,13 @@ function App() {
       {/* Hero Section */}
       <section className="hero" role="banner" aria-label="Main banner">
         <div className="hero-content">
-          <h1>Premium Products on Demand</h1>
+          <h1>
+            <span className="animated-text">
+              {displayText}
+              <span className="cursor">|</span>
+            </span>
+            <span className="static-text"> on Demand</span>
+          </h1>
           <p>
             Experience premium technology without commitment. Rent the finest
             devices with flexible terms and impeccable service.

@@ -290,7 +290,7 @@ button {
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: 2.2rem;
   font-weight: bold;
   margin-bottom: 1rem;
   line-height: 1.1;
@@ -309,6 +309,95 @@ button {
   background-color: var(--secondary-color);
 }
 
+/* Animated Text Styles */
+.animated-text {
+  /* Fallback for browsers that don't support background-clip */
+  color: var(--secondary-bright);
+  background: linear-gradient(
+    135deg,
+    var(--secondary-bright),
+    var(--secondary-color),
+    var(--premium-purple),
+    var(--trust-blue)
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+  position: relative;
+  min-height: 1.3em;
+  display: inline-block;
+  font-weight: 700;
+  line-height: 1.2;
+  vertical-align: baseline;
+}
+
+/* Fallback for browsers without background-clip support */
+@supports not (-webkit-background-clip: text) {
+  .animated-text {
+    background: none;
+    color: var(--secondary-bright);
+    -webkit-text-fill-color: initial;
+  }
+
+  .cursor {
+    background: none;
+    color: var(--secondary-bright);
+    -webkit-text-fill-color: initial;
+  }
+}
+
+/* CTA Button fallback for older browsers */
+@supports not (background-size: 300%) {
+  .cta-button {
+    background: linear-gradient(
+      135deg,
+      var(--secondary-color),
+      var(--secondary-bright)
+    );
+    animation: none;
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.static-text {
+  color: var(--text-light);
+}
+
+.cursor {
+  background: linear-gradient(
+    135deg,
+    var(--secondary-bright),
+    var(--secondary-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: blink 1s infinite, gradientShift 3s ease-in-out infinite;
+  font-weight: normal;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
 .hero p {
   font-size: 1.3rem;
   margin-bottom: 2rem;
@@ -320,8 +409,13 @@ button {
   background: linear-gradient(
     135deg,
     var(--secondary-color),
-    var(--secondary-bright)
+    var(--secondary-bright),
+    var(--premium-purple),
+    var(--trust-blue),
+    var(--secondary-color)
   );
+  background-size: 300% 300%;
+  animation: gradientShift 4s ease-in-out infinite;
   color: var(--bg-black);
   border: none;
   padding: 1rem 2rem;
@@ -333,16 +427,34 @@ button {
   text-transform: uppercase;
   letter-spacing: 1px;
   box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+  left: 100%;
 }
 
 .cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
-  background: linear-gradient(
-    135deg,
-    var(--secondary-bright),
-    var(--action-coral)
-  );
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+  animation-duration: 2s;
 }
 
 /* Stats Section */
@@ -820,6 +932,10 @@ button {
     font-size: 2.2rem;
   }
 
+  .animated-text {
+    min-height: 1.5em;
+  }
+
   .hero h1::after {
     left: 50%;
     transform: translateX(-50%);
@@ -913,6 +1029,10 @@ button {
     font-size: 1.8rem;
   }
 
+  .animated-text {
+    min-height: 1.5em;
+  }
+
   .product-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -957,6 +1077,10 @@ button {
 @media (max-width: 375px) {
   .hero h1 {
     font-size: 1.5rem;
+  }
+
+  .animated-text {
+    min-height: 1.3em;
   }
 
   .hero p {
