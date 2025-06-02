@@ -34,10 +34,10 @@ function App() {
     name: "RentSmart",
     description:
       "Premium product rental service offering PS5, Apple products, and trekking equipment on flexible rental terms.",
-    url: "https://rentsmart.com",
+    url: "https://rentsmart.in",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://rentsmart.com/search?q={search_term_string}",
+      target: "https://rentsmart.in/search?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
     offers: {
@@ -84,7 +84,7 @@ function App() {
           "Rent premium PS5 consoles, Apple products, and trekking equipment with flexible terms.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://rentsmart.com" },
+      { property: "og:url", content: "https://rentsmart.in" },
     ];
 
     ogTags.forEach((tag) => {
@@ -104,7 +104,7 @@ function App() {
       canonicalLink.rel = "canonical";
       document.head.appendChild(canonicalLink);
     }
-    canonicalLink.href = "https://rentsmart.com";
+    canonicalLink.href = "https://rentsmart.in";
 
     // Add structured data
     const script = document.createElement("script");
