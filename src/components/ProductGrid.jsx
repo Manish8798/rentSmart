@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ProductCard from "./ProductCard";
 import RentalCalendar from "./RentalCalendar";
 
-const ProductGrid = ({ products }) => {
+const ProductGrid = ({ products, onCalendarStateChange }) => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -22,11 +22,15 @@ const ProductGrid = ({ products }) => {
   const handleOpenCalendar = (product) => {
     setSelectedProduct(product);
     setCalendarOpen(true);
+    // Notify parent component about calendar state change
+    onCalendarStateChange?.(true);
   };
 
   const handleCloseCalendar = () => {
     setCalendarOpen(false);
     setSelectedProduct(null);
+    // Notify parent component about calendar state change
+    onCalendarStateChange?.(false);
   };
 
   const handleRentalConfirm = (startDate, endDate, duration, pricing) => {
@@ -62,6 +66,8 @@ Please provide more details.`;
     window.open(whatsappURL, "_blank");
     setCalendarOpen(false);
     setSelectedProduct(null);
+    // Notify parent component about calendar state change
+    onCalendarStateChange?.(false);
   };
 
   return (

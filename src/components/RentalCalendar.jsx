@@ -70,6 +70,14 @@ const RentalCalendar = ({
     }
   };
 
+  // Handle click outside to close popup
+  const handleOverlayClick = (e) => {
+    // Only close if clicking directly on the overlay, not on the popup content
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   const duration =
@@ -83,7 +91,7 @@ const RentalCalendar = ({
       : { total: 0, perDay: 0, tier: "invalid" };
 
   return (
-    <div className="calendar-overlay">
+    <div className="calendar-overlay" onClick={handleOverlayClick}>
       <div className="calendar-popup">
         <div className="calendar-header">
           <div>
@@ -112,6 +120,7 @@ const RentalCalendar = ({
                 startDate={startDate}
                 endDate={endDate}
                 minDate={new Date()}
+                dateFormat="dd/MM/yyyy"
               />
             </div>
             <div className="date-picker-group">
@@ -123,6 +132,7 @@ const RentalCalendar = ({
                 startDate={startDate}
                 endDate={endDate}
                 minDate={startDate}
+                dateFormat="dd/MM/yyyy"
               />
             </div>
           </div>

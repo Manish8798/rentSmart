@@ -11,6 +11,7 @@ function App() {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   // Product names for animation
   const productNames = [
@@ -194,6 +195,11 @@ function App() {
     setMobileMenuOpen(!mobileMenuOpen);
     // Prevent body scroll when menu is open
     document.body.style.overflow = mobileMenuOpen ? "auto" : "hidden";
+  };
+
+  // Handle calendar state change from ProductGrid
+  const handleCalendarStateChange = (isOpen) => {
+    setIsCalendarOpen(isOpen);
   };
 
   return (
@@ -518,7 +524,10 @@ function App() {
         aria-label="Available products"
       >
         <h2>Available for Rent</h2>
-        <ProductGrid products={filteredProducts} />
+        <ProductGrid
+          products={filteredProducts}
+          onCalendarStateChange={handleCalendarStateChange}
+        />
       </section>
 
       {/* Featured Categories */}
@@ -663,7 +672,7 @@ function App() {
         </div>
       </footer>
 
-      <WhatsAppFAB />
+      <WhatsAppFAB disabled={isCalendarOpen} />
     </div>
   );
 }

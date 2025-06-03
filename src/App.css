@@ -1073,7 +1073,7 @@ button {
   }
 
   .product-card {
-    max-width: 320px;
+    max-width: 380px;
     margin: 0 auto;
   }
 
@@ -1365,6 +1365,7 @@ button {
   width: 90%;
   max-width: 500px;
   border: 1.5px solid var(--border-color);
+  position: relative;
 }
 
 .calendar-header {
@@ -1536,6 +1537,85 @@ button {
   border-radius: 12px;
   border: 1px solid var(--secondary-color);
   font-size: 0.85rem;
+  display: inline-block;
+  word-break: break-word;
+}
+
+/* Mobile responsive fixes for calendar */
+@media (max-width: 768px) {
+  .calendar-popup {
+    width: 95%;
+    padding: 1.5rem;
+    margin: 1rem;
+    position: relative;
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .calendar-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .selected-product {
+    font-size: 1rem;
+    margin-top: 0.3rem;
+  }
+
+  .minimum-tenure-notice {
+    margin-top: 0.3rem;
+    width: 100%;
+  }
+
+  .minimum-tenure-notice small {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    word-break: normal;
+    white-space: nowrap;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-popup {
+    width: 98%;
+    padding: 1rem;
+    position: relative;
+  }
+
+  .minimum-tenure-notice small {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .calendar-header h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .selected-product {
+    font-size: 0.9rem;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.4rem;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 /* Duration warning styles */
@@ -1689,6 +1769,24 @@ button {
   transform: scale(1.1);
 }
 
+/* Disabled state for WhatsApp FAB */
+.whatsapp-fab.disabled {
+  background: linear-gradient(135deg, #888, #666);
+  cursor: not-allowed;
+  animation: none;
+  opacity: 0.5;
+}
+
+.whatsapp-fab.disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 20px rgba(136, 136, 136, 0.3);
+  background: linear-gradient(135deg, #888, #666);
+}
+
+.whatsapp-fab.disabled:hover svg {
+  transform: none;
+}
+
 /* Add a subtle pulse animation for attention */
 @keyframes whatsappPulse {
   0% {
@@ -1702,7 +1800,7 @@ button {
   }
 }
 
-.whatsapp-fab {
+.whatsapp-fab:not(.disabled) {
   animation: whatsappPulse 2s infinite;
 }
 

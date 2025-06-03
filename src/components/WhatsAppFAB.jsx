@@ -1,9 +1,12 @@
 import React from "react";
 
-const WhatsAppFAB = () => {
+const WhatsAppFAB = ({ disabled = false }) => {
   const handleWhatsAppClick = () => {
+    // Don't open WhatsApp if disabled
+    if (disabled) return;
+
     // Your WhatsApp business number (replace with your actual number)
-    const phoneNumber = "919876543210"; // Format: country code + number (without + sign)
+    const phoneNumber = "918448347366"; // Format: country code + number (without + sign)
 
     // Pre-filled message for rental inquiry
     const message = encodeURIComponent(
@@ -28,10 +31,15 @@ Thank you!`
 
   return (
     <button
-      className="whatsapp-fab"
+      className={`whatsapp-fab ${disabled ? "disabled" : ""}`}
       onClick={handleWhatsAppClick}
-      title="Chat with us on WhatsApp"
-      aria-label="Contact us via WhatsApp"
+      title={
+        disabled ? "Close popup to access WhatsApp" : "Chat with us on WhatsApp"
+      }
+      aria-label={
+        disabled ? "WhatsApp button disabled" : "Contact us via WhatsApp"
+      }
+      disabled={disabled}
     >
       <svg
         width="28"
