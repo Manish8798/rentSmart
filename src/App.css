@@ -326,11 +326,12 @@ button {
   background-clip: text;
   animation: gradientShift 3s ease-in-out infinite;
   position: relative;
-  min-height: 1.3em;
+  min-height: 1.5em;
   display: inline-block;
   font-weight: 700;
   line-height: 1.2;
   vertical-align: baseline;
+  font-size: 4rem;
 }
 
 /* Fallback for browsers without background-clip support */
@@ -934,6 +935,7 @@ button {
 
   .animated-text {
     min-height: 1.5em;
+    font-size: 1.8rem;
   }
 
   .hero h1::after {
@@ -1081,6 +1083,7 @@ button {
 
   .animated-text {
     min-height: 1.3em;
+    font-size: 1.5rem;
   }
 
   .hero p {
@@ -1573,17 +1576,110 @@ button {
 
 /* Alternative Option B: Premium White Logo */
 .logo-circle-white {
-  background-color: var(--bg-light);
-  width: 40px;
-  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-light);
+}
+
+/* WhatsApp Floating Action Button */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 4rem;
+  right: 4rem;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-color);
-  font-weight: bold;
-  font-size: 1.2rem;
-  border: 2px solid var(--secondary-color);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  /* Psychology: White with gold border suggests premium, clean service */
+  color: white;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.whatsapp-fab:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+  background: linear-gradient(135deg, #128c7e, #25d366);
+}
+
+.whatsapp-fab:active {
+  transform: translateY(-1px);
+}
+
+/* Pulse animation for attention */
+.whatsapp-fab::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.3);
+  animation: whatsappPulse 2s infinite;
+  z-index: -1;
+}
+
+@keyframes whatsappPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .whatsapp-fab {
+    bottom: 2.5rem;
+    right: 2.5rem;
+    width: 60px;
+    height: 60px;
+  }
+
+  .whatsapp-fab svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 576px) {
+  .whatsapp-fab {
+    bottom: 2rem;
+    right: 2rem;
+    width: 58px;
+    height: 58px;
+  }
+
+  .whatsapp-fab svg {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+/* Ensure it doesn't interfere with other elements */
+@media (max-width: 480px) {
+  .whatsapp-fab {
+    bottom: 6rem; /* Space for mobile browser UI */
+    width: 56px;
+    height: 56px;
+  }
+
+  .whatsapp-fab svg {
+    width: 24px;
+    height: 24px;
+  }
 }
