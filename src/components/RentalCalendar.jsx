@@ -13,18 +13,60 @@ const RentalCalendar = ({
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
 
+  // Default rental duration in days (1 month = 30 days)
+  const DEFAULT_RENTAL_DAYS = 30;
+
+  // Tiered pricing function
+  const calculateTieredPrice = (duration) => {
+    if (duration === 1) {
+      return { total: 1000, perDay: 1000, tier: "single-day" };
+    } else if (duration === 2) {
+      return { total: 2000, perDay: 1000, tier: "two-days" };
+    } else if (duration >= 3) {
+      return { total: duration * 249, perDay: 249, tier: "long-term" };
+    }
+    return { total: 0, perDay: 0, tier: "invalid" };
+  };
+
+  // Get pricing tier info for display
+  const getPricingTierInfo = (duration) => {
+    if (duration === 1) {
+      return "Single day rate";
+    } else if (duration === 2) {
+      return "Two day rate (₹1000/day)";
+    } else if (duration >= 3) {
+      return "Long-term rate (3+ days)";
+    }
+    return "";
+  };
+
   // Reset dates when popup opens or product changes
   useEffect(() => {
     if (isOpen) {
-      setStartDate(new Date());
-      setEndDate(null);
+      const today = new Date();
+      setStartDate(today);
+
+      // Set default end date to 1 month from start date
+      const defaultEndDate = new Date(today);
+      defaultEndDate.setDate(today.getDate() + DEFAULT_RENTAL_DAYS);
+      setEndDate(defaultEndDate);
     }
   }, [isOpen, productName]);
+
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+
+    // If there's an end date and it's before the new start date, clear it
+    if (endDate && endDate <= date) {
+      setEndDate(null);
+    }
+  };
 
   const handleConfirm = () => {
     if (startDate && endDate) {
       const duration = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-      onConfirm(startDate, endDate, duration);
+      const pricing = calculateTieredPrice(duration);
+      onConfirm(startDate, endDate, duration, pricing);
     }
   };
 
@@ -34,7 +76,11 @@ const RentalCalendar = ({
     startDate && endDate
       ? Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24))
       : 0;
-  const total = duration > 0 ? price * duration : 0;
+
+  const pricing =
+    duration > 0
+      ? calculateTieredPrice(duration)
+      : { total: 0, perDay: 0, tier: "invalid" };
 
   return (
     <div className="calendar-overlay">
@@ -47,6 +93,9 @@ const RentalCalendar = ({
                 Renting: <b>{productName}</b>
               </div>
             )}
+            <div className="minimum-tenure-notice">
+              <small>Default: 1 month (customizable)</small>
+            </div>
           </div>
           <button className="close-button" onClick={onClose}>
             ×
@@ -58,7 +107,7 @@ const RentalCalendar = ({
               <label>Start Date:</label>
               <DatePicker
                 selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                onChange={handleStartDateChange}
                 selectsStart
                 startDate={startDate}
                 endDate={endDate}
@@ -81,13 +130,16 @@ const RentalCalendar = ({
             <p>
               Duration: <b>{duration}</b> {duration === 1 ? "day" : "days"}
             </p>
-            <p className="total-price">
-              Total Price: <span>₹{total}</span>
-            </p>
-            {price && priceUnit && (
-              <p className="per-unit">
-                ({price} per {priceUnit})
+            {duration > 0 && (
+              <p className="pricing-tier">
+                <small>{getPricingTierInfo(duration)}</small>
               </p>
+            )}
+            <p className="total-price">
+              Total Price: <span>₹{pricing.total}</span>
+            </p>
+            {duration > 0 && (
+              <p className="per-unit">(₹{pricing.perDay} per day)</p>
             )}
           </div>
           <button

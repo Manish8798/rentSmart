@@ -81,17 +81,20 @@ const ProductCard = ({ product, onRentNow }) => {
             itemScope
             itemType="https://schema.org/Offer"
           >
-            <span itemProp="price" content={price}>
-              ₹{price}
-            </span>
-            <span itemProp="priceCurrency" content="INR">
-              /{priceUnit}
-            </span>
+            <div className="tiered-pricing">
+              <div className="price-line">
+                <span itemProp="price" content="249">
+                  ₹249
+                </span>
+                <span className="price-unit">/day</span>
+              </div>
+            </div>
+            <meta itemProp="priceCurrency" content="INR" />
           </div>
           <button
             className="rent-button"
             onClick={() => onRentNow(product)}
-            aria-label={`Rent ${name} for ₹${price} per ${priceUnit}`}
+            aria-label={`Rent ${name} - Tiered pricing available`}
           >
             Rent Now
           </button>

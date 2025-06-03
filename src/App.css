@@ -688,6 +688,38 @@ button {
   gap: 0.25rem;
 }
 
+/* Tiered pricing styles for product cards */
+.tiered-pricing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.price-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #262626;
+}
+
+.price-unit {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-color);
+}
+
+.price-subtext {
+  margin-top: 0.1rem;
+}
+
+.price-subtext small {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
 .rent-button {
   background: linear-gradient(
     135deg,
@@ -1420,6 +1452,21 @@ button {
   margin-top: 0.2rem;
 }
 
+/* Pricing tier styles */
+.pricing-tier {
+  margin: 0.3rem 0 !important;
+}
+
+.pricing-tier small {
+  color: var(--trust-blue);
+  font-weight: 600;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
 .confirm-button {
   background-color: var(--primary-color);
   color: var(--text-light);
@@ -1474,6 +1521,28 @@ button {
 .react-datepicker__month-read-view--down-arrow,
 .react-datepicker__year-read-view--down-arrow {
   top: 8px;
+}
+
+/* Minimum tenure notice styles */
+.minimum-tenure-notice {
+  margin-top: 0.5rem;
+}
+
+.minimum-tenure-notice small {
+  color: var(--secondary-color);
+  font-weight: 500;
+  background: var(--bg-warning);
+  padding: 0.3rem 0.7rem;
+  border-radius: 12px;
+  border: 1px solid var(--secondary-color);
+  font-size: 0.85rem;
+}
+
+/* Duration warning styles */
+.duration-warning {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 /* Psychology-Based Color Utility Classes */

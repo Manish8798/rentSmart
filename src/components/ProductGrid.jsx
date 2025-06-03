@@ -29,13 +29,34 @@ const ProductGrid = ({ products }) => {
     setSelectedProduct(null);
   };
 
-  const handleRentalConfirm = (startDate, endDate, duration) => {
+  const handleRentalConfirm = (startDate, endDate, duration, pricing) => {
     if (!selectedProduct) return;
-    const { name, price, priceUnit } = selectedProduct;
+    const { name } = selectedProduct;
     const phoneNumber = "918448347366";
-    const message = `I'm interested in renting the ${name} at ₹${price}/${priceUnit}.\n\nRental Details:\nStart Date: ${startDate.toLocaleDateString()}\nEnd Date: ${endDate.toLocaleDateString()}\nDuration: ${duration} days\nTotal Amount: ₹${
-      price * duration
-    }\n\nPlease provide more details.`;
+
+    // Format the pricing tier information
+    let pricingInfo = "";
+    if (pricing.tier === "single-day") {
+      pricingInfo = "Single day rate: ₹1,000";
+    } else if (pricing.tier === "two-days") {
+      pricingInfo = "Two day rate: ₹1,000/day";
+    } else if (pricing.tier === "long-term") {
+      pricingInfo = `Long-term rate: ₹${pricing.perDay}/day (3+ days)`;
+    }
+
+    const message = `I'm interested in renting the ${name}.
+
+Rental Details:
+Start Date: ${startDate.toLocaleDateString()}
+End Date: ${endDate.toLocaleDateString()}
+Duration: ${duration} ${duration === 1 ? "day" : "days"}
+
+Pricing:
+${pricingInfo}
+Total Amount: ₹${pricing.total.toLocaleString()}
+
+Please provide more details.`;
+
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappURL, "_blank");
