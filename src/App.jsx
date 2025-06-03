@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import ProductGrid from "./components/ProductGrid";
+import WhatsAppFAB from "./components/WhatsAppFAB";
 import products from "./data/products";
 
 function App() {
@@ -661,6 +662,8 @@ function App() {
           </div>
         </div>
       </footer>
+
+      <WhatsAppFAB />
     </div>
   );
 }
