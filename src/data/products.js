@@ -5,7 +5,8 @@ const products = [
     category: "Gaming",
     name: "Sony PS5",
     priority: "High",
-    description: "Latest PlayStation gaming console with DualSense controller",
+    description:
+      "Next-gen PlayStation 5 with lightning-fast SSD, 3D audio, haptic feedback controller, and 4K gaming up to 120fps.",
     price: 249,
     priceUnit: "day",
     image: base + "images/ps5.jpg",
@@ -16,7 +17,8 @@ const products = [
     category: "Gaming",
     name: "Gaming Wheel",
     priority: "Low",
-    description: "Racing wheel for immersive gaming experience",
+    description:
+      "Professional racing wheel with force feedback, precision steering, and responsive pedals. Compatible with PS5 and PC.",
     price: 249,
     priceUnit: "day",
     image: base + "images/gaming_wheel.jpg",
@@ -27,7 +29,8 @@ const products = [
     category: "Gaming",
     name: "VR",
     priority: "Medium",
-    description: "Virtual reality headset for immersive experiences",
+    description:
+      "High-resolution VR headset with 6DOF tracking and comfortable ergonomic design for immersive gaming experiences.",
     price: 249,
     priceUnit: "day",
     image: base + "images/vr.jpg",
@@ -42,7 +45,8 @@ const products = [
     category: "Apple",
     name: "iPad & Pencil",
     priority: "High",
-    description: "Latest iPad with Apple Pencil for creative work",
+    description:
+      "Latest iPad with M2 chip and Apple Pencil 2nd gen. Perfect for digital art, notes, and professional design work.",
     price: 299,
     priceUnit: "day",
     image: base + "images/ipad_and_pencil.jpg",
@@ -53,7 +57,8 @@ const products = [
     category: "Apple",
     name: "Watch",
     priority: "Low",
-    description: "Apple Watch for fitness tracking and notifications",
+    description:
+      "Apple Watch with health monitoring, GPS, water resistance, and seamless iPhone integration for fitness and productivity.",
     price: 299,
     priceUnit: "day",
     image: base + "images/apple_watch.jpeg",
@@ -64,7 +69,8 @@ const products = [
     category: "Home",
     name: "TV",
     priority: "Medium",
-    description: "Smart TV with 4K resolution (55-inch)",
+    description:
+      "Premium 55-inch 4K Smart TV with HDR support, built-in streaming apps, and multiple HDMI ports.",
     price: 249,
     priceUnit: "day",
     image: base + "images/smart_tv.jpg",
@@ -75,7 +81,8 @@ const products = [
     category: "Home",
     name: "Air Purifier",
     priority: "High",
-    description: "HEPA filter air purifier for clean indoor air",
+    description:
+      "Advanced HEPA air purifier that removes 99.97% of particles with real-time monitoring and quiet operation.",
     price: 249,
     priceUnit: "day",
     image: base + "images/air_purifier.jpeg",
@@ -86,7 +93,8 @@ const products = [
     category: "Home",
     name: "Home Theater",
     priority: "High",
-    description: "Surround sound system for immersive audio experience",
+    description:
+      "Premium 5.1 surround sound system with wireless subwoofer and Bluetooth connectivity for cinematic audio.",
     price: 249,
     priceUnit: "day",
     image: base + "images/home_theater.jpg",
@@ -101,7 +109,8 @@ const products = [
     category: "Lifestyle",
     name: "Go Pro",
     priority: "High",
-    description: "Action camera for adventure recording",
+    description:
+      "Professional 4K action camera with waterproof design and image stabilization for adventure recording.",
     price: 249,
     priceUnit: "day",
     image: base + "images/gopro.jpg",
@@ -112,7 +121,8 @@ const products = [
     category: "Lifestyle",
     name: "Drone",
     priority: "Medium",
-    description: "Camera drone for aerial photography",
+    description:
+      "Professional camera drone with 4K recording, GPS navigation, and auto-return for aerial photography.",
     price: 249,
     priceUnit: "day",
     image: base + "images/drone.jpg",
@@ -123,7 +133,8 @@ const products = [
     category: "Lifestyle",
     name: "Ergonomic Chair",
     priority: "Medium",
-    description: "Comfortable chair for home office",
+    description:
+      "Premium office chair with adjustable lumbar support, breathable mesh, and customizable settings for comfort.",
     price: 249,
     priceUnit: "day",
     image: base + "images/chair.jpg",
@@ -134,7 +145,8 @@ const products = [
     category: "Adventure",
     name: "Waterproof Shoes",
     priority: "High",
-    description: "Durable waterproof shoes for hiking and trekking",
+    description:
+      "Professional waterproof hiking shoes with anti-slip outsole and ankle support for all terrain adventures.",
     price: 189,
     priceUnit: "day",
     image: base + "images/waterproof_shoes.jpg",
@@ -145,7 +157,8 @@ const products = [
     category: "Adventure",
     name: "Backpack",
     priority: "High",
-    description: "Durable backpack for hiking adventures",
+    description:
+      "Heavy-duty trekking backpack with water-resistant material, multiple compartments, and ergonomic design.",
     price: 199,
     priceUnit: "day",
     image: base + "images/bagpack.jpg",
@@ -160,7 +173,8 @@ const products = [
     category: "Adventure",
     name: "Trekking Stick",
     priority: "High",
-    description: "Adjustable trekking poles for stability",
+    description:
+      "Lightweight adjustable trekking poles with anti-shock technology and comfortable grips for hiking stability.",
     price: 179,
     priceUnit: "day",
     image: base + "images/trekking_stick.jpg",
@@ -171,7 +185,8 @@ const products = [
     category: "Adventure",
     name: "Sleeping Bag",
     priority: "High",
-    description: "Insulated sleeping bag for camping",
+    description:
+      "Insulated sleeping bag rated for -10°C with water-resistant shell and compact compression design.",
     price: 209,
     priceUnit: "day",
     image: base + "images/sleeping_bag.jpg",
@@ -182,7 +197,8 @@ const products = [
     category: "Adventure",
     name: "Winter Jacket",
     priority: "High",
-    description: "Insulated jacket for cold weather adventures",
+    description:
+      "Premium insulated winter jacket with waterproof construction, multiple pockets, and adjustable hood.",
     price: 219,
     priceUnit: "day",
     image: base + "images/winter_jacket.jpg",
@@ -193,7 +209,8 @@ const products = [
     category: "Adventure",
     name: "Shoes Chain",
     priority: "High",
-    description: "Ice traction cleats for hiking boots",
+    description:
+      "Professional ice traction cleats with steel chains and secure rubber fitting for safe winter hiking.",
     price: 169,
     priceUnit: "day",
     image: base + "images/shoes_chain.jpg",
