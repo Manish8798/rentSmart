@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product, onRentNow }) => {
+  const navigate = useNavigate();
   const {
     name,
     description,
@@ -37,11 +39,21 @@ const ProductCard = ({ product, onRentNow }) => {
     return "";
   };
 
+  const handleCardClick = (e) => {
+    // Prevent navigation if clicking on the rent button
+    if (e.target.closest(".rent-button")) {
+      return;
+    }
+    navigate(`/product/${product.id}`);
+  };
+
   return (
     <article
-      className="product-card"
+      className="product-card clickable"
       itemScope
       itemType="https://schema.org/Product"
+      onClick={handleCardClick}
+      style={{ cursor: "pointer" }}
     >
       <div
         className={`product-image ${
