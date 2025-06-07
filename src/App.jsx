@@ -4,11 +4,15 @@ import "./App.css";
 import Homepage from "./components/Homepage";
 import ProductDetail from "./components/ProductDetail";
 import WhatsAppFAB from "./components/WhatsAppFAB";
+import products from "./data/products";
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
 
   // Clear cache on page load/refresh
   useEffect(() => {
@@ -120,17 +124,207 @@ function App() {
     };
   }, []);
 
+  // Generate search suggestions
+  const generateSuggestions = (query) => {
+    if (!query || query.length < 1) {
+      // Show popular suggestions when no query
+      return [
+        { type: "product", text: "Sony PS5", icon: "🎮" },
+        { type: "product", text: "iPad & Pencil", icon: "📱" },
+        { type: "category", text: "Gaming", icon: "🎮" },
+        { type: "category", text: "Apple", icon: "🍎" },
+        { type: "category", text: "Adventure", icon: "🏔️" },
+        { type: "search", text: "VR headset", icon: "🔍" },
+        { type: "search", text: "4K TV", icon: "🔍" },
+        { type: "search", text: "trekking gear", icon: "🔍" },
+      ];
+    }
+
+    const suggestions = [];
+    const lowerQuery = query.toLowerCase();
+    const addedTexts = new Set(); // Track added suggestions to prevent duplicates
+
+    // Helper function to add suggestion if not duplicate
+    const addSuggestion = (suggestion) => {
+      const key = `${suggestion.type}:${suggestion.text.toLowerCase()}`;
+      if (!addedTexts.has(key)) {
+        addedTexts.add(key);
+        suggestions.push(suggestion);
+      }
+    };
+
+    // Product name matches
+    products.forEach((product) => {
+      if (product.name.toLowerCase().includes(lowerQuery)) {
+        addSuggestion({
+          type: "product",
+          text: product.name,
+          icon: getProductIcon(product.category),
+          id: product.id,
+        });
+      }
+    });
+
+    // Category matches
+    const categories = [...new Set(products.map((p) => p.category))];
+    categories.forEach((category) => {
+      if (category.toLowerCase().includes(lowerQuery)) {
+        addSuggestion({
+          type: "category",
+          text: category,
+          icon: getCategoryIcon(category),
+        });
+      }
+    });
+
+    // Feature matches
+    const addedFeatures = new Set();
+    products.forEach((product) => {
+      if (product.features) {
+        product.features.forEach((feature) => {
+          if (
+            feature.toLowerCase().includes(lowerQuery) &&
+            !addedFeatures.has(feature.toLowerCase())
+          ) {
+            addedFeatures.add(feature.toLowerCase());
+            addSuggestion({
+              type: "feature",
+              text: feature,
+              icon: "✨",
+            });
+          }
+        });
+      }
+    });
+
+    // Generic search suggestions
+    const genericSuggestions = [
+      "waterproof",
+      "portable",
+      "4K",
+      "wireless",
+      "gaming",
+      "Apple",
+      "professional",
+      "HD",
+      "smart",
+      "bluetooth",
+    ];
+
+    genericSuggestions.forEach((term) => {
+      if (term.toLowerCase().includes(lowerQuery)) {
+        addSuggestion({
+          type: "search",
+          text: term,
+          icon: "🔍",
+        });
+      }
+    });
+
+    return suggestions.slice(0, 8); // Limit to 8 suggestions
+  };
+
+  const getProductIcon = (category) => {
+    const icons = {
+      Gaming: "🎮",
+      Apple: "🍎",
+      Home: "🏠",
+      Lifestyle: "💫",
+      Adventure: "🏔️",
+    };
+    return icons[category] || "📦";
+  };
+
+  const getCategoryIcon = (category) => {
+    const icons = {
+      Gaming: "🎮",
+      Apple: "🍎",
+      Home: "🏠",
+      Lifestyle: "💫",
+      Adventure: "🏔️",
+    };
+    return icons[category] || "📂";
+  };
+
   const handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
+    const query = e.target.value;
     setSearchQuery(query);
+
+    // Generate suggestions based on query
+    const suggestions = generateSuggestions(query);
+    setSearchSuggestions(suggestions);
+    setSelectedSuggestionIndex(-1); // Reset selection when typing
+  };
+
+  const handleKeyDown = (e) => {
+    if (!showSuggestions || searchSuggestions.length === 0) return;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setSelectedSuggestionIndex((prev) =>
+          prev < searchSuggestions.length - 1 ? prev + 1 : 0
+        );
+        break;
+
+      case "ArrowUp":
+        e.preventDefault();
+        setSelectedSuggestionIndex((prev) =>
+          prev > 0 ? prev - 1 : searchSuggestions.length - 1
+        );
+        break;
+
+      case "Enter":
+        e.preventDefault();
+        if (selectedSuggestionIndex >= 0) {
+          handleSuggestionClick(searchSuggestions[selectedSuggestionIndex]);
+        } else {
+          setShowSuggestions(false);
+        }
+        break;
+
+      case "Escape":
+        setShowSuggestions(false);
+        setSelectedSuggestionIndex(-1);
+        break;
+    }
+  };
+
+  const handleSearchFocus = () => {
+    setShowSuggestions(true);
+    if (searchSuggestions.length === 0) {
+      const suggestions = generateSuggestions(searchQuery);
+      setSearchSuggestions(suggestions);
+    }
+  };
+
+  const handleSearchBlur = () => {
+    // Delay hiding suggestions to allow clicking on them
+    setTimeout(() => setShowSuggestions(false), 200);
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchQuery(suggestion.text);
+    setShowSuggestions(false);
+    setSelectedSuggestionIndex(-1);
+
+    // If it's a product suggestion, you could navigate to that product
+    if (suggestion.type === "product" && suggestion.id) {
+      // Optional: navigate to product detail page
+      // window.location.href = `/product/${suggestion.id}`;
+    }
   };
 
   const handleClearSearch = () => {
     setSearchQuery("");
+    setShowSuggestions(false);
+    setSearchSuggestions([]);
+    setSelectedSuggestionIndex(-1);
   };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    setShowSuggestions(false);
     // Prevent form submission
   };
 
@@ -211,25 +405,51 @@ function App() {
               </a>
             </div>
             <div className="header-search-container">
-              <form
-                className="search-bar search-bar-desktop"
-                onSubmit={handleSearchSubmit}
-                role="search"
-                aria-label="Search products"
-              >
-                <input
-                  type="text"
-                  placeholder="Search premium products..."
-                  value={searchQuery}
-                  onChange={handleSearch}
+              <div className="search-container">
+                <form
+                  className="search-bar search-bar-desktop"
+                  onSubmit={handleSearchSubmit}
+                  role="search"
                   aria-label="Search products"
-                />
-                {searchQuery && (
+                >
+                  <input
+                    type="text"
+                    placeholder="Search premium products..."
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    onFocus={handleSearchFocus}
+                    onBlur={handleSearchBlur}
+                    onKeyDown={handleKeyDown}
+                    aria-label="Search products"
+                    autoComplete="off"
+                  />
+                  {searchQuery && (
+                    <button
+                      type="button"
+                      className="clear-button"
+                      onClick={handleClearSearch}
+                      aria-label="Clear search"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </button>
+                  )}
                   <button
-                    type="button"
-                    className="clear-button"
-                    onClick={handleClearSearch}
-                    aria-label="Clear search"
+                    type="submit"
+                    className="search-button"
+                    aria-label="Submit search"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -242,32 +462,39 @@ function App() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
                   </button>
+                </form>
+
+                {/* Search Suggestions Dropdown */}
+                {showSuggestions && searchSuggestions.length > 0 && (
+                  <div className="search-suggestions">
+                    {searchSuggestions.map((suggestion, index) => (
+                      <div
+                        key={index}
+                        className={`suggestion-item suggestion-${
+                          suggestion.type
+                        } ${
+                          index === selectedSuggestionIndex ? "selected" : ""
+                        }`}
+                        onClick={() => handleSuggestionClick(suggestion)}
+                      >
+                        <span className="suggestion-icon">
+                          {suggestion.icon}
+                        </span>
+                        <span className="suggestion-text">
+                          {suggestion.text}
+                        </span>
+                        <span className="suggestion-type">
+                          {suggestion.type}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 )}
-                <button
-                  type="submit"
-                  className="search-button"
-                  aria-label="Submit search"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </button>
-              </form>
+              </div>
             </div>
             <div className="header-nav-container">
               <div className="nav-buttons">
@@ -294,23 +521,45 @@ function App() {
             </div>
           </div>
           {/* Mobile search bar (hidden on desktop) */}
-          <form
-            className="search-bar search-bar-mobile"
-            onSubmit={handleSearchSubmit}
-          >
-            <input
-              type="text"
-              placeholder="Search premium products..."
-              value={searchQuery}
-              onChange={handleSearch}
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                className="clear-button"
-                onClick={handleClearSearch}
-                aria-label="Clear search"
-              >
+          <div className="search-container-mobile">
+            <form
+              className="search-bar search-bar-mobile"
+              onSubmit={handleSearchSubmit}
+            >
+              <input
+                type="text"
+                placeholder="Search premium products..."
+                value={searchQuery}
+                onChange={handleSearch}
+                onFocus={handleSearchFocus}
+                onBlur={handleSearchBlur}
+                onKeyDown={handleKeyDown}
+                autoComplete="off"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  className="clear-button"
+                  onClick={handleClearSearch}
+                  aria-label="Clear search"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              )}
+              <button type="submit" className="search-button">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -322,28 +571,31 @@ function App() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
               </button>
+            </form>
+
+            {/* Mobile Search Suggestions Dropdown */}
+            {showSuggestions && searchSuggestions.length > 0 && (
+              <div className="search-suggestions search-suggestions-mobile">
+                {searchSuggestions.map((suggestion, index) => (
+                  <div
+                    key={index}
+                    className={`suggestion-item suggestion-${suggestion.type} ${
+                      index === selectedSuggestionIndex ? "selected" : ""
+                    }`}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    <span className="suggestion-icon">{suggestion.icon}</span>
+                    <span className="suggestion-text">{suggestion.text}</span>
+                    <span className="suggestion-type">{suggestion.type}</span>
+                  </div>
+                ))}
+              </div>
             )}
-            <button type="submit" className="search-button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </button>
-          </form>
+          </div>
         </header>
 
         {/* Routes */}
@@ -352,6 +604,7 @@ function App() {
             path="/"
             element={
               <Homepage
+                searchQuery={searchQuery}
                 onRentNow={handleRentNow}
                 onCalendarStateChange={handleCalendarStateChange}
               />

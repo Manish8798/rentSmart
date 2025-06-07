@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProductGrid from "./ProductGrid";
 import products from "../data/products";
 
-const Homepage = ({ onRentNow, onCalendarStateChange }) => {
-  const [searchQuery, setSearchQuery] = useState("");
+const Homepage = ({ searchQuery = "", onRentNow, onCalendarStateChange }) => {
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
@@ -20,6 +19,27 @@ const Homepage = ({ onRentNow, onCalendarStateChange }) => {
     "Trekking Gear",
     "Air Purifier",
   ];
+
+  // Filter products based on search query from parent
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.description
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (product.features &&
+            product.features.some((feature) =>
+              feature.toLowerCase().includes(searchQuery.toLowerCase())
+            ))
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [searchQuery]);
 
   // Typewriter animation effect
   useEffect(() => {
@@ -49,33 +69,6 @@ const Homepage = ({ onRentNow, onCalendarStateChange }) => {
 
     return () => clearTimeout(timeoutId);
   }, [displayText, isTyping, currentProductIndex, productNames]);
-
-  const handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
-    setSearchQuery(query);
-
-    if (query.trim() === "") {
-      setFilteredProducts(products);
-    } else {
-      const filtered = products.filter(
-        (product) =>
-          product.name.toLowerCase().includes(query) ||
-          product.description.toLowerCase().includes(query) ||
-          product.category.toLowerCase().includes(query)
-      );
-      setFilteredProducts(filtered);
-    }
-  };
-
-  const handleClearSearch = () => {
-    setSearchQuery("");
-    setFilteredProducts(products);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    // Prevent form submission
-  };
 
   return (
     <>

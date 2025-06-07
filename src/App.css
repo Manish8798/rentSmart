@@ -173,6 +173,119 @@ button {
   /* Psychology: Gold search icon suggests finding valuable rental opportunities */
 }
 
+/* Search Container and Suggestions */
+.search-container,
+.search-container-mobile {
+  position: relative;
+  flex: 1;
+  max-width: 500px;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--bg-black);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-height: 320px;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-suggestions-mobile {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 1rem;
+  width: calc(100% - 2rem);
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 0.75rem;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.selected {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--secondary-color);
+}
+
+.suggestion-icon {
+  font-size: 1.1rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+.suggestion-text {
+  flex: 1;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.suggestion-type {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: capitalize;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* Different styles for suggestion types */
+.suggestion-product .suggestion-type {
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--secondary-bright)
+  );
+  color: var(--bg-black);
+}
+
+.suggestion-category .suggestion-type {
+  background: linear-gradient(135deg, var(--trust-blue), #4f9cf9);
+  color: var(--text-light);
+}
+
+.suggestion-feature .suggestion-type {
+  background: linear-gradient(135deg, var(--action-coral), #ff6b6b);
+  color: var(--text-light);
+}
+
+.suggestion-search .suggestion-type {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .nav-buttons {
   display: flex;
   align-items: center;
@@ -940,6 +1053,21 @@ button {
     padding: 0;
   }
 
+  .search-container-mobile {
+    width: 100%;
+    position: relative;
+  }
+
+  .search-suggestions-mobile {
+    margin: 0 1rem;
+    width: calc(100% - 2rem);
+    border-radius: 0 0 12px 12px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+
   .nav-buttons {
     gap: 0.5rem;
   }
@@ -1327,6 +1455,11 @@ button {
   display: flex;
 }
 
+/* Hide mobile suggestions on desktop */
+.search-suggestions-mobile {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .search-bar-desktop {
     display: none !important;
@@ -1340,6 +1473,15 @@ button {
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(212, 175, 55, 0.3);
     padding: 0;
+  }
+
+  /* Hide desktop suggestions on mobile and show mobile suggestions */
+  .search-container .search-suggestions {
+    display: none !important;
+  }
+
+  .search-suggestions-mobile {
+    display: block !important;
   }
 }
 
@@ -2217,9 +2359,8 @@ button {
 
 /* Product Detail Styles */
 .product-detail-container {
-  min-height: 100vh;
   background: var(--bg-light);
-  padding: 2rem 0;
+  padding-bottom: 0;
 }
 
 /* Rental Plans Styles */
@@ -2381,7 +2522,7 @@ button {
 .product-detail-header {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 2rem 1rem 0 1rem;
   margin-bottom: 2rem;
 }
 
@@ -2690,11 +2831,12 @@ button {
 
 @media (max-width: 768px) {
   .product-detail-container {
-    padding: 1rem 0;
+    padding-bottom: 0;
   }
 
   .product-detail-header {
     margin-bottom: 1rem;
+    padding: 1rem 1rem 0 1rem;
   }
 
   .product-detail-title {
