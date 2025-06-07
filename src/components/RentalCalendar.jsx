@@ -16,16 +16,61 @@ const RentalCalendar = ({
   // Default rental duration in days (1 month = 30 days)
   const DEFAULT_RENTAL_DAYS = 30;
 
+  // Function to convert price to xx9 format
+  const convertToXX9Format = (price) => {
+    if (price === 0) return 0;
+    const lastDigit = price % 10;
+    if (lastDigit === 9) return price;
+
+    // Round to nearest number ending in 9
+    const lowerOption = price - lastDigit - 1;
+    const upperOption = price - lastDigit + 9;
+
+    // Choose the closer option, preferring the lower one in case of tie
+    if (Math.abs(price - lowerOption) <= Math.abs(price - upperOption)) {
+      return Math.max(lowerOption, 9); // Ensure minimum price of 9
+    } else {
+      return upperOption;
+    }
+  };
+
   // Tiered pricing function
   const calculateTieredPrice = (duration) => {
+    let baseTotal, perDay, tier;
+
     if (duration === 1) {
-      return { total: 1000, perDay: 1000, tier: "single-day" };
+      baseTotal = 1000;
+      perDay = 1000;
+      tier = "single-day";
     } else if (duration === 2) {
-      return { total: 2000, perDay: 1000, tier: "two-days" };
+      baseTotal = 2000;
+      perDay = 1000;
+      tier = "two-days";
     } else if (duration >= 3) {
-      return { total: duration * 249, perDay: 249, tier: "long-term" };
+      baseTotal = duration * 249;
+      perDay = 249;
+      tier = "long-term";
+    } else {
+      return { total: 0, perDay: 0, tier: "invalid", discount: 0 };
     }
-    return { total: 0, perDay: 0, tier: "invalid" };
+
+    // Apply 25% discount for exactly 30 days
+    let discount = 0;
+    if (duration === DEFAULT_RENTAL_DAYS) {
+      discount = 0.25;
+      baseTotal = baseTotal * (1 - discount);
+      tier = "30-day-special";
+    }
+
+    // Convert to xx9 format
+    const finalTotal = convertToXX9Format(baseTotal);
+
+    return {
+      total: finalTotal,
+      perDay: Math.round(finalTotal / duration),
+      tier,
+      discount: discount * 100, // Convert to percentage for display
+    };
   };
 
   // Get pricing tier info for display
@@ -34,6 +79,8 @@ const RentalCalendar = ({
       return "Single day rate";
     } else if (duration === 2) {
       return "Two day rate (₹1000/day)";
+    } else if (duration === DEFAULT_RENTAL_DAYS) {
+      return "30-day special (25% discount applied!)";
     } else if (duration >= 3) {
       return "Long-term rate (3+ days)";
     }
@@ -142,7 +189,20 @@ const RentalCalendar = ({
             </p>
             {duration > 0 && (
               <p className="pricing-tier">
-                <small>{getPricingTierInfo(duration)}</small>
+                <small
+                  className={
+                    duration === DEFAULT_RENTAL_DAYS ? "special-discount" : ""
+                  }
+                >
+                  {getPricingTierInfo(duration)}
+                </small>
+              </p>
+            )}
+            {pricing.discount > 0 && (
+              <p className="discount-info">
+                <small style={{ color: "green" }}>
+                  🎉 {pricing.discount}% discount applied!
+                </small>
               </p>
             )}
             <p className="total-price">
