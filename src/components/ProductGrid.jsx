@@ -40,7 +40,19 @@ const ProductGrid = ({ products, onCalendarStateChange }) => {
 
     // Format the pricing tier information
     let pricingInfo = "";
-    if (pricing.tier === "single-day") {
+    if (pricing.tier === "adventure-single-day") {
+      pricingInfo = `Adventure daily rate: ₹${pricing.perDay}/day`;
+    } else if (pricing.tier === "adventure-two-days") {
+      pricingInfo = `Adventure rate: ₹${pricing.perDay}/day`;
+    } else if (pricing.tier === "adventure-short-term") {
+      pricingInfo = `Adventure short-term: ₹${pricing.perDay}/day`;
+    } else if (pricing.tier === "adventure-week-special") {
+      pricingInfo = "Adventure Week Special (10% discount!)";
+    } else if (pricing.tier === "adventure-extended") {
+      pricingInfo = `Adventure extended rate: ₹${pricing.perDay}/day`;
+    } else if (pricing.tier === "adventure-month-special") {
+      pricingInfo = "Adventure Monthly Special (20% discount!)";
+    } else if (pricing.tier === "single-day") {
       pricingInfo = "Single day rate: ₹1,000";
     } else if (pricing.tier === "two-days") {
       pricingInfo = "Two day rate: ₹1,000/day";
@@ -101,6 +113,7 @@ Please provide more details.`;
         onClose={handleCloseCalendar}
         onConfirm={handleRentalConfirm}
         productName={selectedProduct?.name}
+        productCategory={selectedProduct?.category}
         price={selectedProduct?.price}
         priceUnit={selectedProduct?.priceUnit}
       />

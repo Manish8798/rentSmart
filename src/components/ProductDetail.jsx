@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import products from "../data/products";
 import RentalCalendar from "./RentalCalendar";
@@ -9,6 +9,11 @@ const ProductDetail = ({ onRentNow }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null); // Track selected plan
+
+  // Scroll to top when component mounts or id changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   const product = products.find((p) => p.id === parseInt(id));
 
@@ -46,60 +51,112 @@ const ProductDetail = ({ onRentNow }) => {
     }
   };
 
+  // Check if product is an adventure item
+  const isAdventureItem = () => {
+    return category === "Adventure";
+  };
+
   // Tiered pricing function (same as RentalCalendar)
   const calculateTieredPrice = (duration) => {
     let baseTotal, perDay, tier;
 
-    if (duration === 1) {
-      baseTotal = 1000;
-      perDay = 1000;
-      tier = "single-day";
-    } else if (duration === 2) {
-      baseTotal = 2000;
-      perDay = 1000;
-      tier = "two-days";
-    } else if (duration >= 3 && duration <= 7) {
-      // Special pricing for PS5 week plan
-      if (duration === 7 && name && name.toLowerCase().includes("ps5")) {
-        baseTotal = 2499;
-        perDay = Math.round(2499 / 7);
-        tier = "ps5-week-special";
+    // Adventure items have special week/month pricing based on per day price
+    if (isAdventureItem()) {
+      if (duration === 1) {
+        baseTotal = price;
+        perDay = price;
+        tier = "adventure-single-day";
+      } else if (duration === 2) {
+        baseTotal = duration * price;
+        perDay = price;
+        tier = "adventure-two-days";
+      } else if (duration >= 3 && duration <= 6) {
+        // Short-term adventure rental
+        baseTotal = duration * price;
+        perDay = price;
+        tier = "adventure-short-term";
+      } else if (duration === 7) {
+        // Week pricing for adventure items - 10% discount from daily rate
+        const weeklyRate = price * 7 * 0.9;
+        baseTotal = weeklyRate;
+        perDay = Math.round(weeklyRate / 7);
+        tier = "adventure-week-special";
+      } else if (duration >= 8 && duration <= 29) {
+        // Extended adventure rental - use daily rate
+        baseTotal = duration * price;
+        perDay = price;
+        tier = "adventure-extended";
+      } else if (duration >= 30) {
+        // Monthly pricing for adventure items - 20% discount from daily rate
+        const monthlyRate = price * 30 * 0.8;
+        baseTotal = (duration / 30) * monthlyRate;
+        perDay = Math.round(baseTotal / duration);
+        tier = "adventure-month-special";
       } else {
-        baseTotal = duration * 500;
-        perDay = 500;
-        tier = "short-term";
+        return { total: 0, perDay: 0, tier: "invalid", discount: 0 };
       }
-    } else if (duration >= 8 && duration <= 12) {
-      baseTotal = duration * price;
-      perDay = price;
-      tier = "medium-term";
-    } else if (duration >= 13 && duration <= 29) {
-      baseTotal = duration * 249;
-      perDay = 249;
-      tier = "extended-term";
-    } else if (duration >= 30) {
-      baseTotal = duration * price;
-      perDay = price;
-      tier = "long-term";
     } else {
-      return { total: 0, perDay: 0, tier: "invalid", discount: 0 };
+      // Regular pricing for non-adventure items
+      if (duration === 1) {
+        baseTotal = 1000;
+        perDay = 1000;
+        tier = "single-day";
+      } else if (duration === 2) {
+        baseTotal = 2000;
+        perDay = 1000;
+        tier = "two-days";
+      } else if (duration >= 3 && duration <= 7) {
+        // Special pricing for PS5 week plan
+        if (duration === 7 && name && name.toLowerCase().includes("ps5")) {
+          baseTotal = 2499;
+          perDay = Math.round(2499 / 7);
+          tier = "ps5-week-special";
+        } else {
+          baseTotal = duration * 500;
+          perDay = 500;
+          tier = "short-term";
+        }
+      } else if (duration >= 8 && duration <= 12) {
+        baseTotal = duration * price;
+        perDay = price;
+        tier = "medium-term";
+      } else if (duration >= 13 && duration <= 29) {
+        baseTotal = duration * 249;
+        perDay = 249;
+        tier = "extended-term";
+      } else if (duration >= 30) {
+        baseTotal = duration * price;
+        perDay = price;
+        tier = "long-term";
+      } else {
+        return { total: 0, perDay: 0, tier: "invalid", discount: 0 };
+      }
     }
 
     // Apply discounts
     let discount = 0;
 
-    // Apply discounts for exactly 30 days
-    if (duration === 30) {
-      if (name && name.toLowerCase().includes("ps5")) {
-        // Fixed price for PS5 monthly rentals (40% discount)
-        discount = 0.4;
-        baseTotal = 5249;
-        tier = "30-day-ps5-special";
-      } else {
-        // Apply 25% discount for other products monthly rentals
-        discount = 0.25;
-        baseTotal = baseTotal * (1 - discount);
-        tier = "30-day-special";
+    // Adventure items have special discount logic
+    if (isAdventureItem()) {
+      if (duration === 7) {
+        discount = 10; // 10% discount for weekly rentals
+      } else if (duration >= 30) {
+        discount = 20; // 20% discount for monthly rentals
+      }
+    } else {
+      // Apply discounts for exactly 30 days for non-adventure items
+      if (duration === 30) {
+        if (name && name.toLowerCase().includes("ps5")) {
+          // Fixed price for PS5 monthly rentals (40% discount)
+          discount = 40;
+          baseTotal = 5249;
+          tier = "30-day-ps5-special";
+        } else {
+          // Apply 25% discount for other products monthly rentals
+          discount = 25;
+          baseTotal = baseTotal * 0.75;
+          tier = "30-day-special";
+        }
       }
     }
 
@@ -110,7 +167,7 @@ const ProductDetail = ({ onRentNow }) => {
       total: finalTotal,
       perDay: Math.round(finalTotal / duration),
       tier,
-      discount: discount * 100, // Convert to percentage for display
+      discount: discount, // Already in percentage format
     };
   };
 
@@ -168,7 +225,11 @@ const ProductDetail = ({ onRentNow }) => {
 
     // Format special offers and discounts
     let specialOffers = "";
-    if (selectedPlan.tier === "ps5-week-special") {
+    if (selectedPlan.tier === "adventure-week-special") {
+      specialOffers = "\n🏔️ Adventure Week Special Deal!";
+    } else if (selectedPlan.tier === "adventure-month-special") {
+      specialOffers = "\n🏔️ Adventure Monthly Special Deal!";
+    } else if (selectedPlan.tier === "ps5-week-special") {
       specialOffers = "\n🎮 PS5 Week Special Deal!";
     } else if (selectedPlan.tier === "30-day-ps5-special") {
       specialOffers = "\n🎮 PS5 Monthly Special Deal!";
@@ -219,7 +280,19 @@ Thank you!`;
 
     // Format the pricing tier information
     let pricingInfo = "";
-    if (pricing.tier === "single-day") {
+    if (pricing.tier === "adventure-single-day") {
+      pricingInfo = `Adventure daily rate: ₹${pricing.perDay}/day`;
+    } else if (pricing.tier === "adventure-two-days") {
+      pricingInfo = `Adventure rate: ₹${pricing.perDay}/day`;
+    } else if (pricing.tier === "adventure-short-term") {
+      pricingInfo = `Adventure short-term: ₹${pricing.perDay}/day`;
+    } else if (pricing.tier === "adventure-week-special") {
+      pricingInfo = "Adventure Week Special (10% discount!)";
+    } else if (pricing.tier === "adventure-extended") {
+      pricingInfo = `Adventure extended rate: ₹${pricing.perDay}/day`;
+    } else if (pricing.tier === "adventure-month-special") {
+      pricingInfo = "Adventure Monthly Special (20% discount!)";
+    } else if (pricing.tier === "single-day") {
       pricingInfo = "Single day rate: ₹1,000";
     } else if (pricing.tier === "two-days") {
       pricingInfo = "Two day rate: ₹1,000/day";
@@ -412,6 +485,16 @@ Please provide more details.`;
                     )}
                     <span className="per-day-price">₹{plan.perDay}/day</span>
                   </div>
+                  {plan.tier === "adventure-week-special" && (
+                    <div className="special-offer">
+                      <span>🏔️ Adventure Week Deal!</span>
+                    </div>
+                  )}
+                  {plan.tier === "adventure-month-special" && (
+                    <div className="special-offer">
+                      <span>🏔️ Adventure Monthly Deal!</span>
+                    </div>
+                  )}
                   {plan.tier === "ps5-week-special" && (
                     <div className="special-offer">
                       <span>🎮 PS5 Week Special!</span>
@@ -538,6 +621,7 @@ Please provide more details.`;
         onClose={handleCloseCalendar}
         onConfirm={handleRentalConfirm}
         productName={product?.name}
+        productCategory={product?.category}
         price={product?.price}
         priceUnit={product?.priceUnit}
       />
