@@ -76,22 +76,20 @@ const ProductDetail = ({ onRentNow }) => {
         perDay = price;
         tier = "adventure-short-term";
       } else if (duration === 7) {
-        // Week pricing for adventure items - 10% discount from daily rate
-        const weeklyRate = price * 7 * 0.9;
-        baseTotal = weeklyRate;
-        perDay = Math.round(weeklyRate / 7);
-        tier = "adventure-week-special";
+        // Week pricing for adventure items - full daily rate
+        baseTotal = duration * price;
+        perDay = price;
+        tier = "adventure-week";
       } else if (duration >= 8 && duration <= 29) {
         // Extended adventure rental - use daily rate
         baseTotal = duration * price;
         perDay = price;
         tier = "adventure-extended";
       } else if (duration >= 30) {
-        // Monthly pricing for adventure items - 20% discount from daily rate
-        const monthlyRate = price * 30 * 0.8;
-        baseTotal = (duration / 30) * monthlyRate;
-        perDay = Math.round(baseTotal / duration);
-        tier = "adventure-month-special";
+        // Monthly pricing for adventure items - full daily rate
+        baseTotal = duration * price;
+        perDay = price;
+        tier = "adventure-month";
       } else {
         return { total: 0, perDay: 0, tier: "invalid", discount: 0 };
       }
@@ -136,13 +134,10 @@ const ProductDetail = ({ onRentNow }) => {
     // Apply discounts
     let discount = 0;
 
-    // Adventure items have special discount logic
+    // Adventure items don't have discounts - use full daily rate
     if (isAdventureItem()) {
-      if (duration === 7) {
-        discount = 10; // 10% discount for weekly rentals
-      } else if (duration >= 30) {
-        discount = 20; // 20% discount for monthly rentals
-      }
+      // No discounts for adventure items
+      discount = 0;
     } else {
       // Apply discounts for exactly 30 days for non-adventure items
       if (duration === 30) {
@@ -225,11 +220,7 @@ const ProductDetail = ({ onRentNow }) => {
 
     // Format special offers and discounts
     let specialOffers = "";
-    if (selectedPlan.tier === "adventure-week-special") {
-      specialOffers = "\n🏔️ Adventure Week Special Deal!";
-    } else if (selectedPlan.tier === "adventure-month-special") {
-      specialOffers = "\n🏔️ Adventure Monthly Special Deal!";
-    } else if (selectedPlan.tier === "ps5-week-special") {
+    if (selectedPlan.tier === "ps5-week-special") {
       specialOffers = "\n🎮 PS5 Week Special Deal!";
     } else if (selectedPlan.tier === "30-day-ps5-special") {
       specialOffers = "\n🎮 PS5 Monthly Special Deal!";
@@ -286,12 +277,12 @@ Thank you!`;
       pricingInfo = `Adventure rate: ₹${pricing.perDay}/day`;
     } else if (pricing.tier === "adventure-short-term") {
       pricingInfo = `Adventure short-term: ₹${pricing.perDay}/day`;
-    } else if (pricing.tier === "adventure-week-special") {
-      pricingInfo = "Adventure Week Special (10% discount!)";
+    } else if (pricing.tier === "adventure-week") {
+      pricingInfo = `Adventure weekly rate: ₹${pricing.perDay}/day`;
     } else if (pricing.tier === "adventure-extended") {
       pricingInfo = `Adventure extended rate: ₹${pricing.perDay}/day`;
-    } else if (pricing.tier === "adventure-month-special") {
-      pricingInfo = "Adventure Monthly Special (20% discount!)";
+    } else if (pricing.tier === "adventure-month") {
+      pricingInfo = `Adventure monthly rate: ₹${pricing.perDay}/day`;
     } else if (pricing.tier === "single-day") {
       pricingInfo = "Single day rate: ₹1,000";
     } else if (pricing.tier === "two-days") {
@@ -485,16 +476,7 @@ Please provide more details.`;
                     )}
                     <span className="per-day-price">₹{plan.perDay}/day</span>
                   </div>
-                  {plan.tier === "adventure-week-special" && (
-                    <div className="special-offer">
-                      <span>🏔️ Adventure Week Deal!</span>
-                    </div>
-                  )}
-                  {plan.tier === "adventure-month-special" && (
-                    <div className="special-offer">
-                      <span>🏔️ Adventure Monthly Deal!</span>
-                    </div>
-                  )}
+
                   {plan.tier === "ps5-week-special" && (
                     <div className="special-offer">
                       <span>🎮 PS5 Week Special!</span>

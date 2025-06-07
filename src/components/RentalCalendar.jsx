@@ -69,22 +69,20 @@ const RentalCalendar = ({
         perDay = price;
         tier = "adventure-short-term";
       } else if (duration === 7) {
-        // Week pricing for adventure items - 10% discount from daily rate
-        const weeklyRate = price * 7 * 0.9;
-        baseTotal = weeklyRate;
-        perDay = Math.round(weeklyRate / 7);
-        tier = "adventure-week-special";
+        // Week pricing for adventure items - full daily rate
+        baseTotal = duration * price;
+        perDay = price;
+        tier = "adventure-week";
       } else if (duration >= 8 && duration <= 29) {
         // Extended adventure rental - use daily rate
         baseTotal = duration * price;
         perDay = price;
         tier = "adventure-extended";
       } else if (duration >= 30) {
-        // Monthly pricing for adventure items - 20% discount from daily rate
-        const monthlyRate = price * 30 * 0.8;
-        baseTotal = (duration / 30) * monthlyRate;
-        perDay = Math.round(baseTotal / duration);
-        tier = "adventure-month-special";
+        // Monthly pricing for adventure items - full daily rate
+        baseTotal = duration * price;
+        perDay = price;
+        tier = "adventure-month";
       } else {
         return { total: 0, perDay: 0, tier: "invalid", discount: 0 };
       }
@@ -133,13 +131,10 @@ const RentalCalendar = ({
     // Apply discounts
     let discount = 0;
 
-    // Adventure items have special discount logic
+    // Adventure items don't have discounts - use full daily rate
     if (isAdventureItem()) {
-      if (duration === 7) {
-        discount = 10; // 10% discount for weekly rentals
-      } else if (duration >= 30) {
-        discount = 20; // 20% discount for monthly rentals
-      }
+      // No discounts for adventure items
+      discount = 0;
     } else {
       // Apply discounts for exactly 30 days for non-adventure items
       if (duration === DEFAULT_RENTAL_DAYS) {
@@ -181,11 +176,11 @@ const RentalCalendar = ({
       } else if (duration >= 3 && duration <= 6) {
         return `Adventure short-term (₹${price}/day)`;
       } else if (duration === 7) {
-        return "Adventure Week Special (10% discount!)";
+        return `Adventure weekly rate (₹${price}/day)`;
       } else if (duration >= 8 && duration <= 29) {
         return `Adventure extended rate (₹${price}/day)`;
       } else if (duration >= 30) {
-        return "Adventure Monthly Special (20% discount!)";
+        return `Adventure monthly rate (₹${price}/day)`;
       }
     } else {
       if (duration === 1) {
