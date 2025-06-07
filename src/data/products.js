@@ -7,7 +7,7 @@ const products = [
     priority: "High",
     description:
       "Next-gen PlayStation 5 with lightning-fast SSD, 3D audio, haptic feedback controller, and 4K gaming up to 120fps.",
-    price: 249,
+    price: 299,
     priceUnit: "day",
     image: base + "images/ps5.jpg",
     features: ["4K Gaming", "Ray Tracing", "3D Audio", "DualSense Controller"],

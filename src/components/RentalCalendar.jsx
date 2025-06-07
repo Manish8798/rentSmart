@@ -12,9 +12,18 @@ const RentalCalendar = ({
 }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
+  const [selectedPlan, setSelectedPlan] = useState("month");
 
   // Default rental duration in days (1 month = 30 days)
   const DEFAULT_RENTAL_DAYS = 30;
+
+  // Rental plans configuration
+  const RENTAL_PLANS = {
+    single: { label: "Single Day", days: 1 },
+    weekend: { label: "Weekend", days: 2 },
+    week: { label: "Week", days: 7 },
+    month: { label: "Month", days: 30 },
+  };
 
   // Function to convert price to xx9 format
   const convertToXX9Format = (price) => {
@@ -46,7 +55,30 @@ const RentalCalendar = ({
       baseTotal = 2000;
       perDay = 1000;
       tier = "two-days";
-    } else if (duration >= 3) {
+    } else if (duration >= 3 && duration <= 7) {
+      // Special pricing for PS5 week plan
+      if (
+        duration === 7 &&
+        productName &&
+        productName.toLowerCase().includes("ps5")
+      ) {
+        baseTotal = 2499;
+        perDay = Math.round(2499 / 7);
+        tier = "ps5-week-special";
+      } else {
+        baseTotal = duration * 500;
+        perDay = 500;
+        tier = "short-term";
+      }
+    } else if (duration >= 8 && duration <= 12) {
+      baseTotal = duration * price;
+      perDay = price;
+      tier = "medium-term";
+    } else if (duration >= 13 && duration <= 29) {
+      baseTotal = duration * 249;
+      perDay = 249;
+      tier = "extended-term";
+    } else if (duration >= 30) {
       baseTotal = duration * price;
       perDay = price;
       tier = "long-term";
@@ -54,12 +86,22 @@ const RentalCalendar = ({
       return { total: 0, perDay: 0, tier: "invalid", discount: 0 };
     }
 
-    // Apply 25% discount for exactly 30 days
+    // Apply discounts
     let discount = 0;
+
+    // Apply discounts for exactly 30 days
     if (duration === DEFAULT_RENTAL_DAYS) {
-      discount = 0.25;
-      baseTotal = baseTotal * (1 - discount);
-      tier = "30-day-special";
+      if (productName && productName.toLowerCase().includes("ps5")) {
+        // Fixed price for PS5 monthly rentals (40% discount)
+        discount = 0.4;
+        baseTotal = 5249;
+        tier = "30-day-ps5-special";
+      } else {
+        // Apply 25% discount for other products monthly rentals
+        discount = 0.25;
+        baseTotal = baseTotal * (1 - discount);
+        tier = "30-day-special";
+      }
     }
 
     // Convert to xx9 format
@@ -75,38 +117,66 @@ const RentalCalendar = ({
 
   // Get pricing tier info for display
   const getPricingTierInfo = (duration) => {
+    const isPS5 = productName && productName.toLowerCase().includes("ps5");
+
     if (duration === 1) {
       return "Single day rate";
     } else if (duration === 2) {
       return "Two day rate (₹1000/day)";
+    } else if (duration >= 3 && duration <= 7) {
+      if (duration === 7 && isPS5) {
+        return "PS5 Week Special (₹2499 total)";
+      }
+      return "Short-term rate (₹500/day)";
+    } else if (duration >= 8 && duration <= 12) {
+      return "Medium-term rate (8-12 days)";
+    } else if (duration >= 13 && duration <= 29) {
+      return "Extended rate (₹249/day)";
     } else if (duration === DEFAULT_RENTAL_DAYS) {
-      return "30-day special (25% discount applied!)";
-    } else if (duration >= 3) {
-      return "Long-term rate (3+ days)";
+      return isPS5
+        ? "30-day special (40% discount!)"
+        : "30-day special (25% discount!)";
+    } else if (duration >= 31) {
+      return "Long-term rate (31+ days)";
     }
     return "";
   };
 
-  // Reset dates when popup opens or product changes
+  // Reset dates and plan when popup opens or product changes
   useEffect(() => {
     if (isOpen) {
+      // Always reset to month plan when popup opens
+      setSelectedPlan("month");
+
       const today = new Date();
       setStartDate(today);
 
-      // Set default end date to 1 month from start date
+      // Set default end date to 1 month (30 days) from start date
       const defaultEndDate = new Date(today);
-      defaultEndDate.setDate(today.getDate() + DEFAULT_RENTAL_DAYS);
+      defaultEndDate.setDate(today.getDate() + RENTAL_PLANS["month"].days);
       setEndDate(defaultEndDate);
     }
   }, [isOpen, productName]);
 
+  // Handle plan selection
+  const handlePlanSelection = (planKey) => {
+    setSelectedPlan(planKey);
+
+    // Update end date based on selected plan
+    if (startDate) {
+      const newEndDate = new Date(startDate);
+      newEndDate.setDate(startDate.getDate() + RENTAL_PLANS[planKey].days);
+      setEndDate(newEndDate);
+    }
+  };
+
   const handleStartDateChange = (date) => {
     setStartDate(date);
 
-    // If there's an end date and it's before the new start date, clear it
-    if (endDate && endDate <= date) {
-      setEndDate(null);
-    }
+    // Update end date based on selected plan and new start date
+    const newEndDate = new Date(date);
+    newEndDate.setDate(date.getDate() + RENTAL_PLANS[selectedPlan].days);
+    setEndDate(newEndDate);
   };
 
   const handleConfirm = () => {
@@ -148,8 +218,18 @@ const RentalCalendar = ({
                 Renting: <b>{productName}</b>
               </div>
             )}
-            <div className="minimum-tenure-notice">
-              <small>Default: 1 month (customizable)</small>
+            <div className="rental-plans">
+              {Object.entries(RENTAL_PLANS).map(([key, plan]) => (
+                <button
+                  key={key}
+                  className={`plan-chip ${
+                    selectedPlan === key ? "selected" : ""
+                  }`}
+                  onClick={() => handlePlanSelection(key)}
+                >
+                  {plan.label}
+                </button>
+              ))}
             </div>
           </div>
           <button className="close-button" onClick={onClose}>
