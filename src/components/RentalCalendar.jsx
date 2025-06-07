@@ -47,8 +47,8 @@ const RentalCalendar = ({
       perDay = 1000;
       tier = "two-days";
     } else if (duration >= 3) {
-      baseTotal = duration * 249;
-      perDay = 249;
+      baseTotal = duration * price;
+      perDay = price;
       tier = "long-term";
     } else {
       return { total: 0, perDay: 0, tier: "invalid", discount: 0 };

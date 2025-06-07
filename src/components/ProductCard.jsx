@@ -83,8 +83,8 @@ const ProductCard = ({ product, onRentNow }) => {
           >
             <div className="tiered-pricing">
               <div className="price-line">
-                <span itemProp="price" content="249">
-                  ₹249
+                <span itemProp="price" content={price}>
+                  ₹{price}
                 </span>
                 <span className="price-unit">/day</span>
               </div>
