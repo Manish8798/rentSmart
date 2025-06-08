@@ -4,6 +4,8 @@ import "./App.css";
 import Homepage from "./components/Homepage";
 import ProductDetail from "./components/ProductDetail";
 import WhatsAppFAB from "./components/WhatsAppFAB";
+import AboutUs from "./pages/AboutUs";
+import Blog from "./pages/Blog";
 import products from "./data/products";
 
 function App() {
@@ -614,6 +616,8 @@ function App() {
             path="/product/:id"
             element={<ProductDetail onRentNow={handleRentNow} />}
           />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/blog" element={<Blog />} />
         </Routes>
 
         <WhatsAppFAB disabled={isCalendarOpen} />
