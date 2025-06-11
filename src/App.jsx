@@ -7,6 +7,7 @@ import WhatsAppFAB from "./components/WhatsAppFAB";
 import Header from "./components/Header";
 import AboutUs from "./pages/AboutUs";
 import Blog from "./pages/Blog";
+import FAQ from "./pages/FAQ";
 import products from "./data/products";
 
 function App() {
@@ -386,6 +387,7 @@ function App() {
           />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
 
         <WhatsAppFAB disabled={isCalendarOpen} />

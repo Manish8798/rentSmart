@@ -55,7 +55,7 @@ const AboutUs = () => {
             </div>
             <div className="story-stats">
               <div className="stat-item">
-                <div className="stat-number">10+</div>
+                <div className="stat-number">100+</div>
                 <div className="stat-label">Happy Customers</div>
               </div>
               <div className="stat-item">

@@ -72,7 +72,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/#how-it-works">FAQ</a>
+                  <a href="/faq">FAQs</a>
                 </li>
                 <li>
                   <a href="mailto:rentsmart007@gmail.com">Shipping</a>
