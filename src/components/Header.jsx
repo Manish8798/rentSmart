@@ -47,17 +47,22 @@ const Header = ({
           </button>
         </div>
         <div className="mobile-menu-links">
-          <a href="#how-it-works" className="mobile-menu-link">
-            How It Works
+          <a href="/" className="mobile-menu-link">
+            Browse Products
           </a>
-          <a href="#account" className="mobile-menu-link">
-            My Account
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSf278ewRmkCDcXOJjfvt4qF16hS75SYGog3evbSU7A-pYhH9g/viewform?usp=header"
+            className="mobile-menu-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Pre-book Product
           </a>
-          <a href="#wishlist" className="mobile-menu-link">
-            Wishlist
+          <a href="/blog" className="mobile-menu-link">
+            Blogs
           </a>
-          <a href="#cart" className="mobile-menu-link">
-            Cart
+          <a href="/faq" className="mobile-menu-link">
+            FAQs
           </a>
         </div>
       </div>
