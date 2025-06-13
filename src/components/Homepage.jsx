@@ -84,8 +84,9 @@ const Homepage = ({ searchQuery = "", onRentNow, onCalendarStateChange }) => {
             <span className="static-text"> on Demand</span>
           </h1>
           <p>
-            Experience Sony PlayStation 5, gaming wheel, and premium Apple
-            devices through our trusted, affordable rental plans.
+            Your trusted rental partner in Delhi NCR. Discover premium gaming,
+            Apple products, adventure gear & home electronics with flexible,
+            affordable plans that fit your lifestyle.
           </p>
           <button
             className="cta-button"
