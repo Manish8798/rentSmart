@@ -1,0 +1,87 @@
+:root {
+  /* Primary Brand Colors - Enhanced for Trust & Conversion */
+  --primary-color: #1e3a8a; /* More approachable trust blue */
+  --primary-dark: #102542; /* Original deep blue for headers */
+  --secondary-color: #f59e0b; /* Warmer, more inviting gold */
+  --secondary-bright: #ffd712; /* Original bright gold for high-impact CTAs */
+  --accent-color: #ba9832; /* Darker gold for accents */
+
+  /* Psychology-Based Enhancement Colors */
+  --prosperity-green: #10b981; /* For success, availability, growth */
+  --trust-blue: #3b82f6; /* Lighter blue for secondary elements */
+  --action-coral: #f87171; /* For urgent CTAs and limited offers */
+  --premium-purple: #8b5cf6; /* For luxury/premium tiers */
+
+  /* Text Colors */
+  --text-color: #0f172a; /* Softer dark for better readability */
+  --text-secondary: #475569; /* Medium gray for secondary text */
+  --text-light: #64748b; /* Light gray for hints/placeholders */
+
+  /* Background Colors */
+  --bg-black: #131921; /* Updated to the requested color */
+  --bg-dark: #131921; /* Updated to the requested color for categories section */
+  --border-color: #e2e8f0;
+  --bg-light: #ffffff;
+  --bg-gray: #f8fafc; /* Softer light gray background */
+  --bg-success: #ecfdf5; /* Light green for success states */
+  --bg-warning: #fffbeb; /* Light amber for attention areas */
+
+  /* Original colors maintained for compatibility */
+  --text-dark: #0f172a; /* Updated to match new text-color */
+  --text-light: #ffffff;
+}
+
+/* Psychology-Based Color Utility Classes */
+.trust-builder {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  /* Creates immediate trust and reliability */
+}
+
+.prosperity-indicator {
+  color: var(--secondary-color);
+  /* Indicates value, success, and positive outcomes with gold instead of green */
+}
+
+.urgency-creator {
+  background-color: var(--action-coral);
+  color: var(--text-light);
+  /* Creates urgency without being overwhelming */
+}
+
+.premium-tier {
+  background: linear-gradient(
+    135deg,
+    var(--premium-purple),
+    var(--primary-color)
+  );
+  color: var(--text-light);
+  /* Suggests exclusivity and high value */
+}
+
+.success-state {
+  background-color: var(--bg-warning);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  /* Positive reinforcement for completed actions using warm gold theme */
+}
+
+.conversion-button {
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--secondary-bright)
+  );
+  color: var(--bg-black);
+  font-weight: 600;
+  /* Optimized for maximum conversion */
+}
+
+.trust-badge {
+  background-color: var(--trust-blue);
+  color: var(--text-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  /* Builds confidence in service reliability */
+}

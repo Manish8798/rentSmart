@@ -1,0 +1,326 @@
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 500px;
+  background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.9),
+      rgba(16, 37, 66, 0.8)
+    ),
+    url("https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  color: var(--text-light);
+  border-top: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.1);
+  z-index: 1;
+}
+
+.hero-content {
+  margin-left: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  position: relative;
+  display: inline-block;
+  color: var(--text-light);
+}
+
+.hero h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 80px;
+  height: 4px;
+  background-color: var(--secondary-color);
+}
+
+/* Animated Text Styles */
+.animated-text {
+  /* Fallback for browsers that don't support background-clip */
+  color: var(--secondary-bright);
+  background: linear-gradient(
+    135deg,
+    var(--secondary-bright),
+    var(--secondary-color),
+    var(--premium-purple),
+    var(--trust-blue)
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+  position: relative;
+  min-height: 1.5em;
+  display: inline-block;
+  font-weight: 700;
+  line-height: 1.2;
+  vertical-align: baseline;
+  font-size: 4rem;
+}
+
+/* Fallback for browsers without background-clip support */
+@supports not (-webkit-background-clip: text) {
+  .animated-text {
+    background: none;
+    color: var(--secondary-bright);
+    -webkit-text-fill-color: initial;
+  }
+
+  .cursor {
+    background: none;
+    color: var(--secondary-bright);
+    -webkit-text-fill-color: initial;
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.static-text {
+  color: var(--text-light);
+}
+
+.cursor {
+  background: linear-gradient(
+    135deg,
+    var(--secondary-bright),
+    var(--secondary-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: blink 1s infinite, gradientShift 3s ease-in-out infinite;
+  font-weight: normal;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  max-width: 80%;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* CTA Buttons */
+.cta-button {
+  background: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--secondary-bright),
+    var(--premium-purple),
+    var(--trust-blue),
+    var(--secondary-color)
+  );
+  background-size: 300% 300%;
+  animation: gradientShift 4s ease-in-out infinite;
+  color: var(--bg-black);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+  animation-duration: 2s;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.cta-button.secondary {
+  background: white;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  box-shadow: none;
+}
+
+.cta-button.secondary:hover {
+  background: var(--bg-light);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* CTA Button fallback for older browsers */
+@supports not (background-size: 300%) {
+  .cta-button {
+    background: linear-gradient(
+      135deg,
+      var(--secondary-color),
+      var(--secondary-bright)
+    );
+    animation: none;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero {
+    height: 450px;
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    min-height: 350px;
+    padding: 3rem 1rem;
+  }
+
+  .hero-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .animated-text {
+    min-height: 1.5em;
+    font-size: 1.8rem;
+  }
+
+  .hero h1::after {
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    text-align: center;
+    margin: 1rem auto;
+    max-width: 90%;
+  }
+
+  .cta-button {
+    margin: 1.5rem auto 0;
+    display: block;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .animated-text {
+    min-height: 1.5em;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .animated-text {
+    min-height: 1.3em;
+    font-size: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  .cta-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
