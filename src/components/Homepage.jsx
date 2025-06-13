@@ -84,8 +84,8 @@ const Homepage = ({ searchQuery = "", onRentNow, onCalendarStateChange }) => {
             <span className="static-text"> on Demand</span>
           </h1>
           <p>
-            Experience premium technology without commitment. Rent the finest
-            devices with flexible terms and impeccable service.
+            Experience Sony PlayStation 5, gaming wheel, and premium Apple
+            devices through our trusted, affordable rental plans.
           </p>
           <button
             className="cta-button"
