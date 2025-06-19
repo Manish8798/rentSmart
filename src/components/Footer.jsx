@@ -34,10 +34,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="mailto:rentsmart007@gmail.com"
-                    aria-label="Contact RentSmart"
-                  >
+                  <a href="/contact" aria-label="Contact RentSmart">
                     Contact Us
                   </a>
                 </li>
