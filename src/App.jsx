@@ -9,6 +9,10 @@ import AboutUs from "./pages/AboutUs";
 import Blog from "./pages/Blog";
 import FAQ from "./pages/FAQ";
 import ContactUs from "./pages/ContactUs";
+import TermsConditions from "./pages/TermsConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import ShippingPolicy from "./pages/ShippingPolicy";
+import DamagePolicy from "./pages/DamagePolicy";
 import products from "./data/products";
 
 function App() {
@@ -390,6 +394,10 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/terms" element={<TermsConditions />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/shipping-policy" element={<ShippingPolicy />} />
+          <Route path="/damage-policy" element={<DamagePolicy />} />
         </Routes>
 
         <WhatsAppFAB disabled={isCalendarOpen} />

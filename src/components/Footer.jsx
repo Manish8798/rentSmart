@@ -79,6 +79,31 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
+            <div className="footer-column">
+              <h4>Policies</h4>
+              <ul>
+                <li>
+                  <a href="/terms" aria-label="Terms and Conditions">
+                    Terms & Conditions
+                  </a>
+                </li>
+                <li>
+                  <a href="/privacy" aria-label="Privacy Policy">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="/shipping-policy" aria-label="Shipping Policy">
+                    Shipping Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="/damage-policy" aria-label="Damage Policy">
+                    Damage Policy
+                  </a>
+                </li>
+              </ul>
+            </div>
           </nav>
         </div>
         <div className="footer-bottom">
