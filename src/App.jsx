@@ -1,19 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Homepage from "./components/Homepage";
 import ProductDetail from "./components/ProductDetail";
 import WhatsAppFAB from "./components/WhatsAppFAB";
 import Header from "./components/Header";
-import AboutUs from "./pages/AboutUs";
-import Blog from "./pages/Blog";
-import FAQ from "./pages/FAQ";
-import ContactUs from "./pages/ContactUs";
-import TermsConditions from "./pages/TermsConditions";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import ShippingPolicy from "./pages/ShippingPolicy";
-import DamagePolicy from "./pages/DamagePolicy";
 import products from "./data/products";
+
+// Lazy load page components for better code splitting
+const AboutUs = lazy(() => import("./pages/AboutUs"));
+const Blog = lazy(() => import("./pages/Blog"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const ContactUs = lazy(() => import("./pages/ContactUs"));
+const TermsConditions = lazy(() => import("./pages/TermsConditions"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const ShippingPolicy = lazy(() => import("./pages/ShippingPolicy"));
+const DamagePolicy = lazy(() => import("./pages/DamagePolicy"));
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -362,6 +364,22 @@ function App() {
     // You can add your existing rental logic here
   };
 
+  // Loading component for Suspense fallback
+  const PageLoader = () => (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "50vh",
+        fontSize: "18px",
+        color: "#666",
+      }}
+    >
+      Loading...
+    </div>
+  );
+
   return (
     <Router>
       <div className="app">
@@ -382,30 +400,32 @@ function App() {
         />
 
         {/* Routes */}
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Homepage
-                searchQuery={searchQuery}
-                onRentNow={handleRentNow}
-                onCalendarStateChange={handleCalendarStateChange}
-              />
-            }
-          />
-          <Route
-            path="/product/:id"
-            element={<ProductDetail onRentNow={handleRentNow} />}
-          />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/terms" element={<TermsConditions />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/shipping-policy" element={<ShippingPolicy />} />
-          <Route path="/damage-policy" element={<DamagePolicy />} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Homepage
+                  searchQuery={searchQuery}
+                  onRentNow={handleRentNow}
+                  onCalendarStateChange={handleCalendarStateChange}
+                />
+              }
+            />
+            <Route
+              path="/product/:id"
+              element={<ProductDetail onRentNow={handleRentNow} />}
+            />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/terms" element={<TermsConditions />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/shipping-policy" element={<ShippingPolicy />} />
+            <Route path="/damage-policy" element={<DamagePolicy />} />
+          </Routes>
+        </Suspense>
 
         <WhatsAppFAB disabled={isCalendarOpen} />
       </div>
