@@ -6,6 +6,36 @@ const FAQ = () => {
 
   const faqs = [
     {
+      question: "How much does PS5 rental cost?",
+      answer:
+        "PS5 rental at RentSmart is very affordable:\n• Daily Rental: ₹999/day\n• Weekly Special: ₹2499 (Save ₹4501!)\n• Monthly Deal: ₹5249 (40% discount - Save ₹24,741!)\n\nAll PS5 rentals include free delivery and setup in Delhi NCR. A one-time delivery and pickup charge of ₹249 applies to all orders.",
+    },
+    {
+      question: "Is PS5 available for rent in Delhi NCR?",
+      answer:
+        "Yes! We provide PS5 rental service across Delhi NCR including:\n• Delhi\n• Gurgaon\n• Noida\n• Faridabad\n• Ghaziabad\n\nSame-day delivery available for orders placed before 6 PM. Free setup and gaming assistance included with every PS5 rental.",
+    },
+    {
+      question: "What comes with PS5 rental?",
+      answer:
+        "Your PS5 rental package includes everything you need:\n• Sony PlayStation 5 Console (Latest Model)\n• DualSense Wireless Controller\n• HDMI cable and power adapter\n• All necessary setup cables\n• Free home delivery and setup\n• Gaming tutorial and support\n• 24/7 customer assistance\n\nAdditional controllers and VR headsets are available for separate rental.",
+    },
+    {
+      question: "Can I rent PS5 for just one day?",
+      answer:
+        "Absolutely! We offer flexible PS5 rental periods:\n• Single Day: ₹999 - Perfect for events or trying specific games\n• Weekend: Great for extended gaming sessions\n• Weekly: ₹2499 - Best value for week-long gaming\n• Monthly: ₹5249 - Maximum savings for long-term gaming\n\nYou can also select custom duration for your specific needs. Contact us on WhatsApp to book your PS5 rental.",
+    },
+    {
+      question: "Do you provide PS5 games with the rental?",
+      answer:
+        "Yes! We do provide PS5 games with the rental for additional charges:\n• Popular PS5 games available for rent\n• Additional charges apply based on the game\n• Wide selection of latest and classic titles\n• Game discs provided with console rental\n• Mix and match multiple games for your rental period\n\nWe also provide guidance on:\n• Best PS5 games to download\n• PlayStation Plus subscription benefits\n• Popular free-to-play games\n• Exclusive PlayStation games worth trying\n\nContact us on WhatsApp to know game availability and pricing for your rental period.",
+    },
+    {
+      question: "What if PS5 gets damaged during rental?",
+      answer:
+        "We understand accidents happen. Here's our damage policy for PS5 rentals:\n• Minor wear and tear: No charges\n• Accidental damage: Repair cost sharing based on damage assessment\n• Complete damage/loss: Security deposit applies\n• Manufacturer defects: No charges to customer\n\nWe recommend handling the PS5 with care and keeping it in a safe, well-ventilated area. Our team provides detailed usage instructions during delivery.",
+    },
+    {
       question: "What rental plans do you offer?",
       answer:
         "We offer flexible rental plans to suit your needs:\n• Single Day: Perfect for one-day events or trials\n• Weekend: Great for weekend adventures or short projects\n• Week: Ideal for week-long needs or extended testing\n• Month: Best value for long-term rentals\n• Custom Duration: Select your own start and end dates for maximum flexibility\n\nEach plan comes with different pricing, and generally, longer rental periods offer better value. With our custom duration option, you can choose exactly the dates you need the product for.",

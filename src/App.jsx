@@ -48,7 +48,7 @@ function App() {
     "@type": "Store",
     name: "RentSmart",
     description:
-      "Premium product rental service offering PS5, Apple products, and trekking equipment on flexible rental terms.",
+      "PS5 on rent in Delhi NCR! Premium PlayStation 5 rental service starting ₹999/day. Also offering Apple products and adventure gear on flexible rental terms with free delivery.",
     url: "https://rentsmart.in",
     potentialAction: {
       "@type": "SearchAction",
@@ -58,14 +58,19 @@ function App() {
     offers: {
       "@type": "AggregateOffer",
       availability: "https://schema.org/InStock",
-      category: ["Gaming Consoles", "Apple Products", "Trekking Equipment"],
+      category: [
+        "PS5 Rental",
+        "Gaming Consoles",
+        "Apple Products",
+        "Adventure Equipment",
+      ],
     },
   };
 
   useEffect(() => {
     // Update meta tags
     document.title =
-      "RentSmart - Premium PS5, Apple Products & Trekking Equipment Rental Service";
+      "PS5 on Rent Delhi NCR ₹999/day - PlayStation 5 Rental Service | RentSmart";
 
     // Update or create meta description
     let metaDescription = document.querySelector('meta[name="description"]');
@@ -75,7 +80,7 @@ function App() {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content =
-      "Rent premium PS5 consoles, Apple products (iPads, watches), and trekking equipment with flexible terms. No commitment, white glove service included.";
+      "PS5 on rent in Delhi NCR ₹999/day! Rent Sony PlayStation 5 console with free delivery. Best PS5 rental rates, flexible plans. Gaming accessories, controllers, VR headsets also available.";
 
     // Update or create meta keywords
     let metaKeywords = document.querySelector('meta[name="keywords"]');
@@ -85,21 +90,23 @@ function App() {
       document.head.appendChild(metaKeywords);
     }
     metaKeywords.content =
-      "PS5 rental, Apple products rental, trekking equipment rental, gaming console rental, iPad rental, Apple Watch rental, adventure gear rental";
+      "PS5 on rent, PS5 rental Delhi, rent PS5, PlayStation 5 rental, PS5 on rent near me, PS5 rental service, Sony PS5 rent Delhi NCR, PS5 console rental, gaming console rent, PS5 daily rent, PS5 weekly rent, PS5 monthly rent";
 
     // Add Open Graph tags
     const ogTags = [
       {
         property: "og:title",
-        content: "RentSmart - Premium Product Rental Service",
+        content:
+          "PS5 on Rent Delhi NCR ₹999/day - PlayStation 5 Rental Service | RentSmart",
       },
       {
         property: "og:description",
         content:
-          "Rent premium PS5 consoles, Apple products, and trekking equipment with flexible terms.",
+          "PS5 on rent in Delhi NCR ₹999/day! Rent Sony PlayStation 5 console with free delivery. Best PS5 rental rates, flexible plans.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://rentsmart.in" },
+      { property: "og:image", content: "/images/ps5.jpg" },
     ];
 
     ogTags.forEach((tag) => {

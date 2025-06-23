@@ -1,13 +1,25 @@
 User-agent: *
 Allow: /
 
+# High priority for PS5 rental content
+Allow: /product/1
+Allow: /#products-section
+Allow: /blog
+
+# Standard pages
+Allow: /blog
+Allow: /about
+Allow: /contact
+Allow: /faq
+
+# Block unnecessary crawling
+Disallow: /admin
+Disallow: /temp
+Disallow: /.env
+Disallow: /node_modules
+
 # Sitemap location
 Sitemap: https://rentsmart.in/sitemap.xml
 
-# Disallow admin and private areas
-Disallow: /admin/
-Disallow: /private/
-Disallow: /api/
-
-# Crawl-delay for all bots
-Crawl-delay: 10 
+# Crawl delay to prevent server overload
+Crawl-delay: 1 

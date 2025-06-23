@@ -31,6 +31,50 @@ const Blog = () => {
   const blogPosts = [
     {
       id: 1,
+      title:
+        "PS5 on Rent in Delhi NCR: Complete Guide to PlayStation 5 Rental Service 2025",
+      excerpt:
+        "Looking for PS5 on rent in Delhi? Get Sony PlayStation 5 console starting ₹999/day with free delivery. Weekly deals at ₹2499 and monthly rental at ₹5249. Complete rental guide with pricing, delivery, and setup included.",
+      fullContent:
+        "PS5 on rent has become the smartest way to enjoy next-generation gaming in Delhi NCR without the hefty ₹54,990 purchase price. At RentSmart, we offer the most competitive PS5 rental rates starting just ₹999 per day.\n\n**PS5 Rental Pricing in Delhi NCR:**\n• Daily Rental: ₹999/day\n• Weekly Special: ₹2499 (Save ₹4501!)\n• Monthly Deal: ₹5249 (40% discount - Save ₹24,741!)\n\n**What's Included with PS5 Rental:**\n• Sony PlayStation 5 Console (Latest Model)\n• DualSense Wireless Controller\n• All necessary cables and power adapter\n• Free home delivery and setup\n• 24/7 customer support\n• Game recommendations\n\n**Why Choose PS5 Rental Over Purchase?**\nWith the PS5 retail price at ₹54,990, renting makes financial sense for casual gamers. You can rent for 54 days before reaching the purchase price! Most gamers only need the console for specific game releases or during holidays.\n\n**Popular PS5 Games Available:**\n• Spider-Man: Miles Morales\n• God of War Ragnarök\n• Horizon Forbidden West\n• Call of Duty: Modern Warfare III\n• FIFA 24\n• Gran Turismo 7\n\n**PS5 Rental Service Areas:**\nWe deliver PS5 consoles across Delhi, Gurgaon, Noida, Faridabad, and Ghaziabad. Same-day delivery available for orders placed before 6 PM.\n\n**Booking Process:**\n1. Call/WhatsApp: +91-8448347366\n2. Select rental duration\n3. Confirm delivery address\n4. Enjoy gaming!\n\nRent PS5 today and experience the future of gaming without breaking the bank!",
+      category: "gaming",
+      author: "RentSmart Gaming Team",
+      date: "January 15, 2025",
+      readTime: "6 min read",
+      icon: "🎮",
+      featured: true,
+    },
+    {
+      id: 2,
+      title:
+        "PS5 vs Xbox Series X Rental: Which Gaming Console Should You Rent in 2025?",
+      excerpt:
+        "Comparing PS5 and Xbox Series X rentals in Delhi. PS5 rental starts ₹999/day with exclusive games like Spider-Man and God of War. Complete comparison guide for gaming console rentals.",
+      fullContent:
+        "When deciding between PS5 on rent vs Xbox Series X rental, several factors come into play. Both consoles offer next-generation gaming, but they cater to different preferences and gaming styles.\n\n**PS5 Rental Advantages:**\n• Exclusive games: Spider-Man, God of War, Horizon series\n• Superior DualSense haptic feedback\n• Faster SSD loading times\n• Better VR support with PSVR2\n• Larger game library\n\n**Xbox Series X Rental Benefits:**\n• Game Pass Ultimate subscription value\n• Better backward compatibility\n• More powerful hardware specs\n• Smart Delivery technology\n• Cross-platform play with PC\n\n**Rental Pricing Comparison:**\n• PS5 Rental: ₹999/day, ₹2499/week, ₹5249/month\n• Xbox Series X: ₹900/day, ₹2299/week, ₹4999/month\n\n**Which Should You Choose?**\nFor exclusive gaming experiences and innovative controller features, PS5 rental is the clear winner. The PlayStation ecosystem offers unmatched exclusives that justify the rental cost.\n\nBoth consoles are available for rent in Delhi NCR with free delivery and setup included.",
+      category: "gaming",
+      author: "RentSmart Gaming Team",
+      date: "January 12, 2025",
+      readTime: "5 min read",
+      icon: "⚡",
+      featured: false,
+    },
+    {
+      id: 3,
+      title: "Best PS5 Games to Play During Your Rental Period",
+      excerpt:
+        "Maximize your PS5 rental experience with these must-play exclusive games. From Spider-Man to God of War Ragnarök, discover the best PlayStation 5 games for your rental period.",
+      fullContent:
+        "Getting a PS5 on rent? Here are the must-play games that make your rental investment worthwhile:\n\n**PlayStation Exclusives (Must-Play):**\n• Spider-Man: Miles Morales - Perfect showcase of PS5 capabilities\n• God of War Ragnarök - Epic Norse mythology adventure\n• Horizon Forbidden West - Stunning open-world experience\n• Ratchet & Clank: Rift Apart - Demonstrates SSD speed\n• Ghost of Tsushima Director's Cut - Beautiful samurai tale\n\n**Popular Multi-Platform Games:**\n• Call of Duty: Modern Warfare III\n• FIFA 24 with realistic graphics\n• Assassin's Creed Mirage\n• Cyberpunk 2077 (now optimized for PS5)\n• Elden Ring - Game of the Year experience\n\n**Quick Gaming Session (1-3 days rental):**\nFocus on shorter campaigns like Miles Morales or Ratchet & Clank that can be completed in 8-12 hours.\n\n**Week-long Rental:**\nPerfect for God of War Ragnarök or Horizon Forbidden West - games that offer 20-30 hours of content.\n\n**Monthly Rental:**\nExplore everything! Try multiple exclusives, online multiplayer games, and discover new genres.\n\n**Pro Tips for PS5 Rental:**\n• Download games during setup to save time\n• Create your PlayStation account beforehand\n• Take advantage of PS Plus free games\n• Use Activity Cards for guided gameplay\n\nRent your PS5 today and dive into these incredible gaming experiences!",
+      category: "gaming",
+      author: "RentSmart Gaming Team",
+      date: "January 10, 2025",
+      readTime: "4 min read",
+      icon: "🕹️",
+      featured: false,
+    },
+    {
+      id: 4,
       title: "Why Renting Gaming Consoles Makes Financial Sense in 2025",
       excerpt:
         "With PS5 and Xbox Series X still priced above ₹50,000, renting offers a smarter way to enjoy next-gen gaming without the hefty upfront cost.",
@@ -38,13 +82,13 @@ const Blog = () => {
         "Gaming consoles have become increasingly expensive, with the PlayStation 5 retailing for ₹54,990 and Xbox Series X for ₹52,990 in India. For casual gamers who play 2-3 hours per week, purchasing these consoles means paying a premium for features they might not fully utilize.\n\nRenting offers a compelling alternative. At RentSmart, you can rent a PS5 for just ₹2,000 per week or ₹6,000 per month. This means you could rent it for 9 months before reaching the purchase price. For most gamers, this flexibility is invaluable.\n\nConsider these scenarios: You want to play the latest exclusive like Spider-Man 2 or Halo Infinite, but you're not sure if you'll enjoy it long-term. Renting lets you experience the full game without committing to a ₹50,000+ purchase. You can also switch between consoles based on exclusive releases.\n\nThe financial benefits extend beyond the initial cost. Renting eliminates concerns about warranty issues, repairs, or depreciation. When you're done gaming, simply return the console. No storage worries, no selling hassles, and no regrets about an expensive purchase gathering dust.",
       category: "gaming",
       author: "RentSmart Editorial Team",
-      date: "January 15, 2025",
+      date: "January 8, 2025",
       readTime: "5 min read",
-      icon: "🎮",
-      featured: true,
+      icon: "💰",
+      featured: false,
     },
     {
-      id: 2,
+      id: 5,
       title:
         "MacBook vs iPad Pro for Creative Professionals: A Rental Comparison",
       excerpt:
@@ -58,7 +102,7 @@ const Blog = () => {
       icon: "💻",
     },
     {
-      id: 3,
+      id: 6,
       title: "Ultimate Trekking Gear Checklist: What to Rent vs What to Buy",
       excerpt:
         "Planning your first Himalayan trek? Our comprehensive guide covers essential gear and smart rental strategies to keep costs under ₹15,000.",
@@ -71,7 +115,7 @@ const Blog = () => {
       icon: "🏔️",
     },
     {
-      id: 4,
+      id: 7,
       title: "Apple Vision Pro Experience: Is It Worth ₹3.5 Lakhs?",
       excerpt:
         "We spent 30 days with Apple's Vision Pro to answer the big question: should you buy, rent, or skip this revolutionary device?",
@@ -84,7 +128,7 @@ const Blog = () => {
       icon: "🥽",
     },
     {
-      id: 5,
+      id: 8,
       title:
         "Wedding Photography Gear: Rent Premium Equipment for Perfect Shots",
       excerpt:
@@ -98,7 +142,7 @@ const Blog = () => {
       icon: "📸",
     },
     {
-      id: 6,
+      id: 9,
       title: "Student Life Hacks: Renting vs Buying Tech for College",
       excerpt:
         "College students spend ₹2+ lakhs on gadgets. Smart renting strategies can reduce this cost by 70% while accessing better technology.",
@@ -111,7 +155,7 @@ const Blog = () => {
       icon: "🎓",
     },
     {
-      id: 7,
+      id: 10,
       title: "Home Office Setup on a Budget: Premium Equipment for Remote Work",
       excerpt:
         "Build a ₹2 lakh home office setup for under ₹15,000 through strategic rentals. Perfect for freelancers and remote workers.",
@@ -124,7 +168,7 @@ const Blog = () => {
       icon: "🏠",
     },
     {
-      id: 8,
+      id: 11,
       title: "Seasonal Sports Equipment: Smart Rentals for Every Adventure",
       excerpt:
         "From skiing in Manali to surfing in Goa, discover how renting seasonal sports equipment can unlock new adventures without storage headaches.",
@@ -195,7 +239,10 @@ const Blog = () => {
               </div>
               <div className="featured-post-info">
                 <div className="post-meta">
-                  <span className="post-category">{featuredPost.category}</span>
+                  <span className="post-category">
+                    {featuredPost.category.charAt(0).toUpperCase() +
+                      featuredPost.category.slice(1)}
+                  </span>
                   <span className="post-date">{featuredPost.date}</span>
                   <span className="post-read-time">
                     {featuredPost.readTime}
@@ -261,7 +308,10 @@ const Blog = () => {
                   </div>
                   <div className="blog-card-content">
                     <div className="post-meta">
-                      <span className="post-category">{post.category}</span>
+                      <span className="post-category">
+                        {post.category.charAt(0).toUpperCase() +
+                          post.category.slice(1)}
+                      </span>
                       <span className="post-date">{post.date}</span>
                       <span className="post-read-time">{post.readTime}</span>
                     </div>
