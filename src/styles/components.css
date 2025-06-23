@@ -312,3 +312,146 @@
     height: 1.5rem;
   }
 }
+
+/* Skeleton Loading Styles */
+.page-loader {
+  padding: 2rem;
+  min-height: 50vh;
+  background-color: #ffffff;
+}
+
+.skeleton-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeleton-line {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+/* Header skeleton */
+.skeleton-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.skeleton-title {
+  height: 2.5rem;
+  width: 60%;
+  max-width: 400px;
+  margin: 0 auto 1rem;
+}
+
+.skeleton-subtitle {
+  height: 1.5rem;
+  width: 40%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Content skeleton */
+.skeleton-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.skeleton-card {
+  width: 100%;
+  max-width: 350px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f0f0f0;
+}
+
+.skeleton-image {
+  height: 200px;
+  width: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.skeleton-text {
+  padding-top: 0.5rem;
+}
+
+.skeleton-product-title {
+  height: 1.5rem;
+  width: 80%;
+  margin-bottom: 0.75rem;
+}
+
+.skeleton-product-price {
+  height: 1.25rem;
+  width: 40%;
+  margin-bottom: 1rem;
+}
+
+.skeleton-product-desc {
+  height: 1rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-product-desc:last-child {
+  width: 70%;
+  margin-bottom: 0;
+}
+
+/* Responsive skeleton styles */
+@media (max-width: 768px) {
+  .skeleton-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .skeleton-card {
+    max-width: 100%;
+  }
+
+  .skeleton-title {
+    width: 80%;
+  }
+
+  .skeleton-subtitle {
+    width: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-loader {
+    padding: 1rem;
+  }
+
+  .skeleton-header {
+    margin-bottom: 2rem;
+  }
+
+  .skeleton-card {
+    padding: 1rem;
+  }
+
+  .skeleton-image {
+    height: 150px;
+  }
+}

@@ -8,7 +8,7 @@ const FAQ = () => {
     {
       question: "How much does PS5 rental cost?",
       answer:
-        "PS5 rental at RentSmart is very affordable:\n• Daily Rental: ₹999/day\n• Weekly Special: ₹2499 (Save ₹4501!)\n• Monthly Deal: ₹5249 (40% discount - Save ₹24,741!)\n\nAll PS5 rentals include free delivery and setup in Delhi NCR. A one-time delivery and pickup charge of ₹249 applies to all orders.",
+        "PS5 rental at RentSmart is very affordable:\n• Daily Rental: ₹999/day\n• Weekly Special: ₹2499 (₹357/day)\n• Monthly Deal: ₹5249 (₹175/day)\n\nAll PS5 rentals include free delivery and setup in Delhi NCR. A one-time delivery and pickup charge of ₹249 applies to all orders.",
     },
     {
       question: "Is PS5 available for rent in Delhi NCR?",

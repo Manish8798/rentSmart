@@ -14,10 +14,10 @@ const Homepage = ({ searchQuery = "", onRentNow, onCalendarStateChange }) => {
     "Sony PS5",
     "iPad & Pencil",
     "Apple Watch",
-    "VR Headset",
+    "VR",
     "Gaming Wheel",
     "Home Theater",
-    "Trekking Gear",
+    "Trekking Stick",
     "Air Purifier",
   ];
 
@@ -26,18 +26,83 @@ const Homepage = ({ searchQuery = "", onRentNow, onCalendarStateChange }) => {
     if (searchQuery.trim() === "") {
       setFilteredProducts(products);
     } else {
-      const filtered = products.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.description
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase()) ||
-          product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          (product.features &&
-            product.features.some((feature) =>
-              feature.toLowerCase().includes(searchQuery.toLowerCase())
-            ))
-      );
+      const query = searchQuery.toLowerCase().trim();
+
+      const filtered = products.filter((product) => {
+        // Direct name match
+        if (product.name.toLowerCase().includes(query)) return true;
+
+        // Description match
+        if (product.description.toLowerCase().includes(query)) return true;
+
+        // Category match
+        if (product.category.toLowerCase().includes(query)) return true;
+
+        // Features match
+        if (
+          product.features &&
+          product.features.some((feature) =>
+            feature.toLowerCase().includes(query)
+          )
+        )
+          return true;
+
+        // Handle common search patterns and synonyms
+        const searchPatterns = {
+          "4k": ["4k resolution", "tv"],
+          trekking: ["trekking stick", "backpack", "adventure"],
+          trek: ["trekking stick", "backpack", "adventure"],
+          hiking: [
+            "trekking stick",
+            "backpack",
+            "waterproof shoes",
+            "adventure",
+          ],
+          ps5: ["sony ps5", "gaming"],
+          playstation: ["sony ps5", "gaming"],
+          ipad: ["ipad & pencil", "apple"],
+          tablet: ["ipad & pencil", "apple"],
+          watch: ["apple watch", "watch"],
+          tv: ["tv", "home theater", "4k resolution"],
+          television: ["tv", "home theater"],
+          vr: ["vr", "gaming"],
+          "virtual reality": ["vr", "gaming"],
+          gaming: ["sony ps5", "gaming wheel", "vr"],
+          apple: ["ipad & pencil", "watch"],
+          adventure: [
+            "trekking stick",
+            "backpack",
+            "waterproof shoes",
+            "sleeping bag",
+            "winter jacket",
+          ],
+          outdoor: [
+            "trekking stick",
+            "backpack",
+            "waterproof shoes",
+            "sleeping bag",
+            "winter jacket",
+          ],
+        };
+
+        // Check if query matches any pattern
+        if (searchPatterns[query]) {
+          return searchPatterns[query].some((pattern) => {
+            return (
+              product.name.toLowerCase().includes(pattern) ||
+              product.description.toLowerCase().includes(pattern) ||
+              product.category.toLowerCase().includes(pattern) ||
+              (product.features &&
+                product.features.some((feature) =>
+                  feature.toLowerCase().includes(pattern)
+                ))
+            );
+          });
+        }
+
+        return false;
+      });
+
       setFilteredProducts(filtered);
     }
   }, [searchQuery]);

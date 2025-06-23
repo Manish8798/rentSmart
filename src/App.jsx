@@ -1,5 +1,11 @@
 import { useState, useEffect, Suspense, lazy } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
 import Homepage from "./components/Homepage";
 import ProductDetail from "./components/ProductDetail";
@@ -17,13 +23,16 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const ShippingPolicy = lazy(() => import("./pages/ShippingPolicy"));
 const DamagePolicy = lazy(() => import("./pages/DamagePolicy"));
 
-function App() {
+function AppContent() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Clear cache on page load/refresh
   useEffect(() => {
@@ -72,7 +81,7 @@ function App() {
   useEffect(() => {
     // Update meta tags
     document.title =
-      "PS5 on Rent Delhi NCR ₹999/day - PlayStation 5 Rental Service | RentSmart";
+      "PS5 on Rent Delhi NCR - Gaming Console Rentals Near Me | Apple, Adventure Gear | RentSmart";
 
     // Update or create meta description
     let metaDescription = document.querySelector('meta[name="description"]');
@@ -82,7 +91,7 @@ function App() {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content =
-      "PS5 on rent in Delhi NCR ₹999/day! Rent Sony PlayStation 5 console with free delivery. Best PS5 rental rates, flexible plans. Gaming accessories, controllers, VR headsets also available.";
+      "PS5 on rent Delhi NCR with free delivery! Premium PlayStation 5 console rentals near you. Apple products, adventure gear & gaming accessories. Flexible rental plans, best rates guaranteed.";
 
     // Update or create meta keywords
     let metaKeywords = document.querySelector('meta[name="keywords"]');
@@ -92,19 +101,19 @@ function App() {
       document.head.appendChild(metaKeywords);
     }
     metaKeywords.content =
-      "PS5 on rent, PS5 rental Delhi, rent PS5, PlayStation 5 rental, PS5 on rent near me, PS5 rental service, Sony PS5 rent Delhi NCR, PS5 console rental, gaming console rent, PS5 daily rent, PS5 weekly rent, PS5 monthly rent";
+      "PS5 on rent, PS5 rental Delhi, gaming console rental, PlayStation 5 rent, Apple products rental, adventure gear rental, electronics on rent Delhi NCR, PS5 rent near me, gaming equipment rental, premium rentals, flexible rental plans";
 
     // Add Open Graph tags
     const ogTags = [
       {
         property: "og:title",
         content:
-          "PS5 on Rent Delhi NCR ₹999/day - PlayStation 5 Rental Service | RentSmart",
+          "PS5 on Rent Delhi NCR - Gaming Console Rentals Near Me | Apple, Adventure Gear | RentSmart",
       },
       {
         property: "og:description",
         content:
-          "PS5 on rent in Delhi NCR ₹999/day! Rent Sony PlayStation 5 console with free delivery. Best PS5 rental rates, flexible plans.",
+          "PS5 on rent Delhi NCR with free delivery! Premium PlayStation 5 console rentals near you. Apple products, adventure gear & gaming accessories available.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://rentsmart.in" },
@@ -145,16 +154,16 @@ function App() {
   // Generate search suggestions
   const generateSuggestions = (query) => {
     if (!query || query.length < 1) {
-      // Show popular suggestions when no query
+      // Show popular suggestions when no query - using actual product names and relevant terms
       return [
         { type: "product", text: "Sony PS5", icon: "🎮" },
         { type: "product", text: "iPad & Pencil", icon: "📱" },
+        { type: "product", text: "TV", icon: "📺" },
+        { type: "product", text: "Trekking Stick", icon: "🥾" },
         { type: "category", text: "Gaming", icon: "🎮" },
         { type: "category", text: "Apple", icon: "🍎" },
         { type: "category", text: "Adventure", icon: "🏔️" },
-        { type: "search", text: "VR headset", icon: "🔍" },
-        { type: "search", text: "4K TV", icon: "🔍" },
-        { type: "search", text: "trekking gear", icon: "🔍" },
+        { type: "search", text: "VR", icon: "🔍" },
       ];
     }
 
@@ -195,7 +204,7 @@ function App() {
       }
     });
 
-    // Feature matches
+    // Feature matches - search through actual features
     const addedFeatures = new Set();
     products.forEach((product) => {
       if (product.features) {
@@ -215,29 +224,69 @@ function App() {
       }
     });
 
-    // Generic search suggestions
-    const genericSuggestions = [
-      "waterproof",
-      "portable",
-      "4K",
-      "wireless",
-      "gaming",
-      "Apple",
-      "professional",
-      "HD",
-      "smart",
-      "bluetooth",
-    ];
+    // Description matches for broader terms
+    const addedDescTerms = new Set();
+    products.forEach((product) => {
+      const description = product.description.toLowerCase();
 
-    genericSuggestions.forEach((term) => {
-      if (term.toLowerCase().includes(lowerQuery)) {
+      // Check for specific terms in descriptions that might be useful
+      const relevantTerms = [
+        "waterproof",
+        "wireless",
+        "bluetooth",
+        "portable",
+        "professional",
+        "4k",
+        "hd",
+      ];
+      relevantTerms.forEach((term) => {
+        if (
+          description.includes(term) &&
+          term.includes(lowerQuery) &&
+          !addedDescTerms.has(term)
+        ) {
+          addedDescTerms.add(term);
+          addSuggestion({
+            type: "search",
+            text: term,
+            icon: "🔍",
+          });
+        }
+      });
+    });
+
+    // Add some intelligent suggestions based on query patterns
+    if (lowerQuery.includes("trek")) {
+      // For trekking-related searches, suggest specific trekking products
+      const trekkingProducts = products.filter(
+        (p) =>
+          p.name.toLowerCase().includes("trek") ||
+          p.category === "Adventure" ||
+          p.description.toLowerCase().includes("trek") ||
+          p.description.toLowerCase().includes("hiking")
+      );
+      trekkingProducts.forEach((product) => {
         addSuggestion({
-          type: "search",
-          text: term,
-          icon: "🔍",
+          type: "product",
+          text: product.name,
+          icon: getProductIcon(product.category),
+          id: product.id,
+        });
+      });
+    }
+
+    if (lowerQuery.includes("tv") || lowerQuery.includes("4k")) {
+      // For TV searches, suggest the actual TV product and related features
+      const tvProduct = products.find((p) => p.name.toLowerCase() === "tv");
+      if (tvProduct) {
+        addSuggestion({
+          type: "product",
+          text: tvProduct.name,
+          icon: getProductIcon(tvProduct.category),
+          id: tvProduct.id,
         });
       }
-    });
+    }
 
     return suggestions.slice(0, 8); // Limit to 8 suggestions
   };
@@ -272,10 +321,28 @@ function App() {
     const suggestions = generateSuggestions(query);
     setSearchSuggestions(suggestions);
     setSelectedSuggestionIndex(-1); // Reset selection when typing
+
+    // Navigate to home page if not already there and user has typed something
+    if (query.trim() && location.pathname !== "/") {
+      navigate("/");
+    }
   };
 
   const handleKeyDown = (e) => {
-    if (!showSuggestions || searchSuggestions.length === 0) return;
+    if (!showSuggestions || searchSuggestions.length === 0) {
+      // If Enter is pressed and we're not on home page, navigate to home
+      if (
+        e.key === "Enter" &&
+        searchQuery.trim() &&
+        location.pathname !== "/"
+      ) {
+        e.preventDefault();
+        navigate("/");
+        setShowSuggestions(false);
+        return;
+      }
+      return;
+    }
 
     switch (e.key) {
       case "ArrowDown":
@@ -297,6 +364,10 @@ function App() {
         if (selectedSuggestionIndex >= 0) {
           handleSuggestionClick(searchSuggestions[selectedSuggestionIndex]);
         } else {
+          // Navigate to home if not already there and there's a search query
+          if (searchQuery.trim() && location.pathname !== "/") {
+            navigate("/");
+          }
           setShowSuggestions(false);
         }
         break;
@@ -326,6 +397,11 @@ function App() {
     setShowSuggestions(false);
     setSelectedSuggestionIndex(-1);
 
+    // Navigate to home page if not already there
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
+
     // If it's a product suggestion, you could navigate to that product
     if (suggestion.type === "product" && suggestion.id) {
       // Optional: navigate to product detail page
@@ -343,6 +419,12 @@ function App() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     setShowSuggestions(false);
+
+    // Navigate to home page if not already there and there's a search query
+    if (searchQuery.trim() && location.pathname !== "/") {
+      navigate("/");
+    }
+
     // Prevent form submission
   };
 
@@ -364,71 +446,104 @@ function App() {
     // You can add your existing rental logic here
   };
 
-  // Loading component for Suspense fallback
+  // Loading component for Suspense fallback with skeleton/shimmer effect
   const PageLoader = () => (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "50vh",
-        fontSize: "18px",
-        color: "#666",
-      }}
-    >
-      Loading...
+    <div className="page-loader">
+      <div className="skeleton-container">
+        {/* Header skeleton */}
+        <div className="skeleton-header">
+          <div className="skeleton-line skeleton-title"></div>
+          <div className="skeleton-line skeleton-subtitle"></div>
+        </div>
+
+        {/* Content skeleton */}
+        <div className="skeleton-content">
+          <div className="skeleton-card">
+            <div className="skeleton-image"></div>
+            <div className="skeleton-text">
+              <div className="skeleton-line skeleton-product-title"></div>
+              <div className="skeleton-line skeleton-product-price"></div>
+              <div className="skeleton-line skeleton-product-desc"></div>
+            </div>
+          </div>
+
+          <div className="skeleton-card">
+            <div className="skeleton-image"></div>
+            <div className="skeleton-text">
+              <div className="skeleton-line skeleton-product-title"></div>
+              <div className="skeleton-line skeleton-product-price"></div>
+              <div className="skeleton-line skeleton-product-desc"></div>
+            </div>
+          </div>
+
+          <div className="skeleton-card">
+            <div className="skeleton-image"></div>
+            <div className="skeleton-text">
+              <div className="skeleton-line skeleton-product-title"></div>
+              <div className="skeleton-line skeleton-product-price"></div>
+              <div className="skeleton-line skeleton-product-desc"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 
   return (
+    <div className="app">
+      <Header
+        searchQuery={searchQuery}
+        handleSearch={handleSearch}
+        handleSearchSubmit={handleSearchSubmit}
+        handleSearchFocus={handleSearchFocus}
+        handleSearchBlur={handleSearchBlur}
+        handleKeyDown={handleKeyDown}
+        handleClearSearch={handleClearSearch}
+        showSuggestions={showSuggestions}
+        searchSuggestions={searchSuggestions}
+        selectedSuggestionIndex={selectedSuggestionIndex}
+        handleSuggestionClick={handleSuggestionClick}
+        mobileMenuOpen={mobileMenuOpen}
+        toggleMobileMenu={toggleMobileMenu}
+      />
+
+      {/* Routes */}
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Homepage
+                searchQuery={searchQuery}
+                onRentNow={handleRentNow}
+                onCalendarStateChange={handleCalendarStateChange}
+              />
+            }
+          />
+          <Route
+            path="/product/:id"
+            element={<ProductDetail onRentNow={handleRentNow} />}
+          />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/terms" element={<TermsConditions />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/shipping-policy" element={<ShippingPolicy />} />
+          <Route path="/damage-policy" element={<DamagePolicy />} />
+        </Routes>
+      </Suspense>
+
+      <WhatsAppFAB disabled={isCalendarOpen} />
+    </div>
+  );
+}
+
+function App() {
+  return (
     <Router>
-      <div className="app">
-        <Header
-          searchQuery={searchQuery}
-          handleSearch={handleSearch}
-          handleSearchSubmit={handleSearchSubmit}
-          handleSearchFocus={handleSearchFocus}
-          handleSearchBlur={handleSearchBlur}
-          handleKeyDown={handleKeyDown}
-          handleClearSearch={handleClearSearch}
-          showSuggestions={showSuggestions}
-          searchSuggestions={searchSuggestions}
-          selectedSuggestionIndex={selectedSuggestionIndex}
-          handleSuggestionClick={handleSuggestionClick}
-          mobileMenuOpen={mobileMenuOpen}
-          toggleMobileMenu={toggleMobileMenu}
-        />
-
-        {/* Routes */}
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Homepage
-                  searchQuery={searchQuery}
-                  onRentNow={handleRentNow}
-                  onCalendarStateChange={handleCalendarStateChange}
-                />
-              }
-            />
-            <Route
-              path="/product/:id"
-              element={<ProductDetail onRentNow={handleRentNow} />}
-            />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/terms" element={<TermsConditions />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/shipping-policy" element={<ShippingPolicy />} />
-            <Route path="/damage-policy" element={<DamagePolicy />} />
-          </Routes>
-        </Suspense>
-
-        <WhatsAppFAB disabled={isCalendarOpen} />
-      </div>
+      <AppContent />
     </Router>
   );
 }
