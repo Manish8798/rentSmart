@@ -143,9 +143,13 @@ const ProductDetail = ({ onRentNow }) => {
       // Apply discounts for exactly 30 days for non-adventure items
       if (duration === 30) {
         if (name && name.toLowerCase().includes("ps5")) {
-          // Fixed price for PS5 monthly rentals (40% discount)
-          discount = 40;
-          baseTotal = 5249;
+          // Fixed price for PS5 monthly rentals (calculated discount based on daily rate)
+          const dailyRate = 299;
+          const monthlyAtDailyRate = dailyRate * 30; // 8970
+          baseTotal = 5999;
+          discount = Math.round(
+            ((monthlyAtDailyRate - baseTotal) / monthlyAtDailyRate) * 100
+          ); // 33% discount
           tier = "30-day-ps5-special";
         } else {
           // Apply 25% discount for other products monthly rentals
@@ -293,7 +297,7 @@ Thank you!`;
     } else if (pricing.tier === "ps5-week-special") {
       pricingInfo = "PS5 Week Special: ₹2,499";
     } else if (pricing.tier === "30-day-ps5-special") {
-      pricingInfo = "PS5 30-day Special (40% discount!): ₹5,249";
+      pricingInfo = "PS5 30-day Special (33% discount!): ₹5,999";
     } else if (pricing.tier === "30-day-special") {
       pricingInfo = "30-day Special (25% discount!)";
     } else if (pricing.tier === "extended-term") {
