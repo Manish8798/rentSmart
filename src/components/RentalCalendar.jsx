@@ -142,10 +142,10 @@ const RentalCalendar = ({
           // Fixed price for PS5 monthly rentals (calculated discount based on daily rate)
           const dailyRate = 299;
           const monthlyAtDailyRate = dailyRate * 30; // 8970
-          baseTotal = 5999;
+          baseTotal = 5249;
           discount = Math.round(
             ((monthlyAtDailyRate - baseTotal) / monthlyAtDailyRate) * 100
-          ); // 33% discount
+          ); // 41% discount
           tier = "30-day-ps5-special";
         } else {
           // Apply 25% discount for other products monthly rentals
@@ -202,7 +202,7 @@ const RentalCalendar = ({
         return "Extended rate (₹249/day)";
       } else if (duration === DEFAULT_RENTAL_DAYS) {
         return isPS5
-          ? "30-day special (33% discount!)"
+          ? "30-day special (41% discount!)"
           : "30-day special (25% discount!)";
       } else if (duration >= 31) {
         return "Long-term rate (31+ days)";
