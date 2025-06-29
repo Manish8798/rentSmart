@@ -10,6 +10,7 @@ const ProductDetail = ({ onRentNow }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null); // Track selected plan
+  const [expandedFAQ, setExpandedFAQ] = useState(null); // Track expanded FAQ
 
   // Scroll to top when component mounts or id changes
   useEffect(() => {
@@ -372,6 +373,50 @@ Please provide more details.`;
     return "";
   };
 
+  // Check if this is a PS5 product
+  const isPS5Product = () => {
+    return name && name.toLowerCase().includes("ps5");
+  };
+
+  // PS5-specific FAQs
+  const ps5FAQs = [
+    {
+      question: "What games are included with PS5 rental?",
+      answer:
+        "Your PS5 rental includes access to 100+ games! We provide a curated collection of popular PS5 games including:\n• Latest AAA titles like Spider-Man, God of War, Horizon\n• Popular multiplayer games like FIFA, Call of Duty\n• Exclusive PlayStation games\n• Family-friendly games for all ages\n\nAdditional premium games can be rented separately. We also provide guidance on PlayStation Plus subscription benefits and free-to-play games available for download.",
+    },
+    {
+      question: "Do you provide setup assistance for PS5?",
+      answer:
+        "Absolutely! We provide complete setup assistance:\n• Free home delivery and professional setup\n• Connection to your TV/monitor with optimal settings\n• Account setup and game installation guidance\n• Controller pairing and calibration\n• Gaming tutorial for first-time users\n• 24/7 technical support during rental period\n\nOur team ensures you're ready to game within minutes of delivery!",
+    },
+    {
+      question: "What's included in the PS5 rental package?",
+      answer:
+        "Your complete PS5 rental package includes:\n• Sony PlayStation 5 Console (Latest Model)\n• DualSense Wireless Controller with haptic feedback\n• High-speed HDMI cable for 4K gaming\n• Power adapter and all necessary cables\n• Access to 100+ game library\n• Free home delivery, setup, and pickup\n• Gaming guidance and technical support\n\nAdditional controllers and accessories available for separate rental.",
+    },
+    {
+      question: "Can I extend my PS5 rental period?",
+      answer:
+        "Yes! Extending your PS5 rental is simple:\n• Message us on WhatsApp before your rental ends\n• Choose from our flexible extension options\n• Daily, weekly, or monthly extension rates available\n• No interruption to your gaming - seamless extension\n• Keep your saved games and progress\n\nExtensions are subject to availability. We recommend requesting extensions at least 24 hours before your rental period ends.",
+    },
+    {
+      question: "What if the PS5 has technical issues during rental?",
+      answer:
+        "We've got you covered with comprehensive technical support:\n• 24/7 technical assistance via WhatsApp\n• Remote troubleshooting for software issues\n• Immediate replacement for hardware defects\n• No charges for manufacturer defects\n• Gaming guidance and optimization tips\n• Quick response time for all technical queries\n\nOur goal is to ensure uninterrupted gaming throughout your rental period.",
+    },
+    {
+      question: "Are there any special deals for PS5 rentals?",
+      answer:
+        "Yes! We offer several money-saving deals:\n• Week Special: ₹2,499 (Save ₹4,494 vs daily rate)\n• Monthly Deal: ₹5,249 (41% discount - Save ₹3,721!)\n• Bundle deals with additional controllers\n• Seasonal promotions and festive offers\n• Loyalty discounts for repeat customers\n\nLonger rentals offer better value. Check our rental plans above for current pricing and special offers!",
+    },
+  ];
+
+  // Toggle FAQ expansion
+  const toggleFAQ = (index) => {
+    setExpandedFAQ(expandedFAQ === index ? null : index);
+  };
+
   const currentPricing = getCurrentPricing();
 
   return (
@@ -599,6 +644,51 @@ Please provide more details.`;
               </div>
             </div>
           </div>
+
+          {/* PS5 FAQ Section - Only show for PS5 products */}
+          {isPS5Product() && (
+            <div className="product-detail-faq-section">
+              <h3>PS5 Rental FAQs</h3>
+              <div className="product-faq-grid">
+                {ps5FAQs.map((faq, index) => (
+                  <div
+                    key={index}
+                    className={`product-faq-item ${
+                      expandedFAQ === index ? "expanded" : ""
+                    }`}
+                    onClick={() => toggleFAQ(index)}
+                  >
+                    <div className="product-faq-question">
+                      <h4>{faq.question}</h4>
+                      <span className="product-faq-icon">
+                        {expandedFAQ === index ? "−" : "+"}
+                      </span>
+                    </div>
+                    <div
+                      className={`product-faq-answer ${
+                        expandedFAQ === index ? "show" : ""
+                      }`}
+                    >
+                      {faq.answer.split("\n").map((paragraph, i) => (
+                        <p key={i}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="faq-cta">
+                <p>Have more questions about PS5 rental?</p>
+                <a
+                  href="https://wa.me/918448347366?text=Hi%20RentSmart%20Team!%20I%20have%20questions%20about%20PS5%20rental.%20Could%20you%20please%20help%20me?"
+                  className="faq-cta-button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ask on WhatsApp
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
