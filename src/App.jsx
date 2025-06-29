@@ -59,7 +59,7 @@ function AppContent() {
     "@type": "Store",
     name: "RentSmart",
     description:
-      "PS5 on rent in Delhi NCR! Premium PlayStation 5 rental service starting ₹999/day. Also offering Apple products and adventure gear on flexible rental terms with free delivery.",
+      "PS5 on rent in Delhi NCR! Premium PlayStation 5 rental service with flexible rental terms. Also offering Apple products and adventure gear with free delivery.",
     url: "https://rentsmart.in",
     potentialAction: {
       "@type": "SearchAction",
