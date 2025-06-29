@@ -3,7 +3,7 @@ const products = [
   {
     id: 1,
     category: "Gaming",
-    name: "PS5 + Games (100+) + 1 Controller",
+    name: "PS5 + 1 Controller + Games (100+)",
     priority: "High",
     description:
       "Next-gen PlayStation 5 with lightning-fast SSD, 3D audio, haptic feedback controller, and 4K gaming up to 120fps.",
