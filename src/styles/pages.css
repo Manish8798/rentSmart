@@ -2,6 +2,10 @@
 .product-detail-container {
   background: var(--bg-light);
   padding-bottom: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .product-detail-header {
@@ -9,6 +13,8 @@
   margin: 0 auto;
   padding: 2rem 1rem 0 1rem;
   margin-bottom: 2rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .back-button {
@@ -41,11 +47,15 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: start;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .product-detail-image-section {
   position: sticky;
   top: 2rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .product-detail-image {
@@ -59,6 +69,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  box-sizing: border-box;
 }
 
 .product-detail-image img {
@@ -74,6 +85,8 @@
 
 .product-detail-info {
   padding: 1rem 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .product-detail-category {
@@ -156,6 +169,8 @@
   padding: 2rem;
   margin-bottom: 2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .price-section {
@@ -167,6 +182,7 @@
   align-items: baseline;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .price-amount {
@@ -185,6 +201,7 @@
   color: var(--text-muted);
   font-size: 0.875rem;
   margin: 0;
+  word-wrap: break-word;
 }
 
 .per-day-display {
@@ -214,6 +231,7 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  box-sizing: border-box;
 }
 
 .rent-now-detail-button:hover {
@@ -291,6 +309,8 @@
 /* Rental Plans Styles */
 .product-detail-rental-plans {
   margin-bottom: 2rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .product-detail-rental-plans h3 {
@@ -305,6 +325,8 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .rental-plan-card {
@@ -315,6 +337,8 @@
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .rental-plan-card:hover {
@@ -8392,11 +8416,13 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
   }
 
   .product-detail-info .games-gallery-header h4 {
     font-size: 1.4rem;
     text-align: center;
+    word-wrap: break-word;
   }
 
   .product-detail-info .games-gallery-subtitle {
@@ -8404,6 +8430,7 @@
     margin-bottom: 1.2rem;
     text-align: center;
     padding: 0 0.5rem;
+    word-wrap: break-word;
   }
 
   .product-detail-info .games-gallery-container {
@@ -8411,11 +8438,14 @@
     height: auto;
     gap: 1.2rem;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .product-detail-info .games-thumbnails {
     flex-direction: row;
     width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     padding: 0.5rem 0;
     gap: 0.6rem;
@@ -8433,23 +8463,28 @@
     width: 75px;
     height: 55px;
     min-width: 75px;
+    box-sizing: border-box;
   }
 
   .product-detail-info .main-image-container {
     height: 250px;
     width: 100%;
     max-width: 100%;
+    box-sizing: border-box;
   }
 
   .product-detail-info .games-gallery-description {
     margin-top: 1.2rem;
     padding: 0 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .product-detail-info .games-gallery-description p {
     font-size: 0.9rem;
     line-height: 1.4;
     text-align: center;
+    word-wrap: break-word;
   }
 
   .product-detail-info .games-highlights {
@@ -8457,11 +8492,14 @@
     justify-content: center;
     flex-wrap: wrap;
     max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .product-detail-info .game-tag {
     font-size: 0.75rem;
     padding: 0.35rem 0.6rem;
+    box-sizing: border-box;
   }
 }
 

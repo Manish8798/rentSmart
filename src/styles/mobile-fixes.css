@@ -1,0 +1,612 @@
+/* Mobile Responsive Fixes for Product Detail Page */
+
+/* Base mobile container fixes */
+@media (max-width: 768px) {
+  .product-detail-container {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  .product-detail-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .product-detail-info {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .product-detail-rental-plans {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+  }
+
+  .product-detail-rental-plans h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  /* Fix rental plans grid overflow */
+  .rental-plans-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .rental-plan-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 1.25rem;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .plan-header {
+    margin-bottom: 1rem;
+  }
+
+  .plan-header h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-duration {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .plan-price {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .plan-price .price-amount {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .price-starting {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .per-day-price {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .discount-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .special-offer {
+    padding: 0.5rem;
+    margin-top: 0.75rem;
+    border-radius: 8px;
+  }
+
+  .special-offer span {
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* Fix PS5 games gallery overflow */
+  .product-detail-info .ps5-games-gallery {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .product-detail-info .games-gallery-container {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .product-detail-info .games-thumbnails {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+  }
+
+  .product-detail-info .main-image-container {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* iPhone specific fixes */
+@media (max-width: 480px) {
+  .product-detail-container {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .product-detail-header {
+    padding: 1rem 0.75rem 0 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .product-detail-content {
+    padding: 0 0.75rem;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .product-detail-info {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .product-detail-title {
+    font-size: 1.75rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .product-detail-description {
+    font-size: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .product-detail-pricing {
+    padding: 1.25rem;
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .price-display {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .price-note {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .product-detail-info-cards {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .info-card {
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Rental plans mobile fixes */
+  .rental-plans-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .rental-plan-card {
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .plan-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .plan-header h4 {
+    font-size: 0.95rem;
+    word-wrap: break-word;
+    margin-bottom: 0.25rem;
+  }
+
+  .plan-duration {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .plan-price {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .plan-price .price-amount {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .price-starting {
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .discount-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    margin: 0.25rem 0;
+  }
+
+  .per-day-price {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .special-offer {
+    padding: 0.4rem;
+    margin-top: 0.5rem;
+    border-radius: 6px;
+  }
+
+  .special-offer span {
+    font-size: 0.75rem;
+    word-wrap: break-word;
+    font-weight: 600;
+  }
+
+  .selected-indicator {
+    width: 24px;
+    height: 24px;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .selected-indicator svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .rental-plans-note {
+    font-size: 0.75rem;
+    text-align: center;
+    word-wrap: break-word;
+    padding: 0 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0.5rem 0;
+  }
+
+  /* PS5 games gallery mobile fixes */
+  .product-detail-info .ps5-games-gallery {
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .product-detail-info .games-gallery-header h4 {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    text-align: center;
+    word-wrap: break-word;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-detail-info .games-gallery-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    text-align: center;
+    padding: 0 0.5rem;
+    word-wrap: break-word;
+  }
+
+  .product-detail-info .games-gallery-container {
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .product-detail-info .games-thumbnails {
+    gap: 0.4rem;
+    padding: 0.3rem 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .product-detail-info .games-thumbnails::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-detail-info .game-thumbnail {
+    width: 65px;
+    height: 45px;
+    min-width: 65px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .product-detail-info .main-image-container {
+    height: 180px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .product-detail-info .games-gallery-description {
+    margin-top: 0.8rem;
+    padding: 0 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .product-detail-info .games-gallery-description p {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+    text-align: center;
+    word-wrap: break-word;
+  }
+
+  .product-detail-info .games-highlights {
+    gap: 0.25rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .product-detail-info .game-tag {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.3rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+}
+
+/* iPhone 14 Pro Max and similar large mobile devices */
+@media (max-width: 430px) and (min-width: 415px) {
+  .rental-plans-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .rental-plan-card {
+    padding: 1.25rem;
+    min-height: 220px;
+  }
+
+  .plan-header h4 {
+    font-size: 1.1rem;
+  }
+
+  .plan-duration {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .plan-price .price-amount {
+    font-size: 1.5rem;
+  }
+
+  .price-starting {
+    font-size: 0.85rem;
+  }
+
+  .per-day-price {
+    font-size: 0.85rem;
+  }
+
+  .discount-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .special-offer span {
+    font-size: 0.85rem;
+  }
+
+  .rental-plans-note {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra small screens (iPhone SE, etc.) */
+@media (max-width: 375px) {
+  .product-detail-container {
+    width: 100vw;
+    max-width: 100vw;
+  }
+
+  .product-detail-header {
+    padding: 1rem 0.5rem 0 0.5rem;
+  }
+
+  .product-detail-content {
+    padding: 0 0.5rem;
+  }
+
+  .rental-plans-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .rental-plan-card {
+    padding: 0.75rem;
+    min-height: 160px;
+  }
+
+  .plan-header h4 {
+    font-size: 0.85rem;
+  }
+
+  .plan-duration {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.3rem;
+  }
+
+  .plan-price .price-amount {
+    font-size: 1rem;
+  }
+
+  .price-starting {
+    font-size: 0.7rem;
+  }
+
+  .per-day-price {
+    font-size: 0.7rem;
+  }
+
+  .discount-badge {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.3rem;
+  }
+
+  .special-offer span {
+    font-size: 0.7rem;
+  }
+
+  .product-detail-info .ps5-games-gallery {
+    padding: 0.5rem;
+  }
+
+  .product-detail-info .games-gallery-header h4 {
+    font-size: 1.1rem;
+  }
+
+  .product-detail-info .games-gallery-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .product-detail-info .game-thumbnail {
+    width: 60px;
+    height: 42px;
+    min-width: 60px;
+  }
+
+  .product-detail-info .main-image-container {
+    height: 160px;
+  }
+
+  .product-detail-info .games-highlights {
+    padding: 0 0.25rem;
+  }
+
+  .product-detail-info .game-tag {
+    font-size: 0.55rem;
+    padding: 0.15rem 0.25rem;
+  }
+}
+
+/* Ensure no horizontal scrolling on any mobile device */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .product-detail-container,
+  .product-detail-content,
+  .product-detail-info,
+  .rental-plans-grid,
+  .rental-plan-card,
+  .product-detail-pricing,
+  .info-card,
+  .ps5-games-gallery,
+  .games-gallery-container,
+  .games-thumbnails,
+  .main-image-container {
+    overflow-x: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Additional specific fixes for elements that might cause overflow */
+  .product-detail-rental-plans,
+  .product-detail-features,
+  .features-list,
+  .feature-item,
+  .product-detail-info-cards,
+  .product-detail-faq-section {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  /* Ensure text doesn't cause overflow */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+}

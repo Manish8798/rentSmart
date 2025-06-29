@@ -7,6 +7,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import "./App.css";
+import "./styles/mobile-fixes.css";
 import Homepage from "./components/Homepage";
 import ProductDetail from "./components/ProductDetail";
 import WhatsAppFAB from "./components/WhatsAppFAB";
