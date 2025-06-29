@@ -383,7 +383,7 @@ Please provide more details.`;
     {
       question: "What games are included with PS5 rental?",
       answer:
-        "Your PS5 rental includes access to 100+ games! We provide a curated collection of popular PS5 games including:\n• Latest AAA titles like Spider-Man, God of War, Horizon\n• Popular multiplayer games like FIFA, Call of Duty\n• Exclusive PlayStation games\n• Family-friendly games for all ages\n\nAdditional premium games can be rented separately. We also provide guidance on PlayStation Plus subscription benefits and free-to-play games available for download.",
+        "Your PS5 rental includes access to 100+ free-to-play games from PlayStation Store! These include:\n• Casual and indie games for relaxed gaming\n• Simple multiplayer games for friends and family\n• Puzzle and strategy games\n• Family-friendly entertainment games\n\nThese are completely free games that don't require additional purchases. For premium AAA titles, you can purchase or rent games separately, or subscribe to PlayStation Plus for access to their game library.",
     },
     {
       question: "Do you provide setup assistance for PS5?",
@@ -649,6 +649,52 @@ Please provide more details.`;
           {isPS5Product() && (
             <div className="product-detail-faq-section">
               <h3>PS5 Rental FAQs</h3>
+
+              {/* PS5 Games Showcase */}
+              <div className="ps5-games-showcase">
+                <div className="games-showcase-content">
+                  {/* Main Heading */}
+                  <div className="games-showcase-header">
+                    <h4>🎮 100+ Free Games Included!</h4>
+                    <p className="games-showcase-subtitle">
+                      Your PS5 rental includes access to 100+ free-to-play games
+                      from PlayStation Store
+                    </p>
+                  </div>
+
+                  {/* Description & Tags */}
+                  <div className="games-showcase-description">
+                    <p>
+                      Enjoy a variety of free-to-play games including casual
+                      games, indie titles, and simple multiplayer games. Perfect
+                      for entertainment without additional costs!
+                    </p>
+                    <div className="games-highlights">
+                      <span className="game-tag">🎮 Free-to-Play Games</span>
+                      <span className="game-tag">🎯 Casual Gaming</span>
+                      <span className="game-tag">👥 Simple Multiplayer</span>
+                      <span className="game-tag">👨‍👩‍👧‍👦 Family-Friendly</span>
+                    </div>
+                  </div>
+
+                  {/* Games Image */}
+                  <div className="games-showcase-image">
+                    <div className="games-image-container">
+                      <img
+                        src={`${
+                          import.meta.env.BASE_URL || "/"
+                        }images/free_ps5_games.png`}
+                        alt="100+ Free PS5 Games Collection"
+                        loading="lazy"
+                      />
+                      <div className="games-image-overlay">
+                        <span className="games-count">100+ Games</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="product-faq-grid">
                 {ps5FAQs.map((faq, index) => (
                   <div
