@@ -683,7 +683,7 @@ Please provide more details.`;
                       <img
                         src={`${
                           import.meta.env.BASE_URL || "/"
-                        }images/free_ps5_games.png`}
+                        }images/free_ps5_games.jpeg`}
                         alt="100+ Free PS5 Games Collection"
                         loading="lazy"
                       />
