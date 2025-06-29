@@ -11,6 +11,36 @@ const ProductDetail = ({ onRentNow }) => {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null); // Track selected plan
   const [expandedFAQ, setExpandedFAQ] = useState(null); // Track expanded FAQ
+  const [selectedGameImage, setSelectedGameImage] = useState(0); // Track selected game image for PS5 gallery
+
+  // PS5 Games Images
+  const ps5GameImages = [
+    {
+      src: `${import.meta.env.BASE_URL || "/"}images/apex_legends.jpeg`,
+      alt: "Apex Legends",
+      title: "Apex Legends",
+    },
+    {
+      src: `${import.meta.env.BASE_URL || "/"}images/fall_guys.jpeg`,
+      alt: "Fall Guys",
+      title: "Fall Guys",
+    },
+    {
+      src: `${import.meta.env.BASE_URL || "/"}images/fortnite.jpeg`,
+      alt: "Fortnite",
+      title: "Fortnite",
+    },
+    {
+      src: `${import.meta.env.BASE_URL || "/"}images/genshin_impact.jpeg`,
+      alt: "Genshin Impact",
+      title: "Genshin Impact",
+    },
+    {
+      src: `${import.meta.env.BASE_URL || "/"}images/rocket_league.jpeg`,
+      alt: "Rocket League",
+      title: "Rocket League",
+    },
+  ];
 
   // Scroll to top when component mounts or id changes
   useEffect(() => {
@@ -417,6 +447,11 @@ Please provide more details.`;
     setExpandedFAQ(expandedFAQ === index ? null : index);
   };
 
+  // Handle game image selection
+  const handleGameImageSelect = (index) => {
+    setSelectedGameImage(index);
+  };
+
   const currentPricing = getCurrentPricing();
 
   return (
@@ -594,6 +629,68 @@ Please provide more details.`;
             </button>
           </div>
 
+          {/* PS5 Games Gallery - Show below the Rent Now button */}
+          {isPS5Product() && (
+            <div className="ps5-games-gallery">
+              <div className="games-gallery-header">
+                <h4>🎮 Popular Free Games Included!</h4>
+                <p className="games-gallery-subtitle">
+                  Your PS5 rental includes access to these popular free-to-play
+                  games and 100+ more from PlayStation Store
+                </p>
+              </div>
+
+              <div className="games-gallery-container">
+                {/* Thumbnails on the left */}
+                <div className="games-thumbnails">
+                  {ps5GameImages.map((game, index) => (
+                    <div
+                      key={index}
+                      className={`game-thumbnail ${
+                        selectedGameImage === index ? "active" : ""
+                      }`}
+                      onClick={() => handleGameImageSelect(index)}
+                    >
+                      <img src={game.src} alt={game.alt} loading="lazy" />
+                      <div className="thumbnail-overlay">
+                        <span className="game-title">{game.title}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Main image on the right */}
+                <div className="games-main-image">
+                  <div className="main-image-container">
+                    <img
+                      src={ps5GameImages[selectedGameImage].src}
+                      alt={ps5GameImages[selectedGameImage].alt}
+                      loading="lazy"
+                    />
+                    <div className="main-image-overlay">
+                      <h5>{ps5GameImages[selectedGameImage].title}</h5>
+                      <span className="free-badge">FREE TO PLAY</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="games-gallery-description">
+                <p>
+                  Enjoy these popular free-to-play games plus 100+ more
+                  including casual games, indie titles, and simple multiplayer
+                  games. Perfect for entertainment without additional costs!
+                </p>
+                <div className="games-highlights">
+                  <span className="game-tag">🎮 Free-to-Play Games</span>
+                  <span className="game-tag">🎯 Casual Gaming</span>
+                  <span className="game-tag">👥 Simple Multiplayer</span>
+                  <span className="game-tag">👨‍👩‍👧‍👦 Family-Friendly</span>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="product-detail-info-cards">
             <div className="info-card">
               <div className="info-icon">
@@ -649,51 +746,6 @@ Please provide more details.`;
           {isPS5Product() && (
             <div className="product-detail-faq-section">
               <h3>PS5 Rental FAQs</h3>
-
-              {/* PS5 Games Showcase */}
-              <div className="ps5-games-showcase">
-                <div className="games-showcase-content">
-                  {/* Main Heading */}
-                  <div className="games-showcase-header">
-                    <h4>🎮 100+ Free Games Included!</h4>
-                    <p className="games-showcase-subtitle">
-                      Your PS5 rental includes access to 100+ free-to-play games
-                      from PlayStation Store
-                    </p>
-                  </div>
-
-                  {/* Description & Tags */}
-                  <div className="games-showcase-description">
-                    <p>
-                      Enjoy a variety of free-to-play games including casual
-                      games, indie titles, and simple multiplayer games. Perfect
-                      for entertainment without additional costs!
-                    </p>
-                    <div className="games-highlights">
-                      <span className="game-tag">🎮 Free-to-Play Games</span>
-                      <span className="game-tag">🎯 Casual Gaming</span>
-                      <span className="game-tag">👥 Simple Multiplayer</span>
-                      <span className="game-tag">👨‍👩‍👧‍👦 Family-Friendly</span>
-                    </div>
-                  </div>
-
-                  {/* Games Image */}
-                  <div className="games-showcase-image">
-                    <div className="games-image-container">
-                      <img
-                        src={`${
-                          import.meta.env.BASE_URL || "/"
-                        }images/free_ps5_games.jpeg`}
-                        alt="100+ Free PS5 Games Collection"
-                        loading="lazy"
-                      />
-                      <div className="games-image-overlay">
-                        <span className="games-count">100+ Games</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
               <div className="product-faq-grid">
                 {ps5FAQs.map((faq, index) => (
