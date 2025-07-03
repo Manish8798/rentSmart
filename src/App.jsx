@@ -17,6 +17,7 @@ import products from "./data/products";
 // Lazy load page components for better code splitting
 const AboutUs = lazy(() => import("./pages/AboutUs"));
 const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const TermsConditions = lazy(() => import("./pages/TermsConditions"));
@@ -527,6 +528,7 @@ function AppContent() {
           />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/terms" element={<TermsConditions />} />

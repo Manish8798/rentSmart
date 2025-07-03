@@ -1,22 +1,13 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
-const Blog = () => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
+const BlogPost = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const [post, setPost] = useState(null);
 
-  const handleBrowseProducts = () => {
-    navigate("/#products-section");
-    // Scroll to products section after navigation
-    setTimeout(() => {
-      const element = document.getElementById("products-section");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100);
-  };
-
+  // Complete blog posts data - matching Blog.jsx
   const blogPosts = [
     {
       id: 1,
@@ -176,7 +167,7 @@ const Blog = () => {
       excerpt:
         "Looking for PS5 rental, MacBook rental, or adventure gear in Delhi NCR? RentSmart offers same-day delivery, 70% cost savings, and premium quality. Rated #1 rental service.",
       fullContent:
-        'RentSmart has become Delhi NCR\'s most trusted rental service for electronics, gaming consoles, and adventure equipment. With 10,000+ satisfied customers and same-day delivery across Gurgaon, Noida, Faridabad, and Delhi, here\'s why we\'re the top choice.\n\n**🎮 Popular Products Available:**\n• PS5 console rental - ₹999/day, ₹2499/week\n• MacBook Pro M3 rental - ₹2000/day, ₹8000/month\n• iPad Pro rental - ₹800/day, ₹4000/month\n• Gaming laptops, cameras, trekking gear\n• Home office furniture and appliances\n\n**⚡ Why RentSmart Leads in Delhi NCR:**\n\n**Same-Day Delivery Service:**\nOrder before 6 PM and get your rental delivered the same day across Delhi, Gurgaon, Noida, Faridabad, and Ghaziabad. No waiting, no delays.\n\n**Up to 70% Cost Savings:**\nWhy pay ₹54,990 for PS5 when you can rent for ₹999/day? Our customers save lakhs annually on tech and gaming equipment.\n\n**Quality Assurance:**\n• Latest models only (no outdated inventory)\n• Rigorous sanitization before delivery\n• Full insurance coverage included\n• Immediate replacement guarantee\n\n**📱 Easy Booking Process:**\n1. WhatsApp +91-8448347366\n2. Choose product and rental period\n3. Confirm delivery address\n4. Enjoy premium products!\n\n**🏆 Customer Reviews (4.8/5 Rating):**\n\n*"Best PS5 rental service in Gurgaon. Quick delivery, perfect condition console, saved ₹40,000!"* - Arjun K.\n\n*"Rented MacBook Pro for startup. Flexible contracts and excellent support."* - Priya S., Noida\n\n**💰 Current Offers:**\n• First rental: 20% OFF\n• Students: Additional 15% discount\n• Long-term rentals: Up to 40% savings\n• Bulk orders: Special corporate rates\n\n**📞 Service Areas:**\nDelhi, Gurgaon, Noida, Faridabad, Ghaziabad - Free delivery and pickup\n\n**Why Rent Instead of Buy?**\n• Access latest technology without huge investment\n• No depreciation or maintenance worries\n• Flexible upgrade options\n• Perfect for short-term needs\n\nContact RentSmart today for the best rental deals in Delhi NCR!',
+        "RentSmart has become Delhi NCR's most trusted rental service for electronics, gaming consoles, and adventure equipment. With 10,000+ satisfied customers and same-day delivery across Gurgaon, Noida, Faridabad, and Delhi, here's why we're the top choice.\n\n**🎮 Popular Products Available:**\n• PS5 console rental - ₹999/day, ₹2499/week\n• MacBook Pro M3 rental - ₹2000/day, ₹8000/month\n• iPad Pro rental - ₹800/day, ₹4000/month\n• Gaming laptops, cameras, trekking gear\n• Home office furniture and appliances\n\n**⚡ Why RentSmart Leads in Delhi NCR:**\n\n**Same-Day Delivery Service:**\nOrder before 6 PM and get your rental delivered the same day across Delhi, Gurgaon, Noida, Faridabad, and Ghaziabad. No waiting, no delays.\n\n**Up to 70% Cost Savings:**\nWhy pay ₹54,990 for PS5 when you can rent for ₹999/day? Our customers save lakhs annually on tech and gaming equipment.\n\n**Quality Assurance:**\n• Latest models only (no outdated inventory)\n• Rigorous sanitization before delivery\n• Full insurance coverage included\n• Immediate replacement guarantee\n\n**📱 Easy Booking Process:**\n1. WhatsApp +91-8448347366\n2. Choose product and rental period\n3. Confirm delivery address\n4. Enjoy premium products!\n\n**💰 Current Offers:**\n• First rental: 20% OFF\n• Students: Additional 15% discount\n• Long-term rentals: Up to 40% savings\n• Bulk orders: Special corporate rates\n\n**📞 Service Areas:**\nDelhi, Gurgaon, Noida, Faridabad, Ghaziabad - Free delivery and pickup\n\n**Why Rent Instead of Buy?**\n• Access latest technology without huge investment\n• No depreciation or maintenance worries\n• Flexible upgrade options\n• Perfect for short-term needs\n\nContact RentSmart today for the best rental deals in Delhi NCR!",
       category: "lifestyle",
       author: "RentSmart Team",
       date: "January 18, 2025",
@@ -201,165 +192,167 @@ const Blog = () => {
     },
   ];
 
-  const categories = [
-    { id: "all", label: "All Posts", count: blogPosts.length },
-    {
-      id: "tech",
-      label: "Technology",
-      count: blogPosts.filter((post) => post.category === "tech").length,
-    },
-    {
-      id: "gaming",
-      label: "Gaming",
-      count: blogPosts.filter((post) => post.category === "gaming").length,
-    },
-    {
-      id: "adventure",
-      label: "Adventure",
-      count: blogPosts.filter((post) => post.category === "adventure").length,
-    },
-    {
-      id: "lifestyle",
-      label: "Lifestyle",
-      count: blogPosts.filter((post) => post.category === "lifestyle").length,
-    },
-  ];
+  useEffect(() => {
+    // Find the post by ID
+    const foundPost = blogPosts.find((p) => p.id === parseInt(id));
+    if (foundPost) {
+      setPost(foundPost);
 
-  const filteredPosts =
-    selectedCategory === "all"
-      ? blogPosts
-      : blogPosts.filter((post) => post.category === selectedCategory);
+      // Update page title and meta description
+      document.title = `${foundPost.title} | RentSmart Blog`;
 
-  const featuredPost = blogPosts.find((post) => post.featured);
-  const regularPosts = blogPosts.filter((post) => !post.featured);
+      // Update meta description
+      let metaDescription = document.querySelector('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement("meta");
+        metaDescription.name = "description";
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.content = foundPost.excerpt;
+    } else {
+      // Post not found, redirect to blog
+      navigate("/blog");
+    }
+  }, [id, navigate]);
+
+  const handleBrowseProducts = () => {
+    navigate("/#products-section");
+    setTimeout(() => {
+      const element = document.getElementById("products-section");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
+
+  const formatContent = (content) => {
+    return content
+      .split("\n")
+      .map((paragraph, index) => {
+        if (paragraph.trim() === "") return null;
+
+        // Handle bold text with **
+        const formattedParagraph = paragraph.replace(
+          /\*\*(.*?)\*\*/g,
+          "<strong>$1</strong>"
+        );
+
+        return (
+          <p
+            key={index}
+            dangerouslySetInnerHTML={{ __html: formattedParagraph }}
+            className={paragraph.startsWith("**") ? "content-heading" : ""}
+          />
+        );
+      })
+      .filter(Boolean);
+  };
+
+  if (!post) {
+    return (
+      <div className="blog-post-loader">
+        <div className="container">
+          <div className="loading-skeleton">
+            <div className="skeleton-title"></div>
+            <div className="skeleton-meta"></div>
+            <div className="skeleton-content"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="blog-hero">
+      {/* Blog Post Header */}
+      <section className="blog-post-header">
         <div className="container">
-          <div className="blog-hero-content">
-            <h1>RentSmart Blog</h1>
-            <p className="hero-subtitle">
-              Insights, tips, and stories from the world of smart renting
-            </p>
+          <div className="blog-post-breadcrumb">
+            <Link to="/blog" className="breadcrumb-link">
+              ← Back to Blog
+            </Link>
           </div>
-        </div>
-      </section>
 
-      {/* Featured Post */}
-      {featuredPost && (
-        <section className="featured-post">
-          <div className="container">
-            <div className="featured-post-content">
-              <div className="featured-post-visual">
-                <div className="featured-icon">{featuredPost.icon}</div>
-                <div className="featured-badge">Featured</div>
-              </div>
-              <div className="featured-post-info">
-                <div className="post-meta">
-                  <span className="post-category">
-                    {featuredPost.category.charAt(0).toUpperCase() +
-                      featuredPost.category.slice(1)}
-                  </span>
-                  <span className="post-date">{featuredPost.date}</span>
-                  <span className="post-read-time">
-                    {featuredPost.readTime}
-                  </span>
-                </div>
-                <h2>{featuredPost.title}</h2>
-                <p>{featuredPost.excerpt}</p>
-                <div className="post-author">
-                  <span>By {featuredPost.author}</span>
-                </div>
-                <Link to={`/blog/${featuredPost.id}`} className="read-more-btn">
-                  Read Full Article
-                </Link>
-              </div>
+          <div className="blog-post-meta">
+            <div className="post-icon">{post.icon}</div>
+            <div className="post-category">
+              {post.category.charAt(0).toUpperCase() + post.category.slice(1)}
             </div>
+            <span className="meta-separator">•</span>
+            <span className="post-date">{post.date}</span>
+            <span className="meta-separator">•</span>
+            <span className="post-read-time">{post.readTime}</span>
           </div>
-        </section>
-      )}
 
-      {/* Categories Filter */}
-      <section className="blog-categories">
-        <div className="container">
-          <div className="categories-filter">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                className={`category-btn ${
-                  selectedCategory === category.id ? "active" : ""
-                }`}
-                onClick={() => setSelectedCategory(category.id)}
-              >
-                {category.label} ({category.count})
-              </button>
-            ))}
+          <h1 className="blog-post-title">{post.title}</h1>
+          <p className="blog-post-excerpt">{post.excerpt}</p>
+
+          <div className="post-author">
+            <span>By {post.author}</span>
           </div>
         </div>
       </section>
 
-      {/* Blog Posts Grid */}
-      <section className="blog-posts">
+      {/* Blog Post Content */}
+      <section className="blog-post-content">
         <div className="container">
-          <div className="posts-grid">
-            {filteredPosts
-              .filter((post) => !post.featured)
-              .map((post) => (
-                <article key={post.id} className="blog-card">
-                  <div className="blog-card-visual">
-                    <div className="blog-icon">{post.icon}</div>
-                  </div>
-                  <div className="blog-card-content">
-                    <div className="post-meta">
-                      <span className="post-category">
-                        {post.category.charAt(0).toUpperCase() +
-                          post.category.slice(1)}
-                      </span>
-                      <span className="post-date">{post.date}</span>
-                      <span className="post-read-time">{post.readTime}</span>
-                    </div>
-                    <h3>{post.title}</h3>
-                    <p>{post.excerpt}</p>
-                    <div className="blog-card-footer">
-                      <span className="post-author">By {post.author}</span>
-                      <Link to={`/blog/${post.id}`} className="read-more-link">
-                        Read More →
-                      </Link>
-                    </div>
-                  </div>
-                </article>
-              ))}
+          <div className="blog-content-wrapper">
+            <article className="blog-article">
+              <div className="article-content">
+                {formatContent(post.fullContent)}
+              </div>
+
+              {/* Social Share Buttons */}
+              <div className="blog-post-share">
+                <h4>Share this article:</h4>
+                <div className="share-buttons">
+                  <a
+                    href={`https://wa.me/?text=${encodeURIComponent(
+                      post.title +
+                        " - " +
+                        `https://rentsmart.in/blog/${post.id}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-btn whatsapp"
+                  >
+                    <span>📱</span> WhatsApp
+                  </a>
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                      post.title
+                    )}&url=${encodeURIComponent(
+                      `https://rentsmart.in/blog/${post.id}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-btn twitter"
+                  >
+                    <span>🐦</span> Twitter
+                  </a>
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                      `https://rentsmart.in/blog/${post.id}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-btn facebook"
+                  >
+                    <span>📘</span> Facebook
+                  </a>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
-      {/* Blog Disclaimer */}
-      <section className="blog-disclaimer">
-        <div className="container">
-          <div className="disclaimer-content">
-            <p>
-              <strong>Disclaimer:</strong> All content on this blog is for
-              informational purposes only. Prices mentioned are approximate and
-              subject to change. Product availability and rental terms may vary.
-              Please contact RentSmart for current pricing and availability. The
-              views expressed are those of RentSmart Editorial Team and do not
-              constitute professional advice.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Products CTA Section */}
-      <section className="about-cta">
+      {/* Contact CTA */}
+      <section className="blog-post-cta">
         <div className="container">
           <div className="cta-content">
-            <h2>Ready to Try What You've Read About?</h2>
-            <p>
-              Explore our premium products and experience the smart way to
-              access the latest technology and adventure gear.
-            </p>
+            <h2>Ready to Start Your Rental Journey?</h2>
+            <p>Explore our wide range of products and start saving today!</p>
             <div className="cta-buttons">
               <button
                 onClick={handleBrowseProducts}
@@ -367,21 +360,17 @@ const Blog = () => {
               >
                 Browse Products
               </button>
-              <a
-                href="mailto:rentsmart007@gmail.com"
-                className="cta-button secondary"
-              >
-                Get Support
+              <a href="tel:+918448347366" className="cta-button secondary">
+                Call Now
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
       <Footer />
     </>
   );
 };
 
-export default Blog;
+export default BlogPost;
