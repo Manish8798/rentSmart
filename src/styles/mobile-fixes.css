@@ -56,6 +56,21 @@
     justify-content: space-between;
   }
 
+  /* Fix for selected rental plan card border cutoff on mobile */
+  .rental-plan-card.selected {
+    transform: translateY(0);
+  }
+
+  /* Fix for feature item hover transform causing right border cutoff on mobile */
+  .feature-item:hover {
+    transform: translateX(0);
+  }
+
+  /* Fix for info card hover transform causing top border cutoff on mobile */
+  .info-card {
+    margin-top: 0.5rem;
+  }
+
   .plan-header {
     margin-bottom: 1rem;
   }
@@ -236,6 +251,21 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  /* Fix for selected rental plan card border cutoff on mobile */
+  .rental-plan-card.selected {
+    transform: translateY(0);
+  }
+
+  /* Fix for feature item hover transform causing right border cutoff on mobile */
+  .feature-item:hover {
+    transform: translateX(0);
+  }
+
+  /* Fix for info card hover transform causing top border cutoff on mobile */
+  .info-card {
+    margin-top: 0.5rem;
   }
 
   .plan-header {
@@ -431,6 +461,21 @@
     min-height: 220px;
   }
 
+  /* Fix for selected rental plan card border cutoff on mobile */
+  .rental-plan-card.selected {
+    transform: translateY(0);
+  }
+
+  /* Fix for feature item hover transform causing right border cutoff on mobile */
+  .feature-item:hover {
+    transform: translateX(0);
+  }
+
+  /* Fix for info card hover transform causing top border cutoff on mobile */
+  .info-card {
+    margin-top: 0.5rem;
+  }
+
   .plan-header h4 {
     font-size: 1.1rem;
   }
@@ -489,6 +534,21 @@
   .rental-plan-card {
     padding: 0.75rem;
     min-height: 160px;
+  }
+
+  /* Fix for selected rental plan card border cutoff on mobile */
+  .rental-plan-card.selected {
+    transform: translateY(0);
+  }
+
+  /* Fix for feature item hover transform causing right border cutoff on mobile */
+  .feature-item:hover {
+    transform: translateX(0);
+  }
+
+  /* Fix for info card hover transform causing top border cutoff on mobile */
+  .info-card {
+    margin-top: 0.5rem;
   }
 
   .plan-header h4 {
