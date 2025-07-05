@@ -825,6 +825,7 @@
   gap: 1rem;
   margin: 0 0 1rem 0;
   font-size: 0.875rem;
+  align-items: center;
 }
 
 .post-category {
@@ -848,7 +849,7 @@
 .post-author {
   color: var(--text-muted);
   font-size: 0.875rem;
-  margin: 1rem 0;
+  margin: 1rem 0 2rem 0;
 }
 
 .read-more-btn {
@@ -918,6 +919,9 @@
   border-radius: 1rem;
   overflow: hidden;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .blog-card:hover {
@@ -940,6 +944,9 @@
 
 .blog-card-content {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .blog-card h3 {
@@ -955,30 +962,37 @@
   color: var(--text-color);
   line-height: 1.6;
   margin: 0 0 1rem 0;
+  flex-grow: 1;
 }
 
 .blog-card-footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto;
 }
 
 .read-more-link {
-  background: none;
+  background: var(--primary-color);
+  color: var(--text-light);
   border: none;
-  color: var(--primary-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.25rem;
+  text-decoration: none;
+  align-self: stretch;
 }
 
 .read-more-link:hover {
-  color: var(--trust-blue);
+  background: var(--trust-blue);
+  transform: translateY(-2px);
 }
 
 .full-content {
