@@ -110,6 +110,7 @@
 
 .static-text {
   color: var(--text-light);
+  white-space: nowrap;
 }
 
 .cursor {
@@ -255,11 +256,18 @@
 
   .hero h1 {
     font-size: 2.2rem;
+    line-height: 1.3;
   }
 
   .animated-text {
     min-height: 1.5em;
     font-size: 1.8rem;
+    display: block;
+  }
+
+  .static-text {
+    display: block;
+    margin-top: 0.2rem;
   }
 
   .hero h1::after {
@@ -303,10 +311,17 @@
 
   .hero h1 {
     font-size: 1.8rem;
+    line-height: 1.3;
   }
 
   .animated-text {
     min-height: 1.5em;
+    display: block;
+  }
+
+  .static-text {
+    display: block;
+    margin-top: 0.2rem;
   }
 
   .cta-button {
@@ -369,11 +384,18 @@
 @media (max-width: 375px) {
   .hero h1 {
     font-size: 1.5rem;
+    line-height: 1.3;
   }
 
   .animated-text {
     min-height: 1.3em;
     font-size: 1.5rem;
+    display: block;
+  }
+
+  .static-text {
+    display: block;
+    margin-top: 0.2rem;
   }
 
   .hero p {
