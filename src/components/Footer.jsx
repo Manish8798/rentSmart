@@ -22,7 +22,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a href="/blog" aria-label="Read our blog">
-                    Blog
+                    Blogs
                   </a>
                 </li>
                 <li>

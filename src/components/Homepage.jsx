@@ -14,7 +14,7 @@ const Homepage = ({ searchQuery = "", onRentNow, onCalendarStateChange }) => {
     "Sony PS5",
     "iPad & Pencil",
     "Apple Watch",
-    "VR",
+    "PlayStation VR",
     "Gaming Wheel",
     "Home Theater",
     "Trekking Stick",
