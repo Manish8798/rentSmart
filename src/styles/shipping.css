@@ -1,0 +1,223 @@
+.shipping-policy {
+  background: var(--bg-light);
+  min-height: 100vh;
+  padding: 2rem 0 0 0;
+}
+
+.shipping-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--trust-blue));
+  color: var(--text-light);
+  border-radius: 1rem;
+}
+
+.shipping-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+}
+
+.shipping-subtitle {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.shipping-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.shipping-section {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  scroll-margin-top: 2rem;
+}
+
+.shipping-section:last-child {
+  margin-bottom: 3rem;
+}
+
+.shipping-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+.shipping-zone {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-light);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color);
+}
+
+.shipping-zone:last-child {
+  margin-bottom: 0;
+}
+
+.shipping-zone h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shipping-zone h3::before {
+  content: "📍";
+  font-size: 1rem;
+}
+
+.shipping-zone p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.shipping-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.detail-item {
+  background: var(--bg-white);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+  border-color: var(--secondary-color);
+  transform: translateX(2px);
+}
+
+.detail-item strong {
+  color: var(--primary-color);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-item:nth-child(1) strong::before {
+  content: "🕐 ";
+}
+
+.detail-item:nth-child(2) strong::before {
+  content: "💰 ";
+}
+
+.detail-item:nth-child(3) strong::before {
+  content: "📦 ";
+}
+
+/* Responsive Design for Shipping Policy */
+@media (max-width: 768px) {
+  .shipping-policy {
+    padding: 1rem 0 0 0;
+  }
+
+  .shipping-header {
+    margin-bottom: 2rem;
+    padding: 1.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .shipping-header h1 {
+    font-size: 2rem;
+  }
+
+  .shipping-subtitle {
+    font-size: 1rem;
+  }
+
+  .shipping-content {
+    padding: 0 1rem;
+  }
+
+  .table-of-contents,
+  .shipping-section {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .shipping-section:last-child {
+    margin-bottom: 2rem;
+  }
+
+  .shipping-zone {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .shipping-section h2 {
+    font-size: 1.25rem;
+  }
+
+  .shipping-zone h3 {
+    font-size: 1.125rem;
+  }
+
+  .shipping-zone p,
+  .detail-item {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .shipping-header {
+    padding: 1rem;
+  }
+
+  .shipping-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .shipping-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .table-of-contents,
+  .shipping-section {
+    padding: 1rem;
+  }
+
+  .shipping-section:last-child {
+    margin-bottom: 1.5rem;
+  }
+
+  .shipping-zone {
+    padding: 0.75rem;
+  }
+
+  .shipping-section h2 {
+    font-size: 1.125rem;
+  }
+
+  .shipping-zone h3 {
+    font-size: 1rem;
+  }
+
+  .detail-item {
+    padding: 0.75rem;
+  }
+}

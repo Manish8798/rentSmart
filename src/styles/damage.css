@@ -1,0 +1,226 @@
+.damage-policy {
+  background: var(--bg-light);
+  min-height: 100vh;
+  padding: 2rem 0 0 0;
+}
+
+.damage-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--trust-blue));
+  color: var(--text-light);
+  border-radius: 1rem;
+}
+
+.damage-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+}
+
+.damage-subtitle {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.damage-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.damage-section {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  scroll-margin-top: 2rem;
+}
+
+.damage-section:last-child {
+  margin-bottom: 3rem;
+}
+
+.damage-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+.damage-section p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.policy-item {
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.policy-item:last-child {
+  margin-bottom: 0;
+}
+
+.policy-item:hover {
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.policy-item h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.policy-item h3::before {
+  content: "▶";
+  color: var(--secondary-color);
+  font-size: 0.875rem;
+}
+
+.policy-item p {
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.policy-item ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.policy-item li {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.policy-item li:last-child {
+  margin-bottom: 0;
+}
+
+.policy-item li::before {
+  content: "•";
+  color: var(--secondary-color);
+  position: absolute;
+  left: 0.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.damage-section strong {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* Responsive Design for Damage Policy */
+@media (max-width: 768px) {
+  .damage-policy {
+    padding: 1rem 0 0 0;
+  }
+
+  .damage-header {
+    margin-bottom: 2rem;
+    padding: 1.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .damage-header h1 {
+    font-size: 2rem;
+  }
+
+  .damage-subtitle {
+    font-size: 1rem;
+  }
+
+  .damage-content {
+    padding: 0 1rem;
+  }
+
+  .table-of-contents,
+  .damage-section {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .damage-section:last-child {
+    margin-bottom: 2rem;
+  }
+
+  .policy-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .damage-section h2 {
+    font-size: 1.25rem;
+  }
+
+  .policy-item h3 {
+    font-size: 1rem;
+  }
+
+  .damage-section p,
+  .policy-item p,
+  .policy-item li {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .damage-header {
+    padding: 1rem;
+  }
+
+  .damage-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .damage-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .table-of-contents,
+  .damage-section {
+    padding: 1rem;
+  }
+
+  .damage-section:last-child {
+    margin-bottom: 1.5rem;
+  }
+
+  .policy-item {
+    padding: 0.75rem;
+  }
+
+  .damage-section h2 {
+    font-size: 1.125rem;
+  }
+
+  .policy-item h3 {
+    font-size: 0.9375rem;
+  }
+}
