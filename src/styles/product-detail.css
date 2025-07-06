@@ -478,15 +478,10 @@
   font-weight: 600;
   color: var(--text-dark);
   margin-bottom: 1rem;
-  position: relative;
-  padding-left: 1.5rem;
 }
 
 .product-detail-faq-section h3::before {
-  content: "?";
-  position: absolute;
-  left: 0;
-  color: var(--secondary-color);
+  display: none;
 }
 
 .product-faq-grid {
@@ -570,10 +565,15 @@
 
 .product-detail-faq-section .faq-cta {
   text-align: center;
-  padding: 1.5rem;
-  background: var(--bg-white);
-  border-radius: 0.75rem;
-  border: 1px solid var(--border-color);
+  padding: 1.5rem 0 0 0;
+  background: none;
+  border-top: 1px solid var(--border-color);
+  margin-top: 1.5rem;
+  border-radius: 0;
+  box-shadow: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
 }
 
 .product-detail-faq-section .faq-cta p {
@@ -583,40 +583,33 @@
 }
 
 .faq-cta-button {
-  background: linear-gradient(135deg, var(--primary-color), var(--trust-blue));
-  color: var(--text-light);
+  background: linear-gradient(135deg, #25d366, #20b358);
+  color: white;
   border: none;
   padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 25px;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.2);
   position: relative;
   overflow: hidden;
 }
 
 .faq-cta-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: left 0.5s;
+  content: "💬";
+  font-size: 1rem;
 }
 
 .faq-cta-button:hover {
+  background: linear-gradient(135deg, #20b358, #1da851);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
 /* Responsive Design */
@@ -663,11 +656,13 @@
   }
 
   .product-detail-faq-section {
-    margin-bottom: 1rem;
+    margin: 1.5rem 0;
+    padding: 1.5rem 0;
   }
 
   .product-detail-faq-section h3 {
     font-size: 1.125rem;
+    margin-bottom: 1rem;
   }
 
   .product-faq-item {
@@ -683,12 +678,20 @@
   }
 
   .product-detail-faq-section .faq-cta {
-    padding: 1rem;
+    padding: 1.5rem 0 0 0;
+    margin-top: 1rem;
+    background: none;
+    border-top: 1px solid var(--border-color);
+    border-radius: 0;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
   }
 
   .faq-cta-button {
-    font-size: 0.8rem;
-    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    padding: 0.75rem 1.5rem;
   }
 }
 
@@ -771,15 +774,22 @@
   }
 
   .product-detail-faq-section {
-    margin-bottom: 1rem;
+    margin: 1rem 0;
+    padding: 1rem 0;
   }
 
   .product-detail-faq-section h3 {
     font-size: 1rem;
-    padding-left: 1.2rem;
+    padding-left: 0;
+    margin-bottom: 1rem;
+  }
+
+  .product-detail-faq-section h3::before {
+    display: none;
   }
 
   .product-faq-item {
+    padding: 0.875rem;
     margin-bottom: 0.5rem;
   }
 
@@ -788,17 +798,28 @@
   }
 
   .product-faq-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    font-size: 1rem;
   }
 
   .product-faq-answer p {
     font-size: 0.8rem;
   }
 
+  .product-detail-faq-section .faq-cta {
+    padding: 1rem 0 0 0;
+    margin-top: 0.75rem;
+    background: none;
+    border-top: 1px solid var(--border-color);
+    border-radius: 0;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
   .faq-cta-button {
-    font-size: 0.75rem;
-    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    padding: 0.625rem 1.25rem;
   }
 }
 

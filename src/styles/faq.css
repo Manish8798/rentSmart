@@ -126,8 +126,7 @@
 }
 
 .product-detail-faq-section h3::before {
-  content: "🎮";
-  font-size: 1.2rem;
+  display: none;
 }
 
 .product-faq-grid {
@@ -215,6 +214,11 @@
   text-align: center;
   border-top: 1px solid var(--border-color);
   margin-top: 1.5rem;
+  border-radius: 0;
+  box-shadow: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
 }
 
 .product-detail-faq-section .faq-cta p {
@@ -228,13 +232,14 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background-color: #25d366;
+  background: linear-gradient(135deg, #25d366, #20b358);
   color: white;
   text-decoration: none;
   border-radius: 25px;
   font-weight: 500;
   font-size: 0.95rem;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.2);
 }
 
 .faq-cta-button::before {
@@ -243,9 +248,9 @@
 }
 
 .faq-cta-button:hover {
-  background-color: #1da851;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+  background: linear-gradient(135deg, #20b358, #1da851);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
 /* Responsive Styles */
@@ -272,6 +277,7 @@
 
   .product-detail-faq-section {
     padding: 1.5rem 0;
+    margin: 1.5rem 0;
   }
 
   .product-detail-faq-section h3 {
@@ -280,6 +286,7 @@
 
   .product-faq-item {
     padding: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .product-faq-question h4 {
@@ -291,26 +298,37 @@
   }
 
   .product-detail-faq-section .faq-cta {
-    padding: 1rem 0 0 0;
+    padding: 1.5rem 0 0 0;
+    margin-top: 1rem;
+    background: none;
+    border-top: 1px solid var(--border-color);
+    border-radius: 0;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
   }
 
   .faq-cta-button {
     font-size: 0.9rem;
-    padding: 0.625rem 1.25rem;
+    padding: 0.75rem 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .product-detail-faq-section {
     padding: 1rem 0;
+    margin: 1rem 0;
   }
 
   .product-detail-faq-section h3 {
     font-size: 1.125rem;
+    margin-bottom: 1rem;
   }
 
   .product-faq-item {
     padding: 0.875rem;
+    margin-bottom: 0.5rem;
   }
 
   .product-faq-question h4 {
@@ -325,8 +343,20 @@
     font-size: 0.85rem;
   }
 
+  .product-detail-faq-section .faq-cta {
+    padding: 1rem 0 0 0;
+    margin-top: 0.75rem;
+    background: none;
+    border-top: 1px solid var(--border-color);
+    border-radius: 0;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
   .faq-cta-button {
     font-size: 0.85rem;
-    padding: 0.5rem 1rem;
+    padding: 0.625rem 1.25rem;
   }
 }
