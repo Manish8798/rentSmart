@@ -165,7 +165,7 @@ function AppContent() {
         { type: "category", text: "Gaming", icon: "🎮" },
         { type: "category", text: "Apple", icon: "🍎" },
         { type: "category", text: "Adventure", icon: "🏔️" },
-        { type: "search", text: "VR", icon: "🔍" },
+        { type: "search", text: "PlayStation VR2", icon: "🔍" },
       ];
     }
 
@@ -286,6 +286,26 @@ function AppContent() {
           text: tvProduct.name,
           icon: getProductIcon(tvProduct.category),
           id: tvProduct.id,
+        });
+      }
+    }
+
+    if (
+      lowerQuery.includes("vr") ||
+      lowerQuery.includes("virtual reality") ||
+      lowerQuery.includes("playstation vr") ||
+      lowerQuery.includes("psvr")
+    ) {
+      // For VR searches, suggest the PlayStation VR2 product
+      const vrProduct = products.find((p) =>
+        p.name.toLowerCase().includes("playstation vr2")
+      );
+      if (vrProduct) {
+        addSuggestion({
+          type: "product",
+          text: vrProduct.name,
+          icon: getProductIcon(vrProduct.category),
+          id: vrProduct.id,
         });
       }
     }

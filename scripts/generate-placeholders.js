@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 const products = [
   { name: "PS5", filename: "ps5.jpg" },
   { name: "Gaming Wheel", filename: "gaming-wheel.jpg" },
-  { name: "VR", filename: "vr.jpg" },
+  { name: "VR", filename: "vr.jpeg" },
   { name: "iPad & Pencil", filename: "ipad.jpg" },
   { name: "Apple Watch", filename: "apple-watch.jpg" },
   { name: "TV", filename: "tv.jpg" },

@@ -27,17 +27,20 @@ const products = [
   {
     id: 3,
     category: "Gaming",
-    name: "VR",
+    name: "PlayStation VR2",
     priority: "Medium",
     description:
-      "High-resolution VR headset with 6DOF tracking and comfortable ergonomic design for immersive gaming experiences.",
+      "The PlayStation VR2 (PSVR2) features an OLED display with a resolution of 2000 x 2040 pixels per eye, a refresh rate of 90Hz or 120Hz, and a field of view of approximately 110 degrees. It utilizes a six-axis motion sensing system (gyroscope and accelerometer) and an IR proximity sensor for tracking, along with four embedded cameras for headset and controller tracking and IR cameras for eye tracking. The headset also features vibration feedback and a built-in microphone, with audio output through a stereo headphone jack.",
+    shortDescription:
+      "High-resolution OLED VR headset with 2000x2040 per eye, 90/120Hz refresh rate, and advanced tracking technology for immersive gaming.",
     price: 249,
     priceUnit: "day",
-    image: base + "images/vr.jpg",
+    image: base + "images/vr.jpeg",
     features: [
-      "6DOF Tracking",
-      "High Resolution Display",
-      "Comfortable Design",
+      "OLED Display 2000x2040",
+      "90Hz/120Hz Refresh Rate",
+      "Eye Tracking",
+      "Haptic Feedback",
     ],
   },
   {

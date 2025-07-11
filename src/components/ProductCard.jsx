@@ -6,6 +6,7 @@ const ProductCard = ({ product, onRentNow }) => {
   const {
     name,
     description,
+    shortDescription,
     price,
     priceUnit,
     image,
@@ -17,7 +18,7 @@ const ProductCard = ({ product, onRentNow }) => {
 
   // Determine special product types for custom styling
   const isTV = name === "TV";
-  const isVR = name === "VR";
+  const isVR = name === "PlayStation VR2";
   const isGoPro = name === "Go Pro";
   const isAppleProduct = name.includes("iPad") || name.includes("Watch");
 
@@ -75,7 +76,7 @@ const ProductCard = ({ product, onRentNow }) => {
       <div className="product-info">
         <h3 itemProp="name">{name}</h3>
         <p className="product-description" itemProp="description">
-          {description}
+          {shortDescription || description}
         </p>
         {features && features.length > 0 && (
           <div className="product-features">

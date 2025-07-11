@@ -63,7 +63,7 @@ const FAQ = () => {
     {
       question: "What types of products can I rent?",
       answer:
-        "RentSmart offers a diverse range of premium products across several categories:\n• Gaming: Latest consoles, VR equipment, and gaming accessories\n• Apple Products: iPads, Apple Watches, and other Apple devices\n• Adventure Gear: High-quality trekking and outdoor equipment\n• Home Electronics: Various electronic items for home use",
+        "RentSmart offers a diverse range of premium products across several categories:\n• Gaming: Latest consoles, PlayStation VR2 equipment, and gaming accessories\n• Apple Products: iPads, Apple Watches, and other Apple devices\n• Adventure Gear: High-quality trekking and outdoor equipment\n• Home Electronics: Various electronic items for home use",
     },
     {
       question: "What information do I need to provide in the Google form?",

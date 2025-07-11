@@ -13,7 +13,7 @@ const images = [
     url: "https://placehold.co/600x400/333/white?text=Gaming+Wheel",
   },
   {
-    name: "vr.jpg",
+    name: "vr.jpeg",
     url: "https://placehold.co/600x400/333/white?text=VR",
   },
   {
