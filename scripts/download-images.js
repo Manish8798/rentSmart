@@ -5,7 +5,7 @@ import path from "path";
 // List of images to download with their placeholder URLs
 const images = [
   {
-    name: "ps5.jpg",
+    name: "sony_ps5.jpg",
     url: "https://placehold.co/600x400/333/white?text=PS5",
   },
   {
