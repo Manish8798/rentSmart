@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = ({
   searchQuery,
@@ -15,6 +16,29 @@ const Header = ({
   mobileMenuOpen,
   toggleMobileMenu,
 }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleHowItWorksClick = (e) => {
+    e.preventDefault();
+
+    if (location.pathname === "/") {
+      // If already on home page, just scroll to the section
+      document.getElementById("how-it-works")?.scrollIntoView({
+        behavior: "smooth",
+      });
+    } else {
+      // If not on home page, navigate to home first, then scroll
+      navigate("/");
+      // Small delay to ensure the page loads before scrolling
+      setTimeout(() => {
+        document.getElementById("how-it-works")?.scrollIntoView({
+          behavior: "smooth",
+        });
+      }, 100);
+    }
+  };
+
   return (
     <>
       {/* Mobile Menu Overlay */}
@@ -163,7 +187,13 @@ const Header = ({
           </div>
           <div className="header-nav-container">
             <div className="nav-buttons">
-              <a href="#how-it-works">How It Works</a>
+              <a
+                href="#how-it-works"
+                onClick={handleHowItWorksClick}
+                aria-label="Learn how RentSmart works"
+              >
+                How It Works
+              </a>
               <button className="language-button">EN</button>
               <button className="menu-button" onClick={toggleMobileMenu}>
                 <svg
