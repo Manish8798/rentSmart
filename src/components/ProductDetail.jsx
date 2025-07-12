@@ -88,6 +88,29 @@ const ProductDetail = ({ onRentNow }) => {
     return category === "Adventure";
   };
 
+  // Function to get the base daily rate for comparison
+  const getBaseDailyRate = () => {
+    // For PS5, the base rate is 299/day
+    if (name && name.toLowerCase().includes("ps5")) {
+      return 299;
+    }
+    // For other products, use the passed price as base rate
+    return price;
+  };
+
+  // Function to check if we should show slashed pricing
+  const shouldShowSlashedPrice = (duration, currentPerDay) => {
+    const baseDailyRate = getBaseDailyRate();
+
+    // Show slashed price if current per day rate is lower than base rate
+    // and we're not dealing with adventure items (they don't have discounts)
+    if (isAdventureItem()) {
+      return false;
+    }
+
+    return currentPerDay < baseDailyRate;
+  };
+
   // Tiered pricing function (same as RentalCalendar)
   const calculateTieredPrice = (duration) => {
     let baseTotal, perDay, tier;
@@ -559,7 +582,24 @@ Please provide more details.`;
                         {plan.discount}% OFF
                       </span>
                     )}
-                    <span className="per-day-price">₹{plan.perDay}/day</span>
+                    <span className="per-day-price">
+                      {shouldShowSlashedPrice(plan.days, plan.perDay) ? (
+                        <span className="slashed-pricing">
+                          <span className="original-price">
+                            ₹{getBaseDailyRate()}
+                          </span>
+                          <span className="discounted-price">
+                            ₹{plan.perDay}
+                          </span>
+                          <span className="per-day-text">/day</span>
+                        </span>
+                      ) : (
+                        <span className="regular-pricing">
+                          <span className="current-price">₹{plan.perDay}</span>
+                          <span className="per-day-text">/day</span>
+                        </span>
+                      )}
+                    </span>
                   </div>
 
                   {plan.tier === "ps5-week-special" && (
@@ -614,7 +654,27 @@ Please provide more details.`;
                 selectedPlan.perDay !== currentPricing.amount && (
                   <div className="per-day-display">
                     <span className="per-day-text">
-                      ₹{currentPricing.perDay}/day
+                      {shouldShowSlashedPrice(
+                        selectedPlan.days,
+                        selectedPlan.perDay
+                      ) ? (
+                        <span className="slashed-pricing">
+                          <span className="original-price">
+                            ₹{getBaseDailyRate()}
+                          </span>
+                          <span className="discounted-price">
+                            ₹{currentPricing.perDay}
+                          </span>
+                          <span className="per-day-text">/day</span>
+                        </span>
+                      ) : (
+                        <span className="regular-pricing">
+                          <span className="current-price">
+                            ₹{currentPricing.perDay}
+                          </span>
+                          <span className="per-day-text">/day</span>
+                        </span>
+                      )}
                     </span>
                   </div>
                 )}

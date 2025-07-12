@@ -107,6 +107,13 @@
   font-size: 0.95rem;
   color: var(--accent-color);
   margin-top: 0.2rem;
+  text-align: left;
+}
+
+.rental-summary .per-unit .slashed-pricing,
+.rental-summary .per-unit .regular-pricing {
+  width: 100%;
+  justify-content: flex-start;
 }
 
 /* Pricing tier styles */
@@ -270,6 +277,61 @@
   font-size: 0.9rem;
 }
 
+/* Slashed pricing styles */
+.slashed-pricing {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Regular pricing styles for consistency */
+.regular-pricing {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.discounted-price {
+  color: #e74c3c;
+  font-weight: 700;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.current-price {
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.per-day-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 /* Mobile responsive fixes for calendar */
 @media (max-width: 768px) {
   .calendar-overlay {
@@ -418,6 +480,41 @@
     padding: 0.5rem 1rem !important;
     border-radius: 10px !important;
     font-weight: 600 !important;
+  }
+
+  /* Mobile slashed pricing styles */
+  .slashed-pricing {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .regular-pricing {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .original-price {
+    font-size: 0.75rem !important;
+    white-space: nowrap !important;
+  }
+
+  .discounted-price {
+    font-size: 0.85rem !important;
+    white-space: nowrap !important;
+  }
+
+  .current-price {
+    font-size: 0.85rem !important;
+    white-space: nowrap !important;
+  }
+
+  .per-day-text {
+    font-size: 0.75rem !important;
+    white-space: nowrap !important;
   }
 
   .confirm-button {
@@ -659,9 +756,88 @@
     padding: 0.25rem 0.4rem !important;
   }
 
+  /* Mobile slashed pricing styles for small screens */
+  .slashed-pricing {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .regular-pricing {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .original-price {
+    font-size: 0.75rem !important;
+    white-space: nowrap !important;
+  }
+
+  .discounted-price {
+    font-size: 0.85rem !important;
+    white-space: nowrap !important;
+  }
+
+  .current-price {
+    font-size: 0.85rem !important;
+    white-space: nowrap !important;
+  }
+
+  .per-day-text {
+    font-size: 0.75rem !important;
+    white-space: nowrap !important;
+  }
+
   .confirm-button {
     padding: 0.8rem 0;
     font-size: 0.95rem;
     margin-top: 0.2rem;
+  }
+}
+
+/* iPhone 12 Mini and similar devices (390px width) */
+@media (max-width: 390px) and (min-width: 376px) {
+  .slashed-pricing {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    flex-wrap: nowrap !important;
+    max-width: 100% !important;
+  }
+
+  .regular-pricing {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    flex-wrap: nowrap !important;
+    max-width: 100% !important;
+  }
+
+  .original-price {
+    font-size: 0.7rem !important;
+    white-space: nowrap !important;
+  }
+
+  .discounted-price {
+    font-size: 0.8rem !important;
+    white-space: nowrap !important;
+  }
+
+  .current-price {
+    font-size: 0.8rem !important;
+    white-space: nowrap !important;
+  }
+
+  .per-day-text {
+    font-size: 0.7rem !important;
+    white-space: nowrap !important;
+  }
+
+  .rental-summary .per-unit {
+    font-size: 0.75rem !important;
+    overflow: hidden !important;
   }
 }

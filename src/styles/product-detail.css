@@ -446,6 +446,13 @@
   color: var(--text-muted);
   font-weight: 500;
   margin-top: 0.25rem;
+  text-align: left;
+}
+
+.per-day-price .slashed-pricing,
+.per-day-price .regular-pricing {
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .special-offer {
@@ -612,6 +619,56 @@
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
+/* Slashed pricing styles for rental plans */
+.slashed-pricing {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+/* Regular pricing styles for consistency */
+.regular-pricing {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.discounted-price {
+  color: #e74c3c;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.current-price {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.per-day-text {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.per-day-price {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .product-detail-content {
@@ -653,6 +710,35 @@
 
   .price-amount {
     font-size: 2rem;
+  }
+
+  /* Slashed pricing mobile styles */
+  .slashed-pricing {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+
+  .regular-pricing {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+
+  .original-price {
+    font-size: 0.7rem;
+  }
+
+  .discounted-price {
+    font-size: 0.8rem;
+  }
+
+  .current-price {
+    font-size: 0.8rem;
+  }
+
+  .per-day-text {
+    font-size: 0.7rem;
   }
 
   /* Fix tablet hover issue - prevent cards from moving up */

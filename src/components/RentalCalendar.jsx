@@ -49,6 +49,29 @@ const RentalCalendar = ({
     return productCategory === "Adventure";
   };
 
+  // Function to get the base daily rate for comparison
+  const getBaseDailyRate = () => {
+    // For PS5, the base rate is 299/day
+    if (productName && productName.toLowerCase().includes("ps5")) {
+      return 299;
+    }
+    // For other products, use the passed price as base rate
+    return price;
+  };
+
+  // Function to check if we should show slashed pricing
+  const shouldShowSlashedPrice = (duration, currentPerDay) => {
+    const baseDailyRate = getBaseDailyRate();
+
+    // Show slashed price if current per day rate is lower than base rate
+    // and we're not dealing with adventure items (they don't have discounts)
+    if (isAdventureItem()) {
+      return false;
+    }
+
+    return currentPerDay < baseDailyRate;
+  };
+
   // Tiered pricing function
   const calculateTieredPrice = (duration) => {
     let baseTotal, perDay, tier;
@@ -358,7 +381,22 @@ const RentalCalendar = ({
               Total Price: <span>₹{pricing.total}</span>
             </p>
             {duration > 0 && (
-              <p className="per-unit">(₹{pricing.perDay} per day)</p>
+              <p className="per-unit">
+                {shouldShowSlashedPrice(duration, pricing.perDay) ? (
+                  <span className="slashed-pricing">
+                    <span className="original-price">
+                      ₹{getBaseDailyRate()}
+                    </span>
+                    <span className="discounted-price">₹{pricing.perDay}</span>
+                    <span className="per-day-text">per day</span>
+                  </span>
+                ) : (
+                  <span className="regular-pricing">
+                    <span className="current-price">₹{pricing.perDay}</span>
+                    <span className="per-day-text">per day</span>
+                  </span>
+                )}
+              </p>
             )}
           </div>
           <button
