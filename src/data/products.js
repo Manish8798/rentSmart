@@ -9,7 +9,7 @@ const products = [
       "Next-gen PlayStation 5 with lightning-fast SSD, 3D audio, haptic feedback controller, and 4K gaming up to 120fps.",
     price: 299,
     priceUnit: "day",
-    image: base + "images/ps5.jpg",
+    image: base + "images/sony_ps5.jpg",
     features: ["4K Gaming", "Ray Tracing", "3D Audio", "DualSense Controller"],
   },
   {
@@ -70,7 +70,7 @@ const products = [
   {
     id: 6,
     category: "Home",
-    name: "TV",
+    name: "Smart TV",
     priority: "Medium",
     description:
       "Premium 55-inch 4K Smart TV with HDR support, built-in streaming apps, and multiple HDMI ports.",

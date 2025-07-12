@@ -119,7 +119,7 @@ function AppContent() {
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://rentsmart.in" },
-      { property: "og:image", content: "/images/ps5.jpg" },
+      { property: "og:image", content: "/images/sony_ps5.jpg" },
     ];
 
     ogTags.forEach((tag) => {
