@@ -372,7 +372,7 @@
   .rental-plans {
     margin-top: 0.5rem;
     gap: 0.4rem;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .plan-chip {
@@ -560,7 +560,7 @@
   .rental-plans {
     margin-top: 0.4rem;
     gap: 0.3rem;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .plan-chip {
