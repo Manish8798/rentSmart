@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "../contexts/LanguageContext";
 
 const ProductCard = ({ product, onRentNow }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const {
     name,
     description,
@@ -99,7 +101,7 @@ const ProductCard = ({ product, onRentNow }) => {
                 <span itemProp="price" content={price}>
                   ₹{price}
                 </span>
-                <span className="price-unit">/day</span>
+                <span className="price-unit">{t('product.perDay')}</span>
               </div>
             </div>
             <meta itemProp="priceCurrency" content="INR" />
@@ -109,7 +111,7 @@ const ProductCard = ({ product, onRentNow }) => {
             onClick={() => onRentNow(product)}
             aria-label={`Rent ${name} - Tiered pricing available`}
           >
-            Rent Now
+            {t('product.rentNow')}
           </button>
         </div>
         <meta itemProp="category" content={category} />

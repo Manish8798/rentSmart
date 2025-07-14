@@ -1,6 +1,9 @@
 import React from "react";
+import { useTranslation } from "../contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer" role="contentinfo">
       <div className="container">
@@ -13,16 +16,16 @@ const Footer = () => {
           </div>
           <nav className="footer-links" aria-label="Footer navigation">
             <div className="footer-column">
-              <h4>Company</h4>
+              <h4>{t("footer.company")}</h4>
               <ul>
                 <li>
                   <a href="/about" aria-label="About RentSmart">
-                    About Us
+                    {t("footer.aboutUs")}
                   </a>
                 </li>
                 <li>
                   <a href="/blog" aria-label="Read our blog">
-                    Blogs
+                    {t("mobileMenu.blogs")}
                   </a>
                 </li>
                 <li>
@@ -30,76 +33,80 @@ const Footer = () => {
                     href="mailto:rentsmart007@gmail.com"
                     aria-label="Contact RentSmart for career opportunities"
                   >
-                    Careers
+                    {t("footer.careers")}
                   </a>
                 </li>
                 <li>
                   <a href="/contact" aria-label="Contact RentSmart">
-                    Contact Us
+                    {t("footer.contactUs")}
                   </a>
                 </li>
               </ul>
             </div>
             <div className="footer-column">
-              <h4>Products</h4>
+              <h4>{t("footer.products")}</h4>
               <ul>
                 <li>
-                  <a href="/#products-section">Gaming</a>
+                  <a href="/#products-section">{t("categories.gaming")}</a>
                 </li>
                 <li>
-                  <a href="/#products-section">Apple</a>
+                  <a href="/#products-section">{t("categories.apple")}</a>
                 </li>
                 <li>
-                  <a href="/#products-section">Home</a>
+                  <a href="/#products-section">{t("categories.home")}</a>
                 </li>
                 <li>
-                  <a href="/#products-section">Adventure</a>
+                  <a href="/#products-section">{t("categories.adventure")}</a>
                 </li>
               </ul>
             </div>
             <div className="footer-column">
-              <h4>Support</h4>
+              <h4>{t("footer.support")}</h4>
               <ul>
                 <li>
                   <a
                     href="mailto:rentsmart007@gmail.com"
                     aria-label="Get help from RentSmart"
                   >
-                    Help Center
+                    {t("footer.helpCenter")}
                   </a>
                 </li>
                 <li>
-                  <a href="/faq">FAQs</a>
+                  <a href="/faq">{t("mobileMenu.faqs")}</a>
                 </li>
                 <li>
-                  <a href="mailto:rentsmart007@gmail.com">Shipping</a>
+                  <a href="mailto:rentsmart007@gmail.com">
+                    {t("footer.shipping")}
+                  </a>
                 </li>
                 <li>
-                  <a href="mailto:rentsmart007@gmail.com">Returns</a>
+                  <a href="mailto:rentsmart007@gmail.com">
+                    {t("footer.returns")}
+                  </a>
                 </li>
               </ul>
             </div>
             <div className="footer-column">
-              <h4>Policies</h4>
+              <h4>{t("footer.policies")}</h4>
               <ul>
                 <li>
                   <a href="/terms" aria-label="Terms and Conditions">
-                    Terms & Conditions
+                    {t("footer.termsConditions")}
                   </a>
                 </li>
                 <li>
                   <a href="/privacy" aria-label="Privacy Policy">
-                    Privacy Policy
+                    {t("footer.privacyPolicy")}
                   </a>
                 </li>
                 <li>
                   <a href="/shipping-policy" aria-label="Shipping Policy">
-                    Shipping Policy
+                    {t("footer.shippingPolicy")}
                   </a>
                 </li>
                 <li>
                   <a href="/damage-policy" aria-label="Damage Policy">
-                    Damage Policy
+                    {t("footer.damagePolicy")}
                   </a>
                 </li>
               </ul>
@@ -107,7 +114,7 @@ const Footer = () => {
           </nav>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2025 RentSmart. All rights reserved.</p>
+          <p>{t("footer.copyright")}</p>
         </div>
       </div>
     </footer>

@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import ProductGrid from "./ProductGrid";
 import Footer from "./Footer";
 import products from "../data/products";
+import { useTranslation } from "../contexts/LanguageContext";
 
 const Homepage = ({ searchQuery = "", onRentNow, onCalendarStateChange }) => {
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
+  const { t } = useTranslation();
 
   // Product names for animation
   const productNames = [
@@ -149,13 +151,9 @@ const Homepage = ({ searchQuery = "", onRentNow, onCalendarStateChange }) => {
               {displayText}
               <span className="cursor">|</span>
             </span>
-            <span className="static-text"> on Demand</span>
+            <span className="static-text">{t("hero.onDemand")}</span>
           </h1>
-          <p>
-            Your trusted rental partner in Delhi NCR. Discover premium gaming,
-            Apple products, adventure gear & home electronics with flexible,
-            affordable plans that fit your lifestyle.
-          </p>
+          <p>{t("hero.subtitle")}</p>
           <button
             className="cta-button"
             aria-label="Explore our collection"
@@ -165,7 +163,7 @@ const Homepage = ({ searchQuery = "", onRentNow, onCalendarStateChange }) => {
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            Explore Collection
+            {t("hero.exploreCollection")}
           </button>
         </div>
       </section>
@@ -305,27 +303,27 @@ const Homepage = ({ searchQuery = "", onRentNow, onCalendarStateChange }) => {
         className="how-it-works container"
         aria-label="How RentSmart works"
       >
-        <h2>How RentSmart Works</h2>
+        <h2>{t("howItWorks.title")}</h2>
         <div className="steps">
           <div className="step">
             <div className="step-number">1</div>
-            <h3>Browse & Select</h3>
-            <p>Choose from our wide range of products</p>
+            <h3>{t("howItWorks.browse.title")}</h3>
+            <p>{t("howItWorks.browse.description")}</p>
           </div>
           <div className="step">
             <div className="step-number">2</div>
-            <h3>Rent Monthly</h3>
-            <p>Select your rental duration</p>
+            <h3>{t("howItWorks.rent.title")}</h3>
+            <p>{t("howItWorks.rent.description")}</p>
           </div>
           <div className="step">
             <div className="step-number">3</div>
-            <h3>Free Delivery</h3>
-            <p>Get it delivered to your doorstep</p>
+            <h3>{t("howItWorks.delivery.title")}</h3>
+            <p>{t("howItWorks.delivery.description")}</p>
           </div>
           <div className="step">
             <div className="step-number">4</div>
-            <h3>Return Anytime</h3>
-            <p>Flexible returns when you're done</p>
+            <h3>{t("howItWorks.enjoy.title")}</h3>
+            <p>{t("howItWorks.enjoy.description")}</p>
           </div>
         </div>
       </section>

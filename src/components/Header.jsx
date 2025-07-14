@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useLanguage, useTranslation } from "../contexts/LanguageContext";
 
 const Header = ({
   searchQuery,
@@ -18,6 +19,8 @@ const Header = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { language, toggleLanguage } = useLanguage();
+  const { t } = useTranslation();
 
   const handleHowItWorksClick = (e) => {
     e.preventDefault();
@@ -72,7 +75,7 @@ const Header = ({
         </div>
         <div className="mobile-menu-links">
           <a href="/" className="mobile-menu-link">
-            Browse Products
+            {t("mobileMenu.browseProducts")}
           </a>
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSf278ewRmkCDcXOJjfvt4qF16hS75SYGog3evbSU7A-pYhH9g/viewform?usp=header"
@@ -80,13 +83,13 @@ const Header = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            Pre-book Product
+            {t("mobileMenu.preBookProduct")}
           </a>
           <a href="/blog" className="mobile-menu-link">
-            Blogs
+            {t("mobileMenu.blogs")}
           </a>
           <a href="/faq" className="mobile-menu-link">
-            FAQs
+            {t("mobileMenu.faqs")}
           </a>
         </div>
       </div>
@@ -111,13 +114,13 @@ const Header = ({
               >
                 <input
                   type="text"
-                  placeholder="Search premium products..."
+                  placeholder={t("header.searchPlaceholder")}
                   value={searchQuery}
                   onChange={handleSearch}
                   onFocus={handleSearchFocus}
                   onBlur={handleSearchBlur}
                   onKeyDown={handleKeyDown}
-                  aria-label="Search products"
+                  aria-label={t("header.searchAria")}
                   autoComplete="off"
                 />
                 {searchQuery && (
@@ -125,7 +128,7 @@ const Header = ({
                     type="button"
                     className="clear-button"
                     onClick={handleClearSearch}
-                    aria-label="Clear search"
+                    aria-label={t("header.clearSearch")}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +149,7 @@ const Header = ({
                 <button
                   type="submit"
                   className="search-button"
-                  aria-label="Submit search"
+                  aria-label={t("header.submitSearch")}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -192,9 +195,15 @@ const Header = ({
                 onClick={handleHowItWorksClick}
                 aria-label="Learn how RentSmart works"
               >
-                How It Works
+                {t('header.howItWorks')}
               </a>
-              <button className="language-button">EN</button>
+              <button 
+                className="language-button" 
+                onClick={toggleLanguage}
+                aria-label="Toggle language"
+              >
+                {t('header.language')}
+              </button>
               <button className="menu-button" onClick={toggleMobileMenu}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -225,13 +234,13 @@ const Header = ({
           >
             <input
               type="text"
-              placeholder="Search premium products..."
+              placeholder={t('header.searchPlaceholder')}
               value={searchQuery}
               onChange={handleSearch}
               onFocus={handleSearchFocus}
               onBlur={handleSearchBlur}
               onKeyDown={handleKeyDown}
-              aria-label="Search products"
+              aria-label={t('header.searchAria')}
               autoComplete="off"
             />
             {searchQuery && (
@@ -239,7 +248,7 @@ const Header = ({
                 type="button"
                 className="clear-button"
                 onClick={handleClearSearch}
-                aria-label="Clear search"
+                aria-label={t('header.clearSearch')}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

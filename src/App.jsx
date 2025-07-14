@@ -13,6 +13,7 @@ import ProductDetail from "./components/ProductDetail";
 import WhatsAppFAB from "./components/WhatsAppFAB";
 import Header from "./components/Header";
 import products from "./data/products";
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 // Lazy load page components for better code splitting
 const AboutUs = lazy(() => import("./pages/AboutUs"));
@@ -565,9 +566,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </LanguageProvider>
   );
 }
 

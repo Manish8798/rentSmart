@@ -1,6 +1,9 @@
 import React from "react";
+import { useTranslation } from "../contexts/LanguageContext";
 
 const WhatsAppFAB = ({ disabled = false }) => {
+  const { t } = useTranslation();
+
   const handleWhatsAppClick = () => {
     // Don't open WhatsApp if disabled
     if (disabled) return;
@@ -9,18 +12,7 @@ const WhatsAppFAB = ({ disabled = false }) => {
     const phoneNumber = "918448347366"; // Format: country code + number (without + sign)
 
     // Pre-filled message for rental inquiry
-    const message = encodeURIComponent(
-      `Hi RentSmart Team! 👋🏻
-
-I'm interested in renting products from your collection. 
-
-Could you please help me with:
-• Product availability
-• Rental pricing
-• Delivery details
-
-Thank you!`
-    );
+    const message = encodeURIComponent(t("whatsapp.fabMessage"));
 
     // WhatsApp URL
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
