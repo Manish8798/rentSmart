@@ -44,6 +44,11 @@ const RentalCalendar = ({
     }
   };
 
+  // Function to format price with commas
+  const formatPrice = (price) => {
+    return price.toLocaleString('en-IN');
+  };
+
   // Check if product is an adventure item
   const isAdventureItem = () => {
     return productCategory === "Adventure";
@@ -378,21 +383,21 @@ const RentalCalendar = ({
               </p>
             )}
             <p className="total-price">
-              Total Price: <span>₹{pricing.total}</span>
+              Total Price: <span>₹{formatPrice(pricing.total)}</span>
             </p>
             {duration > 0 && (
               <p className="per-unit">
                 {shouldShowSlashedPrice(duration, pricing.perDay) ? (
                   <span className="slashed-pricing">
                     <span className="original-price">
-                      ₹{getBaseDailyRate()}
+                      ₹{formatPrice(getBaseDailyRate())}
                     </span>
-                    <span className="discounted-price">₹{pricing.perDay}</span>
+                    <span className="discounted-price">₹{formatPrice(pricing.perDay)}</span>
                     <span className="per-day-text">per day</span>
                   </span>
                 ) : (
                   <span className="regular-pricing">
-                    <span className="current-price">₹{pricing.perDay}</span>
+                    <span className="current-price">₹{formatPrice(pricing.perDay)}</span>
                     <span className="per-day-text">per day</span>
                   </span>
                 )}
