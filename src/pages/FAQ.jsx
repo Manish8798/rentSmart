@@ -38,7 +38,7 @@ const FAQ = () => {
     {
       question: "How much does the PS5 gaming wheel combo cost?",
       answer:
-        "PS5 + Gaming Wheel combo rental pricing:\n• Daily Rate: ₹499/day\n• Single Day Special: ₹1,499 (70% discount!)\n• Weekend Package: ₹2,999 (67% discount!)\n• Week Special: ₹3,999 (30% discount!)\n• Monthly Deal: ₹7,999 (47% discount!)\n\nFor rentals longer than 20 days, we offer an even better rate of ₹399/day. All packages include free delivery and setup in Delhi NCR.",
+        "PS5 + Gaming Wheel combo rental pricing:\n• Daily Rate: ₹499/day\n• Single Day Special: ₹1,499 (premium convenience package)\n• Weekend Package: ₹2,999 (weekend special package)\n• Week Special: ₹3,999 (30% discount!)\n• Monthly Deal: ₹7,999 (47% discount!)\n\nFor rentals longer than 20 days, we offer an even better rate of ₹399/day. All packages include free delivery and setup in Delhi NCR.",
     },
     {
       question: "Can I rent the PS5 and gaming wheel separately?",

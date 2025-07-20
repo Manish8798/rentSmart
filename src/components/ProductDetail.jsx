@@ -252,7 +252,9 @@ const ProductDetail = ({ onRentNow }) => {
         const dailyRate = 499;
         const standardPrice = duration * dailyRate;
 
-        if (baseTotal < standardPrice) {
+        // Only show discount if the plan is actually cheaper than standard rate
+        // Don't show discount for single day (₹1,499) or weekend (₹2,999) as they're premium pricing
+        if (baseTotal < standardPrice && duration >= 7) {
           discount = Math.round(
             ((standardPrice - baseTotal) / standardPrice) * 100
           );
@@ -496,6 +498,15 @@ Please provide more details.`;
     return name && name.toLowerCase().includes("ps5");
   };
 
+  // Check if this is a PS5 combo product
+  const isPS5ComboProduct = () => {
+    return (
+      name &&
+      name.toLowerCase().includes("ps5") &&
+      name.toLowerCase().includes("gaming wheel")
+    );
+  };
+
   // PS5-specific FAQs
   const ps5FAQs = [
     {
@@ -527,6 +538,40 @@ Please provide more details.`;
       question: "Are there any special deals for PS5 rentals?",
       answer:
         "Yes! We offer several money-saving deals:\n• Week Special: ₹2,499 (Save ₹4,494 vs daily rate)\n• Monthly Deal: ₹5,249 (41% discount - Save ₹3,721!)\n• Bundle deals with additional controllers\n• Seasonal promotions and festive offers\n• Loyalty discounts for repeat customers\n\nLonger rentals offer better value. Check our rental plans above for current pricing and special offers!",
+    },
+  ];
+
+  // PS5 Combo-specific FAQs
+  const ps5ComboFAQs = [
+    {
+      question: "What's included in the PS5 + Gaming Wheel combo rental?",
+      answer:
+        "Your complete PS5 + Gaming Wheel combo includes everything you need for the ultimate racing experience:\n• Sony PlayStation 5 Console (Latest Model)\n• Professional racing wheel with force feedback\n• Responsive pedal system for authentic racing\n• DualSense haptic controller\n• High-speed HDMI cable for 4K gaming\n• Power adapters and all necessary cables\n• Free home delivery, setup, and pickup\n• Gaming guidance and technical support\n\nPerfect for racing enthusiasts who want the complete sim racing setup!",
+    },
+    {
+      question: "How much does the PS5 gaming wheel combo cost to rent?",
+      answer:
+        "PS5 + Gaming Wheel combo rental offers great value with flexible pricing:\n• Daily Rate: ₹499/day\n• Single Day Special: ₹1,499 (premium convenience package)\n• Weekend Package: ₹2,999 (weekend special package)\n• Week Special: ₹3,999 (30% discount!)\n• Monthly Deal: ₹7,999 (47% discount!)\n\nFor rentals longer than 20 days, we offer an even better rate of ₹399/day. All packages include free delivery and setup in Delhi NCR.",
+    },
+    {
+      question: "Is the gaming wheel compatible with all PS5 racing games?",
+      answer:
+        "Yes! Our professional gaming wheel is fully compatible with all major PS5 racing games:\n• Gran Turismo 7 - The ultimate racing simulator\n• F1 23 and F1 24 - Official Formula 1 games\n• Need for Speed series - High-speed action racing\n• Dirt Rally and WRC games - Off-road racing\n• Assetto Corsa Competizione - Professional racing\n• And many more racing titles\n\nThe wheel features force feedback, precise steering, and responsive pedals for an authentic racing experience.",
+    },
+    {
+      question: "Do you provide setup assistance for the racing wheel?",
+      answer:
+        "Absolutely! We provide complete setup and calibration assistance:\n• Professional delivery and setup service\n• Wheel mounting and positioning guidance\n• Pedal placement and adjustment\n• Force feedback calibration for optimal feel\n• Game-specific settings configuration\n• Racing tutorial for first-time users\n• 24/7 technical support during rental period\n\nOur team ensures your racing setup is perfect before we leave!",
+    },
+    {
+      question: "Can I rent the PS5 and gaming wheel separately?",
+      answer:
+        "Yes, you can rent items separately if needed:\n• PS5 Console alone: ₹299/day\n• Gaming Wheel alone: ₹249/day\n• Total if rented separately: ₹548/day\n\nHowever, our combo package offers better value:\n• Combo price: ₹499/day (Save ₹49/day!)\n• Access to special discounted long-term plans\n• Guaranteed compatibility and professional setup\n• Single delivery for convenience\n\nThe combo ensures perfect integration and better overall experience.",
+    },
+    {
+      question: "What racing games work best with this setup?",
+      answer:
+        "This combo excels with simulation and arcade racing games:\n\nSimulation Racing:\n• Gran Turismo 7 - Premium racing simulator\n• Assetto Corsa Competizione - Professional motorsport\n• F1 games - Official Formula 1 experience\n\nArcade Racing:\n• Need for Speed series - High-speed street racing\n• The Crew series - Open-world racing\n• Burnout Paradise - Crash and speed action\n\nOff-Road Racing:\n• Dirt Rally series - Rally championship\n• WRC games - World Rally Championship\n\nWe'll help you choose and set up the perfect games for your racing style!",
     },
   ];
 
@@ -867,42 +912,56 @@ Please provide more details.`;
             </div>
           </div>
 
-          {/* PS5 FAQ Section - Only show for PS5 products */}
+          {/* PS5 FAQ Section - Show specific FAQs based on product type */}
           {isPS5Product() && (
             <div className="product-detail-faq-section">
-              <h3>PS5 Rental FAQs</h3>
+              <h3>
+                {isPS5ComboProduct()
+                  ? "PS5 + Gaming Wheel Combo FAQs"
+                  : "PS5 Rental FAQs"}
+              </h3>
 
               <div className="product-faq-grid">
-                {ps5FAQs.map((faq, index) => (
-                  <div
-                    key={index}
-                    className={`product-faq-item ${
-                      expandedFAQ === index ? "expanded" : ""
-                    }`}
-                    onClick={() => toggleFAQ(index)}
-                  >
-                    <div className="product-faq-question">
-                      <h4>{faq.question}</h4>
-                      <span className="product-faq-icon">
-                        {expandedFAQ === index ? "−" : "+"}
-                      </span>
-                    </div>
+                {(isPS5ComboProduct() ? ps5ComboFAQs : ps5FAQs).map(
+                  (faq, index) => (
                     <div
-                      className={`product-faq-answer ${
-                        expandedFAQ === index ? "show" : ""
+                      key={index}
+                      className={`product-faq-item ${
+                        expandedFAQ === index ? "expanded" : ""
                       }`}
+                      onClick={() => toggleFAQ(index)}
                     >
-                      {faq.answer.split("\n").map((paragraph, i) => (
-                        <p key={i}>{paragraph}</p>
-                      ))}
+                      <div className="product-faq-question">
+                        <h4>{faq.question}</h4>
+                        <span className="product-faq-icon">
+                          {expandedFAQ === index ? "−" : "+"}
+                        </span>
+                      </div>
+                      <div
+                        className={`product-faq-answer ${
+                          expandedFAQ === index ? "show" : ""
+                        }`}
+                      >
+                        {faq.answer.split("\n").map((paragraph, i) => (
+                          <p key={i}>{paragraph}</p>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                )}
               </div>
               <div className="faq-cta">
-                <p>Have more questions about PS5 rental?</p>
+                <p>
+                  {isPS5ComboProduct()
+                    ? "Have more questions about PS5 gaming wheel combo?"
+                    : "Have more questions about PS5 rental?"}
+                </p>
                 <a
-                  href="https://wa.me/918448347366?text=Hi%20RentSmart%20Team!%20I%20have%20questions%20about%20PS5%20rental.%20Could%20you%20please%20help%20me?"
+                  href={
+                    isPS5ComboProduct()
+                      ? "https://wa.me/918448347366?text=Hi%20RentSmart%20Team!%20I%20have%20questions%20about%20PS5%20gaming%20wheel%20combo%20rental.%20Could%20you%20please%20help%20me?"
+                      : "https://wa.me/918448347366?text=Hi%20RentSmart%20Team!%20I%20have%20questions%20about%20PS5%20rental.%20Could%20you%20please%20help%20me?"
+                  }
                   className="faq-cta-button"
                   target="_blank"
                   rel="noopener noreferrer"

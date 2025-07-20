@@ -46,7 +46,7 @@ const RentalCalendar = ({
 
   // Function to format price with commas
   const formatPrice = (price) => {
-    return price.toLocaleString('en-IN');
+    return price.toLocaleString("en-IN");
   };
 
   // Check if product is an adventure item
@@ -57,7 +57,11 @@ const RentalCalendar = ({
   // Function to get the base daily rate for comparison
   const getBaseDailyRate = () => {
     // For PS5 + Gaming Wheel combo, the base rate is 499/day
-    if (productName && productName.toLowerCase().includes("ps5") && productName.toLowerCase().includes("gaming wheel")) {
+    if (
+      productName &&
+      productName.toLowerCase().includes("ps5") &&
+      productName.toLowerCase().includes("gaming wheel")
+    ) {
       return 499;
     }
     // For PS5, the base rate is 299/day
@@ -120,8 +124,12 @@ const RentalCalendar = ({
       }
     } else {
       // Check if this is PS5 + Gaming Wheel combo
-      const isPS5Combo = productName && productName.toLowerCase().includes("ps5") && productName.toLowerCase().includes("gaming wheel");
-      const isPS5 = productName && productName.toLowerCase().includes("ps5") && !isPS5Combo;
+      const isPS5Combo =
+        productName &&
+        productName.toLowerCase().includes("ps5") &&
+        productName.toLowerCase().includes("gaming wheel");
+      const isPS5 =
+        productName && productName.toLowerCase().includes("ps5") && !isPS5Combo;
 
       if (isPS5Combo) {
         // Special pricing for PS5 + Gaming Wheel combo
@@ -200,16 +208,24 @@ const RentalCalendar = ({
       discount = 0;
     } else {
       // Check if this is PS5 + Gaming Wheel combo
-      const isPS5Combo = productName && productName.toLowerCase().includes("ps5") && productName.toLowerCase().includes("gaming wheel");
-      const isPS5 = productName && productName.toLowerCase().includes("ps5") && !isPS5Combo;
+      const isPS5Combo =
+        productName &&
+        productName.toLowerCase().includes("ps5") &&
+        productName.toLowerCase().includes("gaming wheel");
+      const isPS5 =
+        productName && productName.toLowerCase().includes("ps5") && !isPS5Combo;
 
       if (isPS5Combo) {
         // Calculate discount for PS5 combo based on daily rate (499/day)
         const dailyRate = 499;
         const standardPrice = duration * dailyRate;
-        
-        if (baseTotal < standardPrice) {
-          discount = Math.round(((standardPrice - baseTotal) / standardPrice) * 100);
+
+        // Only show discount if the plan is actually cheaper than standard rate
+        // Don't show discount for single day (₹1,499) or weekend (₹2,999) as they're premium pricing
+        if (baseTotal < standardPrice && duration >= 7) {
+          discount = Math.round(
+            ((standardPrice - baseTotal) / standardPrice) * 100
+          );
         }
       } else {
         // Apply discounts for exactly 30 days for non-adventure items
@@ -246,8 +262,12 @@ const RentalCalendar = ({
 
   // Get pricing tier info for display
   const getPricingTierInfo = (duration) => {
-    const isPS5Combo = productName && productName.toLowerCase().includes("ps5") && productName.toLowerCase().includes("gaming wheel");
-    const isPS5 = productName && productName.toLowerCase().includes("ps5") && !isPS5Combo;
+    const isPS5Combo =
+      productName &&
+      productName.toLowerCase().includes("ps5") &&
+      productName.toLowerCase().includes("gaming wheel");
+    const isPS5 =
+      productName && productName.toLowerCase().includes("ps5") && !isPS5Combo;
     const isAdventure = isAdventureItem();
 
     if (isAdventure) {
@@ -268,22 +288,38 @@ const RentalCalendar = ({
       // PS5 + Gaming Wheel combo pricing info
       const pricing = calculateTieredPrice(duration);
       if (duration === 1) {
-        return `Single day special (${pricing.discount > 0 ? pricing.discount + '% discount!' : 'special rate'})`;
+        return `Single day special (${
+          pricing.discount > 0
+            ? pricing.discount + "% discount!"
+            : "special rate"
+        })`;
       } else if (duration === 2) {
-        return `Weekend special (${pricing.discount > 0 ? pricing.discount + '% discount!' : 'special rate'})`;
+        return `Weekend special (${
+          pricing.discount > 0
+            ? pricing.discount + "% discount!"
+            : "special rate"
+        })`;
       } else if (duration === 7) {
-        return `Week special (${pricing.discount > 0 ? pricing.discount + '% discount!' : 'special rate'})`;
+        return `Week special (${
+          pricing.discount > 0
+            ? pricing.discount + "% discount!"
+            : "special rate"
+        })`;
       } else if (duration === 30) {
-        return `Month special (${pricing.discount > 0 ? pricing.discount + '% discount!' : 'special rate'})`;
-             } else if (duration >= 3 && duration <= 6) {
-         return `Short-term rate (₹499/day)`;
-       } else if (duration >= 8 && duration <= 20) {
-         return `Extended rate (₹499/day)`;
-       } else if (duration > 20 && duration < 30) {
-         return `Long-term rate (₹399/day)`;
-       } else if (duration > 30) {
-         return `Long-term rate (₹399/day)`;
-       }
+        return `Month special (${
+          pricing.discount > 0
+            ? pricing.discount + "% discount!"
+            : "special rate"
+        })`;
+      } else if (duration >= 3 && duration <= 6) {
+        return `Short-term rate (₹499/day)`;
+      } else if (duration >= 8 && duration <= 20) {
+        return `Extended rate (₹499/day)`;
+      } else if (duration > 20 && duration < 30) {
+        return `Long-term rate (₹399/day)`;
+      } else if (duration > 30) {
+        return `Long-term rate (₹399/day)`;
+      }
     } else {
       if (duration === 1) {
         return "Single day rate";
@@ -462,12 +498,16 @@ const RentalCalendar = ({
                     <span className="original-price">
                       ₹{formatPrice(getBaseDailyRate())}
                     </span>
-                    <span className="discounted-price">₹{formatPrice(pricing.perDay)}</span>
+                    <span className="discounted-price">
+                      ₹{formatPrice(pricing.perDay)}
+                    </span>
                     <span className="per-day-text">per day</span>
                   </span>
                 ) : (
                   <span className="regular-pricing">
-                    <span className="current-price">₹{formatPrice(pricing.perDay)}</span>
+                    <span className="current-price">
+                      ₹{formatPrice(pricing.perDay)}
+                    </span>
                     <span className="per-day-text">per day</span>
                   </span>
                 )}
