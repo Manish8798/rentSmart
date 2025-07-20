@@ -458,6 +458,10 @@ Please provide more details.`;
         note:
           selectedPlan.discount > 0
             ? `${selectedPlan.label} plan - ${selectedPlan.discount}% discount applied!`
+            : selectedPlan.days === 1
+            ? `${selectedPlan.label} plan - Premium convenience package!`
+            : selectedPlan.days === 2
+            ? `${selectedPlan.label} plan - Perfect for weekend adventures!`
             : `${selectedPlan.label} plan - Great value for longer rentals!`,
       };
     }
