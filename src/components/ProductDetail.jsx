@@ -90,6 +90,14 @@ const ProductDetail = ({ onRentNow }) => {
 
   // Function to get the base daily rate for comparison
   const getBaseDailyRate = () => {
+    // For PS5 + Gaming Wheel combo, the base rate is 499/day
+    if (
+      name &&
+      name.toLowerCase().includes("ps5") &&
+      name.toLowerCase().includes("gaming wheel")
+    ) {
+      return 499;
+    }
     // For PS5, the base rate is 299/day
     if (name && name.toLowerCase().includes("ps5")) {
       return 299;
@@ -149,40 +157,78 @@ const ProductDetail = ({ onRentNow }) => {
         return { total: 0, perDay: 0, tier: "invalid", discount: 0 };
       }
     } else {
-      // Regular pricing for non-adventure items
-      if (duration === 1) {
-        baseTotal = 1000;
-        perDay = 1000;
-        tier = "single-day";
-      } else if (duration === 2) {
-        baseTotal = 2000;
-        perDay = 1000;
-        tier = "two-days";
-      } else if (duration >= 3 && duration <= 7) {
-        // Special pricing for PS5 week plan
-        if (duration === 7 && name && name.toLowerCase().includes("ps5")) {
-          baseTotal = 2499;
-          perDay = Math.round(2499 / 7);
-          tier = "ps5-week-special";
+      // Check if this is PS5 + Gaming Wheel combo
+      const isPS5Combo =
+        name &&
+        name.toLowerCase().includes("ps5") &&
+        name.toLowerCase().includes("gaming wheel");
+      const isPS5 = name && name.toLowerCase().includes("ps5") && !isPS5Combo;
+
+      if (isPS5Combo) {
+        // Special pricing for PS5 + Gaming Wheel combo
+        if (duration === 1) {
+          baseTotal = 1499;
+          perDay = 1499;
+          tier = "ps5-combo-single-day";
+        } else if (duration === 2) {
+          baseTotal = 2999;
+          perDay = Math.round(2999 / 2);
+          tier = "ps5-combo-weekend";
+        } else if (duration === 7) {
+          baseTotal = 3999;
+          perDay = Math.round(3999 / 7);
+          tier = "ps5-combo-week";
+        } else if (duration === 30) {
+          baseTotal = 7999;
+          perDay = Math.round(7999 / 30);
+          tier = "ps5-combo-month";
+        } else if (duration > 20) {
+          // For durations more than 20 days, use 399/day
+          baseTotal = duration * 399;
+          perDay = 399;
+          tier = "ps5-combo-long-term";
         } else {
-          baseTotal = duration * 500;
-          perDay = 500;
-          tier = "short-term";
+          // For other durations (3-20 days), use daily rate of 499
+          baseTotal = duration * 499;
+          perDay = 499;
+          tier = "ps5-combo-custom";
         }
-      } else if (duration >= 8 && duration <= 12) {
-        baseTotal = duration * price;
-        perDay = price;
-        tier = "medium-term";
-      } else if (duration >= 13 && duration <= 29) {
-        baseTotal = duration * 249;
-        perDay = 249;
-        tier = "extended-term";
-      } else if (duration >= 30) {
-        baseTotal = duration * price;
-        perDay = price;
-        tier = "long-term";
       } else {
-        return { total: 0, perDay: 0, tier: "invalid", discount: 0 };
+        // Regular pricing for non-adventure items
+        if (duration === 1) {
+          baseTotal = 1000;
+          perDay = 1000;
+          tier = "single-day";
+        } else if (duration === 2) {
+          baseTotal = 2000;
+          perDay = 1000;
+          tier = "two-days";
+        } else if (duration >= 3 && duration <= 7) {
+          // Special pricing for PS5 week plan
+          if (duration === 7 && isPS5) {
+            baseTotal = 2499;
+            perDay = Math.round(2499 / 7);
+            tier = "ps5-week-special";
+          } else {
+            baseTotal = duration * 500;
+            perDay = 500;
+            tier = "short-term";
+          }
+        } else if (duration >= 8 && duration <= 12) {
+          baseTotal = duration * price;
+          perDay = price;
+          tier = "medium-term";
+        } else if (duration >= 13 && duration <= 29) {
+          baseTotal = duration * 249;
+          perDay = 249;
+          tier = "extended-term";
+        } else if (duration >= 30) {
+          baseTotal = duration * price;
+          perDay = price;
+          tier = "long-term";
+        } else {
+          return { total: 0, perDay: 0, tier: "invalid", discount: 0 };
+        }
       }
     }
 
@@ -194,22 +240,41 @@ const ProductDetail = ({ onRentNow }) => {
       // No discounts for adventure items
       discount = 0;
     } else {
-      // Apply discounts for exactly 30 days for non-adventure items
-      if (duration === 30) {
-        if (name && name.toLowerCase().includes("ps5")) {
-          // Fixed price for PS5 monthly rentals (calculated discount based on daily rate)
-          const dailyRate = 299;
-          const monthlyAtDailyRate = dailyRate * 30; // 8970
-          baseTotal = 5249;
+      // Check if this is PS5 + Gaming Wheel combo
+      const isPS5Combo =
+        name &&
+        name.toLowerCase().includes("ps5") &&
+        name.toLowerCase().includes("gaming wheel");
+      const isPS5 = name && name.toLowerCase().includes("ps5") && !isPS5Combo;
+
+      if (isPS5Combo) {
+        // Calculate discount for PS5 combo based on daily rate (499/day)
+        const dailyRate = 499;
+        const standardPrice = duration * dailyRate;
+
+        if (baseTotal < standardPrice) {
           discount = Math.round(
-            ((monthlyAtDailyRate - baseTotal) / monthlyAtDailyRate) * 100
-          ); // 41% discount
-          tier = "30-day-ps5-special";
-        } else {
-          // Apply 25% discount for other products monthly rentals
-          discount = 25;
-          baseTotal = baseTotal * 0.75;
-          tier = "30-day-special";
+            ((standardPrice - baseTotal) / standardPrice) * 100
+          );
+        }
+      } else {
+        // Apply discounts for exactly 30 days for non-adventure items
+        if (duration === 30) {
+          if (isPS5) {
+            // Fixed price for PS5 monthly rentals (calculated discount based on daily rate)
+            const dailyRate = 299;
+            const monthlyAtDailyRate = dailyRate * 30; // 8970
+            baseTotal = 5249;
+            discount = Math.round(
+              ((monthlyAtDailyRate - baseTotal) / monthlyAtDailyRate) * 100
+            ); // 41% discount
+            tier = "30-day-ps5-special";
+          } else {
+            // Apply 25% discount for other products monthly rentals
+            discount = 25;
+            baseTotal = baseTotal * 0.75;
+            tier = "30-day-special";
+          }
         }
       }
     }

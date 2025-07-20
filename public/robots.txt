@@ -3,6 +3,7 @@ Allow: /
 
 # High priority for PS5 rental content
 Allow: /product/1
+Allow: /product/2
 Allow: /#products-section
 Allow: /blog
 

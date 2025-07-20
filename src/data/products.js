@@ -15,6 +15,25 @@ const products = [
   {
     id: 2,
     category: "Gaming",
+    name: "PS5 + Gaming Wheel + 1 Controller",
+    priority: "High",
+    description:
+      "Ultimate racing experience bundle! PlayStation 5 console with professional gaming wheel featuring force feedback and responsive pedals. Perfect for racing enthusiasts who want the complete sim racing setup with premium haptic feedback and 4K gaming.",
+    shortDescription:
+      "Complete racing setup with PS5 console, professional force feedback gaming wheel, and DualSense controller for the ultimate racing experience.",
+    price: 499,
+    priceUnit: "day",
+    image: base + "images/ps5_combo.png",
+    features: [
+      "Racing Setup",
+      "Force Feedback",
+      "Haptic Controller",
+      "Pro Pedals",
+    ],
+  },
+  {
+    id: 3,
+    category: "Gaming",
     name: "Gaming Wheel",
     priority: "Low",
     description:
@@ -25,7 +44,7 @@ const products = [
     features: ["Force Feedback", "Pedals Included", "Compatible with PS5"],
   },
   {
-    id: 3,
+    id: 4,
     category: "Gaming",
     name: "PlayStation VR2",
     priority: "Medium",
@@ -44,7 +63,7 @@ const products = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     category: "Apple",
     name: "iPad & Pencil",
     priority: "High",
@@ -56,7 +75,7 @@ const products = [
     features: ["M2 Chip", "Apple Pencil 2", "ProMotion Display"],
   },
   {
-    id: 5,
+    id: 6,
     category: "Apple",
     name: "Watch",
     priority: "Low",
@@ -68,7 +87,7 @@ const products = [
     features: ["Health Monitoring", "GPS", "Water Resistant"],
   },
   {
-    id: 6,
+    id: 7,
     category: "Home",
     name: "Smart TV",
     priority: "Medium",
@@ -80,7 +99,7 @@ const products = [
     features: ["4K Resolution", "Smart Features", "Multiple HDMI Ports"],
   },
   {
-    id: 7,
+    id: 8,
     category: "Home",
     name: "Air Purifier",
     priority: "High",
@@ -92,7 +111,7 @@ const products = [
     features: ["HEPA Filter", "Air Quality Sensor", "Quiet Operation"],
   },
   {
-    id: 8,
+    id: 9,
     category: "Home",
     name: "Home Theater",
     priority: "High",
@@ -108,7 +127,7 @@ const products = [
     ],
   },
   {
-    id: 9,
+    id: 10,
     category: "Lifestyle",
     name: "Go Pro",
     priority: "High",
@@ -120,7 +139,7 @@ const products = [
     features: ["4K Video", "Waterproof", "Image Stabilization"],
   },
   {
-    id: 10,
+    id: 11,
     category: "Lifestyle",
     name: "Drone",
     priority: "Medium",
@@ -132,7 +151,7 @@ const products = [
     features: ["4K Camera", "GPS Navigation", "Auto Return"],
   },
   {
-    id: 11,
+    id: 12,
     category: "Lifestyle",
     name: "Ergonomic Chair",
     priority: "Medium",
@@ -144,7 +163,7 @@ const products = [
     features: ["Adjustable Height", "Lumbar Support", "Breathable Mesh"],
   },
   {
-    id: 12,
+    id: 13,
     category: "Adventure",
     name: "Waterproof Shoes",
     priority: "High",
@@ -156,7 +175,7 @@ const products = [
     features: ["Waterproof", "Anti-slip", "Comfortable Fit"],
   },
   {
-    id: 13,
+    id: 14,
     category: "Adventure",
     name: "Backpack",
     priority: "High",
@@ -172,7 +191,7 @@ const products = [
     ],
   },
   {
-    id: 14,
+    id: 15,
     category: "Adventure",
     name: "Trekking Stick",
     priority: "High",
@@ -184,7 +203,7 @@ const products = [
     features: ["Adjustable Height", "Lightweight", "Anti-shock"],
   },
   {
-    id: 15,
+    id: 16,
     category: "Adventure",
     name: "Sleeping Bag",
     priority: "High",
@@ -196,7 +215,7 @@ const products = [
     features: ["Temperature Rating -10°C", "Water Resistant", "Compact Design"],
   },
   {
-    id: 16,
+    id: 17,
     category: "Adventure",
     name: "Winter Jacket",
     priority: "High",
@@ -208,7 +227,7 @@ const products = [
     features: ["Waterproof", "Insulated", "Multiple Pockets"],
   },
   {
-    id: 17,
+    id: 18,
     category: "Adventure",
     name: "Shoes Chain",
     priority: "High",

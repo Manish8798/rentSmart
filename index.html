@@ -9,11 +9,11 @@
     />
     <meta
       name="description"
-      content="PS5 on rent in Delhi NCR! Rent Sony PlayStation 5 console with free delivery. Best PS5 rental rates, flexible plans. Gaming accessories, controllers, VR headsets also available. Book now!"
+      content="PS5 on rent in Delhi NCR! Rent Sony PlayStation 5 console with free delivery. Best PS5 rental rates, flexible plans. Gaming accessories, controllers, VR headsets, PS5 gaming wheel combo also available. Book now!"
     />
     <meta
       name="keywords"
-      content="PS5 on rent, PS5 rental Delhi, rent PS5, PlayStation 5 rental, PS5 on rent near me, PS5 rental service, Sony PS5 rent Delhi NCR, PS5 console rental, gaming console rent, PS5 daily rent, PS5 weekly rent, PS5 monthly rent, rent PlayStation 5"
+      content="PS5 on rent, PS5 rental Delhi, rent PS5, PlayStation 5 rental, PS5 on rent near me, PS5 rental service, Sony PS5 rent Delhi NCR, PS5 console rental, gaming console rent, PS5 daily rent, PS5 weekly rent, PS5 monthly rent, rent PlayStation 5, PS5 gaming wheel combo, PS5 wheel rental, racing wheel PS5"
     />
     <meta name="author" content="RentSmart" />
     <meta name="robots" content="index, follow" />
@@ -245,6 +245,94 @@
       }
     </script>
 
+    <!-- PS5 + Gaming Wheel Combo Product Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "PS5 + Gaming Wheel + Controller Combo Rental",
+        "description": "Ultimate racing experience bundle! PlayStation 5 console with professional gaming wheel featuring force feedback and responsive pedals. Perfect for racing enthusiasts who want the complete sim racing setup with premium haptic feedback and 4K gaming.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Sony"
+        },
+        "model": "PlayStation 5 + Gaming Wheel Bundle",
+        "category": "Gaming Console Bundle",
+        "image": "/images/ps5_combo.png",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": "499",
+          "priceValidUntil": "2025-12-31",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "RentSmart"
+          },
+          "itemCondition": "https://schema.org/NewCondition",
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "0",
+              "currency": "INR"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "businessDays": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ]
+              },
+              "cutoffTime": "18:00",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              }
+            }
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "78",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Rental Period",
+            "value": "Daily, Weekly, Monthly"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Delivery Area",
+            "value": "Delhi NCR"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Setup Service",
+            "value": "Free"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Bundle Includes",
+            "value": "PS5 Console, Gaming Wheel, DualSense Controller"
+          }
+        ]
+      }
+    </script>
+
     <!-- Enhanced Product Categories with PS5 Focus -->
     <script type="application/ld+json">
       {
@@ -280,6 +368,28 @@
             "position": 2,
             "item": {
               "@type": "Product",
+              "name": "PS5 + Gaming Wheel + Controller Combo Rental",
+              "description": "Ultimate racing experience bundle with PlayStation 5 console, professional gaming wheel with force feedback, and DualSense controller",
+              "category": "Gaming Console Bundle",
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "INR",
+                "price": "499",
+                "availability": "https://schema.org/InStock",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "499",
+                  "priceCurrency": "INR",
+                  "unitText": "DAY"
+                }
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "Product",
               "name": "Gaming Wheel & Accessories Rental",
               "description": "Professional racing wheels and gaming accessories compatible with PS5",
               "category": "Gaming Accessories",
@@ -293,7 +403,7 @@
           },
           {
             "@type": "ListItem",
-            "position": 3,
+            "position": 4,
             "item": {
               "@type": "Product",
               "name": "VR Headset Rental",
