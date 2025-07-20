@@ -31,6 +31,26 @@ const FAQ = () => {
         "Yes! We do provide PS5 games with the rental for additional charges:\n• Popular PS5 games available for rent\n• Additional charges apply based on the game\n• Wide selection of latest and classic titles\n• Game discs provided with console rental\n• Mix and match multiple games for your rental period\n\nWe also provide guidance on:\n• Best PS5 games to download\n• PlayStation Plus subscription benefits\n• Popular free-to-play games\n• Exclusive PlayStation games worth trying\n\nContact us on WhatsApp to know game availability and pricing for your rental period.",
     },
     {
+      question: "What is the PS5 + Gaming Wheel combo rental?",
+      answer:
+        "Our PS5 + Gaming Wheel + Controller combo is the ultimate racing experience bundle that includes:\n• Sony PlayStation 5 Console (Latest Model)\n• Professional racing wheel with force feedback\n• Responsive pedal system\n• DualSense haptic controller\n• All necessary cables and adapters\n• Free delivery, setup, and pickup\n\nPerfect for racing enthusiasts who want the complete sim racing setup. Compatible with all PS5 racing games including Gran Turismo, F1 series, and Need for Speed.",
+    },
+    {
+      question: "How much does the PS5 gaming wheel combo cost?",
+      answer:
+        "PS5 + Gaming Wheel combo rental pricing:\n• Daily Rate: ₹499/day\n• Single Day Special: ₹1,499 (70% discount!)\n• Weekend Package: ₹2,999 (67% discount!)\n• Week Special: ₹3,999 (30% discount!)\n• Monthly Deal: ₹7,999 (47% discount!)\n\nFor rentals longer than 20 days, we offer an even better rate of ₹399/day. All packages include free delivery and setup in Delhi NCR.",
+    },
+    {
+      question: "Can I rent the PS5 and gaming wheel separately?",
+      answer:
+        "Yes, you can rent items separately:\n• PS5 Console: ₹299/day\n• Gaming Wheel: ₹249/day\n• Total if rented separately: ₹548/day\n\nHowever, our combo package offers better value at ₹499/day (saving ₹49/day) plus access to special discounted plans for longer rentals. The combo also ensures perfect compatibility and includes professional setup.",
+    },
+    {
+      question: "Is the gaming wheel compatible with all PS5 racing games?",
+      answer:
+        "Yes! Our professional gaming wheel is fully compatible with all PS5 racing games:\n• Gran Turismo 7\n• F1 23 and F1 24\n• Need for Speed series\n• Dirt Rally and WRC games\n• Assetto Corsa Competizione\n• And many more racing titles\n\nThe wheel features force feedback, precise steering, and responsive pedals for an authentic racing experience. Our team will help you set up and calibrate the wheel for optimal performance.",
+    },
+    {
       question: "What if PS5 gets damaged during rental?",
       answer:
         "We understand accidents happen. Here's our damage policy for PS5 rentals:\n• Minor wear and tear: No charges\n• Accidental damage: Repair cost sharing based on damage assessment\n• Complete damage/loss: Security deposit applies\n• Manufacturer defects: No charges to customer\n\nWe recommend handling the PS5 with care and keeping it in a safe, well-ventilated area. Our team provides detailed usage instructions during delivery.",
