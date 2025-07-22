@@ -51,7 +51,7 @@ const translations = {
       },
       delivery: {
         title: "Free Delivery",
-        description: "Get it delivered to your doorstep",
+        description: "Get it delivered to your doorstep with same day delivery available",
       },
       enjoy: {
         title: "Enjoy & Return",
@@ -304,7 +304,7 @@ Thank you!`,
       },
       delivery: {
         title: "मुफ्त डिलीवरी",
-        description: "इसे आपके दरवाजे तक पहुंचाया जाता है",
+        description: "इसे आपके दरवाजे तक पहुंचाया जाता है साथ ही उसी दिन डिलीवरी उपलब्ध है",
       },
       enjoy: {
         title: "आनंद लें और वापस करें",
