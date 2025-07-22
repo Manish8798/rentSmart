@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 const AboutUs = () => {
   const navigate = useNavigate();
@@ -18,6 +19,17 @@ const AboutUs = () => {
 
   return (
     <>
+      <SEO
+        title="About RentSmart | Same-Day Delivery PS5 Rental Delhi NCR | Fast & Affordable"
+        description="⚡ RentSmart offers same-day PS5 rental delivery across Delhi NCR! 🚚 Fast 2-4 hour delivery to Gurugram, Noida, Dwarka. 💰 Save 70% vs buying with affordable rental packages. 100+ happy customers!"
+        keywords="about RentSmart, PS5 rental Delhi NCR, same day delivery, fast delivery, affordable PS5 rental, gaming console rental Delhi, technology rental service"
+        ogTitle="About RentSmart | Same-Day Delivery PS5 Rental Delhi NCR"
+        ogDescription="⚡ RentSmart offers same-day PS5 rental delivery across Delhi NCR! 🚚 Fast 2-4 hour delivery. 💰 Save 70% vs buying with affordable packages."
+        twitterTitle="About RentSmart | Same-Day Delivery PS5 Rental Delhi NCR"
+        twitterDescription="⚡ RentSmart offers same-day PS5 rental delivery across Delhi NCR! 🚚 Fast 2-4 hour delivery. 💰 Save 70% vs buying."
+        canonical="https://rentsmart.in/about"
+      />
+
       {/* Hero Section */}
       <section className="about-hero">
         <div className="container">

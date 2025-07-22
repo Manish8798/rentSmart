@@ -1,9 +1,21 @@
 import React from "react";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 const PrivacyPolicy = () => {
   return (
     <div className="privacy-policy">
+      <SEO
+        title="Privacy Policy | Secure PS5 Rental Booking Delhi NCR | Fast Delivery Service"
+        description="🔒 RentSmart privacy policy: Secure PS5 rental booking process. ⚡ Safe same-day delivery across Delhi NCR. 💰 Affordable rates available. Your data is protected & secure."
+        keywords="privacy policy, secure PS5 rental booking, safe delivery Delhi NCR, data protection rental service, secure gaming console rental, privacy protection"
+        ogTitle="Privacy Policy | Secure PS5 Rental Booking Delhi NCR"
+        ogDescription="🔒 RentSmart privacy policy: Secure PS5 rental booking. ⚡ Safe same-day delivery across Delhi NCR. Your data is protected!"
+        twitterTitle="Privacy Policy | Secure PS5 Rental Booking"
+        twitterDescription="🔒 RentSmart privacy policy: Secure PS5 rental booking. ⚡ Safe same-day delivery. Your data is protected!"
+        canonical="https://rentsmart.in/privacy"
+      />
+
       <div className="container">
         <div className="privacy-header">
           <h1>Privacy Policy</h1>

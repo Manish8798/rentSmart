@@ -1,9 +1,21 @@
 import React from "react";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 const ShippingPolicy = () => {
   return (
     <div className="shipping-policy">
+      <SEO
+        title="Shipping Policy | Fast PS5 Delivery Delhi NCR | Same-Day Delivery Service"
+        description="🚚 RentSmart shipping: ⚡ Same-day PS5 delivery in 2-4 hours across Delhi, Gurugram, Noida! 💰 Free delivery on affordable rentals. Professional setup included!"
+        keywords="PS5 delivery policy, same day delivery Delhi NCR, fast shipping policy, PS5 rental delivery, gaming console delivery, shipping terms"
+        ogTitle="Shipping Policy | Fast PS5 Delivery Delhi NCR | Same-Day Service"
+        ogDescription="🚚 RentSmart shipping: ⚡ Same-day PS5 delivery in 2-4 hours across Delhi NCR! 💰 Free delivery on affordable rentals!"
+        twitterTitle="Shipping Policy | Fast PS5 Delivery Delhi NCR"
+        twitterDescription="🚚 RentSmart shipping: ⚡ Same-day PS5 delivery in 2-4 hours! 💰 Free delivery on affordable rentals!"
+        canonical="https://rentsmart.in/shipping"
+      />
+
       <div className="container">
         <div className="shipping-header">
           <h1>Shipping Policy</h1>

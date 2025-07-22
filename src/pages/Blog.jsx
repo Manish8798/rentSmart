@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -250,6 +251,17 @@ const Blog = () => {
 
   return (
     <>
+      <SEO 
+        title="PS5 Rental Blog Delhi NCR | Fast Delivery Tips & Affordable Gaming Deals"
+        description="📚 Get PS5 rental tips & affordable gaming deals! ⚡ Same-day delivery guides for Delhi, Gurugram, Noida. 💰 Learn how to save 70% vs buying PS5. Expert reviews & fast booking tips."
+        keywords="PS5 rental blog, gaming console rental tips, affordable PS5 deals Delhi NCR, fast delivery gaming, PS5 rental guide, gaming blog Delhi, rental service blog"
+        ogTitle="PS5 Rental Blog Delhi NCR | Fast Delivery Tips & Affordable Gaming"
+        ogDescription="📚 Get PS5 rental tips & affordable gaming deals! ⚡ Same-day delivery guides for Delhi NCR. 💰 Learn how to save 70% vs buying PS5."
+        twitterTitle="PS5 Rental Blog Delhi NCR | Fast Delivery Tips"
+        twitterDescription="📚 Get PS5 rental tips & affordable gaming deals! ⚡ Same-day delivery guides for Delhi NCR. Learn how to save 70%!"
+        canonical="https://rentsmart.in/blog"
+      />
+      
       {/* Hero Section */}
       <section className="blog-hero">
         <div className="container">

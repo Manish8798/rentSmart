@@ -1,9 +1,21 @@
 import React from "react";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 const TermsConditions = () => {
   return (
     <div className="terms-conditions">
+      <SEO
+        title="Terms & Conditions | Fast PS5 Rental Delivery Delhi NCR | Affordable Rates"
+        description="📋 RentSmart rental terms: ⚡ Same-day delivery in 2-4 hours across Delhi NCR. 💰 Transparent pricing available. Zero hidden fees, flexible rental periods, secure booking process."
+        keywords="PS5 rental terms conditions, fast delivery terms, affordable rental policy, PS5 rental Delhi NCR terms, gaming console rental terms, rental agreement"
+        ogTitle="Terms & Conditions | Fast PS5 Rental Delivery Delhi NCR"
+        ogDescription="📋 RentSmart rental terms: ⚡ Same-day delivery in 2-4 hours. 💰 Transparent pricing available. Zero hidden fees!"
+        twitterTitle="Terms & Conditions | Fast PS5 Rental Delivery"
+        twitterDescription="📋 RentSmart rental terms: ⚡ Same-day delivery in 2-4 hours. 💰 Transparent pricing available!"
+        canonical="https://rentsmart.in/terms"
+      />
+
       <div className="container">
         <div className="terms-header">
           <h1>Rental Terms & Conditions</h1>

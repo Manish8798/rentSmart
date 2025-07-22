@@ -1,9 +1,21 @@
 import React from "react";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 const DamagePolicy = () => {
   return (
     <div className="damage-policy">
+      <SEO
+        title="Damage Policy | Secure PS5 Rental Delhi NCR | Fast Delivery & Affordable Rates"
+        description="🛡️ RentSmart damage policy: Fair & transparent terms for PS5 rental. ⚡ Same-day delivery across Delhi NCR. 💰 Affordable protection available. Secure gaming experience!"
+        keywords="PS5 rental damage policy, gaming console protection, rental insurance, secure PS5 rental, damage protection Delhi NCR, rental safety"
+        ogTitle="Damage Policy | Secure PS5 Rental Delhi NCR | Affordable Protection"
+        ogDescription="🛡️ RentSmart damage policy: Fair & transparent terms for PS5 rental. ⚡ Same-day delivery. 💰 Affordable protection available!"
+        twitterTitle="Damage Policy | Secure PS5 Rental Delhi NCR"
+        twitterDescription="🛡️ RentSmart damage policy: Fair & transparent terms for PS5 rental. ⚡ Same-day delivery. Affordable protection!"
+        canonical="https://rentsmart.in/damage-policy"
+      />
+
       <div className="container">
         <div className="damage-header">
           <h1>Damage Policy</h1>

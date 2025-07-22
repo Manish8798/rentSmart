@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 const FAQ = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -108,6 +109,17 @@ const FAQ = () => {
 
   return (
     <>
+      <SEO
+        title="PS5 Rental FAQ | Fast Delivery & Affordable Pricing Delhi NCR | RentSmart"
+        description="❓ Get answers about PS5 rental! ⚡ Same-day delivery in 2-4 hours across Delhi NCR. 💰 Affordable daily, weekly & monthly rates available. Free setup included!"
+        keywords="PS5 rental FAQ, gaming console rental questions, fast delivery FAQ, affordable PS5 rental pricing, PS5 rental Delhi NCR questions, gaming rental FAQ"
+        ogTitle="PS5 Rental FAQ | Fast Delivery & Affordable Pricing Delhi NCR"
+        ogDescription="❓ Get answers about PS5 rental! ⚡ Same-day delivery in 2-4 hours across Delhi NCR. 💰 Affordable rates available. Free setup!"
+        twitterTitle="PS5 Rental FAQ | Fast Delivery & Affordable Pricing"
+        twitterDescription="❓ Get answers about PS5 rental! ⚡ Same-day delivery in 2-4 hours. 💰 Affordable rates available!"
+        canonical="https://rentsmart.in/faq"
+      />
+
       {/* Hero Section */}
       <section className="faq-hero">
         <div className="container">

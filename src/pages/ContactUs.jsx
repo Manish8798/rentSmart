@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -67,6 +68,17 @@ Thank you for your time!`;
 
   return (
     <div className="contact-us-page">
+      <SEO
+        title="Contact RentSmart | Fast PS5 Delivery Delhi NCR | WhatsApp +91-8448347366"
+        description="📞 Contact RentSmart for instant PS5 rental booking! ⚡ Same-day delivery in 2-4 hours across Delhi, Gurugram, Noida. 💰 Affordable rates available. WhatsApp +91-8448347366 for fast response!"
+        keywords="contact RentSmart, PS5 rental booking, WhatsApp booking, fast delivery Delhi NCR, PS5 rental contact, gaming console rental contact, same day delivery booking"
+        ogTitle="Contact RentSmart | Fast PS5 Delivery Delhi NCR"
+        ogDescription="📞 Contact RentSmart for instant PS5 rental booking! ⚡ Same-day delivery in 2-4 hours. 💰 Affordable rates available. WhatsApp +91-8448347366!"
+        twitterTitle="Contact RentSmart | Fast PS5 Delivery Delhi NCR"
+        twitterDescription="📞 Contact RentSmart for instant PS5 rental booking! ⚡ Same-day delivery in 2-4 hours. Affordable rates. WhatsApp +91-8448347366!"
+        canonical="https://rentsmart.in/contact"
+      />
+
       {/* Hero Section */}
       <section className="contact-hero">
         <div className="container">
