@@ -62,7 +62,7 @@ function AppContent() {
     "@type": "Store",
     name: "RentSmart",
     description:
-      "PS5 on rent in Delhi NCR! Premium PlayStation 5 rental service with flexible rental terms. Also offering Apple products and adventure gear with free delivery.",
+      "PS5 rental Delhi same day delivery! Instant PS5 rent Delhi NCR zero deposit. Rent PS5 in Gurugram, Noida, West Delhi, Dwarka. Affordable PS5 rental packages with games, flexible rental terms and free home delivery.",
     url: "https://rentsmart.in",
     potentialAction: {
       "@type": "SearchAction",
@@ -73,10 +73,10 @@ function AppContent() {
       "@type": "AggregateOffer",
       availability: "https://schema.org/InStock",
       category: [
-        "PS5 Rental",
-        "Gaming Consoles",
-        "Apple Products",
-        "Adventure Equipment",
+        "PS5 Rental Delhi",
+        "Gaming Consoles Delhi NCR",
+        "Apple Products Rental",
+        "Adventure Equipment Rental",
       ],
     },
   };
@@ -84,7 +84,7 @@ function AppContent() {
   useEffect(() => {
     // Update meta tags
     document.title =
-      "PS5 on Rent Delhi NCR - Gaming Console Rentals Near Me | Apple, Adventure Gear | RentSmart";
+      "PS5 Rental Delhi Same Day Delivery | Instant PS5 Rent Delhi NCR Zero Deposit | RentSmart";
 
     // Update or create meta description
     let metaDescription = document.querySelector('meta[name="description"]');
@@ -94,7 +94,7 @@ function AppContent() {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content =
-      "PS5 on rent Delhi NCR with free delivery! Premium PlayStation 5 console rentals near you. Apple products, adventure gear & gaming accessories. Flexible rental plans, best rates guaranteed.";
+      "PS5 rental Delhi same day delivery! Instant PS5 rent Delhi NCR zero deposit. Rent PS5 in Gurugram, Noida, West Delhi, Dwarka. Affordable PS5 rental packages with games. PS5 home delivery, weekend deals available.";
 
     // Update or create meta keywords
     let metaKeywords = document.querySelector('meta[name="keywords"]');
@@ -104,19 +104,19 @@ function AppContent() {
       document.head.appendChild(metaKeywords);
     }
     metaKeywords.content =
-      "PS5 on rent, PS5 rental Delhi, gaming console rental, PlayStation 5 rent, Apple products rental, adventure gear rental, electronics on rent Delhi NCR, PS5 rent near me, gaming equipment rental, premium rentals, flexible rental plans";
+      "PS5 rental Delhi same day delivery, instant PS5 rent Delhi, PS5 rent Delhi NCR zero deposit, rent PS5 in Gurugram, PS5 on rent Noida, PS5 rent West Delhi, PS5 home delivery Dwarka, affordable PS5 rental Delhi, PS5 packages with games Delhi, PS5 rent weekend deal Delhi, PS5 on rent near me, PlayStation 5 rental service, Sony PS5 rent Delhi NCR, gaming console rental, flexible rental plans";
 
     // Add Open Graph tags
     const ogTags = [
       {
         property: "og:title",
         content:
-          "PS5 on Rent Delhi NCR - Gaming Console Rentals Near Me | Apple, Adventure Gear | RentSmart",
+          "PS5 Rental Delhi Same Day Delivery | Instant PS5 Rent Delhi NCR Zero Deposit | RentSmart",
       },
       {
         property: "og:description",
         content:
-          "PS5 on rent Delhi NCR with free delivery! Premium PlayStation 5 console rentals near you. Apple products, adventure gear & gaming accessories available.",
+          "PS5 rental Delhi same day delivery! Instant PS5 rent Delhi NCR zero deposit. Rent PS5 in Gurugram, Noida, West Delhi, Dwarka. Affordable PS5 rental packages with games available.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://rentsmart.in" },
