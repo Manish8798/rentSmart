@@ -251,17 +251,17 @@ const Blog = () => {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="PS5 Rental Blog Delhi NCR | Fast Delivery Tips & Affordable Gaming Deals"
         description="📚 Get PS5 rental tips & affordable gaming deals! ⚡ Same-day delivery guides for Delhi, Gurugram, Noida. 💰 Learn how to save 70% vs buying PS5. Expert reviews & fast booking tips."
-        keywords="PS5 rental blog, gaming console rental tips, affordable PS5 deals Delhi NCR, fast delivery gaming, PS5 rental guide, gaming blog Delhi, rental service blog"
+        keywords="PS5 rental blog, PS5 on rent near me, gaming console rental tips, affordable PS5 deals Delhi NCR, fast delivery gaming, PS5 rental guide, gaming blog Delhi, rental service blog, PS5 rental near me"
         ogTitle="PS5 Rental Blog Delhi NCR | Fast Delivery Tips & Affordable Gaming"
         ogDescription="📚 Get PS5 rental tips & affordable gaming deals! ⚡ Same-day delivery guides for Delhi NCR. 💰 Learn how to save 70% vs buying PS5."
         twitterTitle="PS5 Rental Blog Delhi NCR | Fast Delivery Tips"
         twitterDescription="📚 Get PS5 rental tips & affordable gaming deals! ⚡ Same-day delivery guides for Delhi NCR. Learn how to save 70%!"
         canonical="https://rentsmart.in/blog"
       />
-      
+
       {/* Hero Section */}
       <section className="blog-hero">
         <div className="container">

@@ -10,8 +10,32 @@ const SEO = ({
   twitterTitle,
   twitterDescription,
   canonical,
+  ogType = "website",
+  ogUrl,
 }) => {
   useEffect(() => {
+    // Helper function to create or update meta tags
+    const updateMetaTag = (selector, attribute, attributeValue, content) => {
+      let meta = document.querySelector(selector);
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.setAttribute(attribute, attributeValue);
+        document.head.appendChild(meta);
+      }
+      meta.content = content;
+    };
+
+    // Helper function to create or update link tags
+    const updateLinkTag = (rel, href) => {
+      let link = document.querySelector(`link[rel="${rel}"]`);
+      if (!link) {
+        link = document.createElement("link");
+        link.rel = rel;
+        document.head.appendChild(link);
+      }
+      link.href = href;
+    };
+
     // Update page title
     if (title) {
       document.title = title;
@@ -19,97 +43,146 @@ const SEO = ({
 
     // Update meta description
     if (description) {
-      let metaDescription = document.querySelector('meta[name="description"]');
-      if (!metaDescription) {
-        metaDescription = document.createElement("meta");
-        metaDescription.name = "description";
-        document.head.appendChild(metaDescription);
-      }
-      metaDescription.content = description;
+      updateMetaTag(
+        'meta[name="description"]',
+        "name",
+        "description",
+        description
+      );
     }
 
     // Update keywords
     if (keywords) {
-      let metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (!metaKeywords) {
-        metaKeywords = document.createElement("meta");
-        metaKeywords.name = "keywords";
-        document.head.appendChild(metaKeywords);
-      }
-      metaKeywords.content = keywords;
+      updateMetaTag('meta[name="keywords"]', "name", "keywords", keywords);
     }
 
-    // Update Open Graph title
+    // Add robots meta if not exists
+    if (!document.querySelector('meta[name="robots"]')) {
+      updateMetaTag(
+        'meta[name="robots"]',
+        "name",
+        "robots",
+        "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+      );
+    }
+
+    // Add viewport meta if not exists
+    if (!document.querySelector('meta[name="viewport"]')) {
+      updateMetaTag(
+        'meta[name="viewport"]',
+        "name",
+        "viewport",
+        "width=device-width, initial-scale=1.0"
+      );
+    }
+
+    // Convert relative URLs to absolute for social sharing
+    const getAbsoluteUrl = (url) => {
+      if (url.startsWith("http")) return url;
+      return `${window.location.origin}${url}`;
+    };
+
+    // Open Graph tags
     if (ogTitle) {
-      let ogTitleMeta = document.querySelector('meta[property="og:title"]');
-      if (!ogTitleMeta) {
-        ogTitleMeta = document.createElement("meta");
-        ogTitleMeta.setAttribute("property", "og:title");
-        document.head.appendChild(ogTitleMeta);
-      }
-      ogTitleMeta.content = ogTitle;
+      updateMetaTag(
+        'meta[property="og:title"]',
+        "property",
+        "og:title",
+        ogTitle
+      );
     }
 
-    // Update Open Graph description
     if (ogDescription) {
-      let ogDescMeta = document.querySelector(
-        'meta[property="og:description"]'
+      updateMetaTag(
+        'meta[property="og:description"]',
+        "property",
+        "og:description",
+        ogDescription
       );
-      if (!ogDescMeta) {
-        ogDescMeta = document.createElement("meta");
-        ogDescMeta.setAttribute("property", "og:description");
-        document.head.appendChild(ogDescMeta);
-      }
-      ogDescMeta.content = ogDescription;
     }
 
-    // Update Open Graph image
     if (ogImage) {
-      let ogImageMeta = document.querySelector('meta[property="og:image"]');
-      if (!ogImageMeta) {
-        ogImageMeta = document.createElement("meta");
-        ogImageMeta.setAttribute("property", "og:image");
-        document.head.appendChild(ogImageMeta);
-      }
-      ogImageMeta.content = ogImage;
+      updateMetaTag(
+        'meta[property="og:image"]',
+        "property",
+        "og:image",
+        getAbsoluteUrl(ogImage)
+      );
     }
 
-    // Update Twitter title
+    // Add missing essential Open Graph properties
+    updateMetaTag('meta[property="og:type"]', "property", "og:type", ogType);
+    updateMetaTag(
+      'meta[property="og:site_name"]',
+      "property",
+      "og:site_name",
+      "RentSmart"
+    );
+
+    if (ogUrl) {
+      updateMetaTag(
+        'meta[property="og:url"]',
+        "property",
+        "og:url",
+        getAbsoluteUrl(ogUrl)
+      );
+    } else {
+      updateMetaTag(
+        'meta[property="og:url"]',
+        "property",
+        "og:url",
+        window.location.href
+      );
+    }
+
+    // Twitter Card tags
+    updateMetaTag(
+      'meta[name="twitter:card"]',
+      "name",
+      "twitter:card",
+      "summary_large_image"
+    );
+
     if (twitterTitle) {
-      let twitterTitleMeta = document.querySelector(
-        'meta[name="twitter:title"]'
+      updateMetaTag(
+        'meta[name="twitter:title"]',
+        "name",
+        "twitter:title",
+        twitterTitle
       );
-      if (!twitterTitleMeta) {
-        twitterTitleMeta = document.createElement("meta");
-        twitterTitleMeta.name = "twitter:title";
-        document.head.appendChild(twitterTitleMeta);
-      }
-      twitterTitleMeta.content = twitterTitle;
     }
 
-    // Update Twitter description
     if (twitterDescription) {
-      let twitterDescMeta = document.querySelector(
-        'meta[name="twitter:description"]'
+      updateMetaTag(
+        'meta[name="twitter:description"]',
+        "name",
+        "twitter:description",
+        twitterDescription
       );
-      if (!twitterDescMeta) {
-        twitterDescMeta = document.createElement("meta");
-        twitterDescMeta.name = "twitter:description";
-        document.head.appendChild(twitterDescMeta);
-      }
-      twitterDescMeta.content = twitterDescription;
+    }
+
+    // Twitter image (use same as og:image)
+    if (ogImage) {
+      updateMetaTag(
+        'meta[name="twitter:image"]',
+        "name",
+        "twitter:image",
+        getAbsoluteUrl(ogImage)
+      );
     }
 
     // Update canonical URL
     if (canonical) {
-      let canonicalLink = document.querySelector('link[rel="canonical"]');
-      if (!canonicalLink) {
-        canonicalLink = document.createElement("link");
-        canonicalLink.rel = "canonical";
-        document.head.appendChild(canonicalLink);
-      }
-      canonicalLink.href = canonical;
+      updateLinkTag("canonical", getAbsoluteUrl(canonical));
     }
+
+    // Add generator meta
+    updateMetaTag(
+      'meta[name="generator"]',
+      "name",
+      "generator",
+      "RentSmart React App"
+    );
   }, [
     title,
     description,
@@ -120,6 +193,8 @@ const SEO = ({
     twitterTitle,
     twitterDescription,
     canonical,
+    ogType,
+    ogUrl,
   ]);
 
   return null; // This component doesn't render anything

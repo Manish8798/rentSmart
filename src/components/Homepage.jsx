@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ProductGrid from "./ProductGrid";
 import Footer from "./Footer";
+import SEO from "./SEO";
 import products from "../data/products";
 import { useTranslation } from "../contexts/LanguageContext";
 
@@ -143,6 +144,19 @@ const Homepage = ({ searchQuery = "", onRentNow, onCalendarStateChange }) => {
 
   return (
     <>
+      <SEO
+        title="PS5 Rental Delhi NCR | Same-Day Delivery ₹999/day | Gaming Console Rent"
+        description="🎮 Rent PS5 Delhi NCR starting ₹999/day! ⚡ Same-day delivery in 2-4 hours across Delhi, Gurugram, Noida. 💰 Weekly ₹2499, Monthly ₹5249. Free setup included!"
+        keywords="PS5 on rent near me, PS5 rental Delhi NCR, PlayStation 5 rent, gaming console rental, PS5 rent Delhi, PS5 rental Gurugram, PS5 rent Noida, same day delivery gaming, affordable PS5 rental, PS5 on rent near me Delhi, PS5 rental near me, gaming console rent near me, PS5 home delivery near me, rent PS5 nearby"
+        ogTitle="PS5 Rental Delhi NCR | Same-Day Delivery ₹999/day"
+        ogDescription="🎮 Rent PS5 Delhi NCR starting ₹999/day! ⚡ Same-day delivery in 2-4 hours. 💰 Weekly ₹2499, Monthly ₹5249. Free setup!"
+        twitterTitle="PS5 Rental Delhi NCR | Same-Day Delivery ₹999/day"
+        twitterDescription="🎮 Rent PS5 Delhi NCR starting ₹999/day! ⚡ Same-day delivery in 2-4 hours. 💰 Affordable rates!"
+        canonical="https://rentsmart.in"
+        ogType="website"
+        ogUrl="https://rentsmart.in"
+      />
+
       {/* Hero Section */}
       <section className="hero" role="banner" aria-label="Main banner">
         <div className="hero-content">

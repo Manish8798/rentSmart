@@ -22,7 +22,7 @@ const AboutUs = () => {
       <SEO
         title="About RentSmart | Same-Day Delivery PS5 Rental Delhi NCR | Fast & Affordable"
         description="⚡ RentSmart offers same-day PS5 rental delivery across Delhi NCR! 🚚 Fast 2-4 hour delivery to Gurugram, Noida, Dwarka. 💰 Save 70% vs buying with affordable rental packages. 100+ happy customers!"
-        keywords="about RentSmart, PS5 rental Delhi NCR, same day delivery, fast delivery, affordable PS5 rental, gaming console rental Delhi, technology rental service"
+        keywords="about RentSmart, PS5 on rent near me, PS5 rental Delhi NCR, same day delivery, fast delivery, affordable PS5 rental, gaming console rental Delhi, technology rental service, PS5 rental near me"
         ogTitle="About RentSmart | Same-Day Delivery PS5 Rental Delhi NCR"
         ogDescription="⚡ RentSmart offers same-day PS5 rental delivery across Delhi NCR! 🚚 Fast 2-4 hour delivery. 💰 Save 70% vs buying with affordable packages."
         twitterTitle="About RentSmart | Same-Day Delivery PS5 Rental Delhi NCR"

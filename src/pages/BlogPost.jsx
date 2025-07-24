@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -212,18 +213,6 @@ const BlogPost = () => {
     const foundPost = blogPosts.find((p) => p.id === parseInt(id));
     if (foundPost) {
       setPost(foundPost);
-
-      // Update page title and meta description
-      document.title = `${foundPost.title} | RentSmart Blog`;
-
-      // Update meta description
-      let metaDescription = document.querySelector('meta[name="description"]');
-      if (!metaDescription) {
-        metaDescription = document.createElement("meta");
-        metaDescription.name = "description";
-        document.head.appendChild(metaDescription);
-      }
-      metaDescription.content = foundPost.excerpt;
     } else {
       // Post not found, redirect to blog
       navigate("/blog");
@@ -279,6 +268,21 @@ const BlogPost = () => {
 
   return (
     <>
+      {post && (
+        <SEO
+          title={`${post.title} | RentSmart Blog`}
+          description={post.excerpt}
+          keywords={`${post.title}, PS5 on rent near me, gaming blog, rental guide, ${post.category} rental, PS5 rental near me`}
+          ogTitle={`${post.title} | RentSmart Blog`}
+          ogDescription={post.excerpt}
+          twitterTitle={`${post.title} | RentSmart Blog`}
+          twitterDescription={post.excerpt}
+          canonical={`https://rentsmart.in/blog/${post.id}`}
+          ogType="article"
+          ogUrl={`https://rentsmart.in/blog/${post.id}`}
+        />
+      )}
+
       {/* Blog Post Header */}
       <section className="blog-post-header">
         <div className="container">

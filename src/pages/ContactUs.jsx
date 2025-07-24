@@ -71,7 +71,7 @@ Thank you for your time!`;
       <SEO
         title="Contact RentSmart | Fast PS5 Delivery Delhi NCR | WhatsApp +91-8448347366"
         description="📞 Contact RentSmart for instant PS5 rental booking! ⚡ Same-day delivery in 2-4 hours across Delhi, Gurugram, Noida. 💰 Affordable rates available. WhatsApp +91-8448347366 for fast response!"
-        keywords="contact RentSmart, PS5 rental booking, WhatsApp booking, fast delivery Delhi NCR, PS5 rental contact, gaming console rental contact, same day delivery booking"
+        keywords="contact RentSmart, PS5 on rent near me, PS5 rental booking, WhatsApp booking, fast delivery Delhi NCR, PS5 rental contact, gaming console rental contact, same day delivery booking, PS5 rental near me"
         ogTitle="Contact RentSmart | Fast PS5 Delivery Delhi NCR"
         ogDescription="📞 Contact RentSmart for instant PS5 rental booking! ⚡ Same-day delivery in 2-4 hours. 💰 Affordable rates available. WhatsApp +91-8448347366!"
         twitterTitle="Contact RentSmart | Fast PS5 Delivery Delhi NCR"

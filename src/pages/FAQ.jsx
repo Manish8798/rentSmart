@@ -112,7 +112,7 @@ const FAQ = () => {
       <SEO
         title="PS5 Rental FAQ | Fast Delivery & Affordable Pricing Delhi NCR | RentSmart"
         description="❓ Get answers about PS5 rental! ⚡ Same-day delivery in 2-4 hours across Delhi NCR. 💰 Affordable daily, weekly & monthly rates available. Free setup included!"
-        keywords="PS5 rental FAQ, gaming console rental questions, fast delivery FAQ, affordable PS5 rental pricing, PS5 rental Delhi NCR questions, gaming rental FAQ"
+        keywords="PS5 rental FAQ, PS5 on rent near me, gaming console rental questions, fast delivery FAQ, affordable PS5 rental pricing, PS5 rental Delhi NCR questions, gaming rental FAQ, PS5 rental near me"
         ogTitle="PS5 Rental FAQ | Fast Delivery & Affordable Pricing Delhi NCR"
         ogDescription="❓ Get answers about PS5 rental! ⚡ Same-day delivery in 2-4 hours across Delhi NCR. 💰 Affordable rates available. Free setup!"
         twitterTitle="PS5 Rental FAQ | Fast Delivery & Affordable Pricing"

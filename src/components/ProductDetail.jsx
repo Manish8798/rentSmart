@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import products from "../data/products";
 import RentalCalendar from "./RentalCalendar";
 import Footer from "./Footer";
+import SEO from "./SEO";
 
 const ProductDetail = ({ onRentNow }) => {
   const { id } = useParams();
@@ -593,6 +594,20 @@ Please provide more details.`;
 
   return (
     <div className="product-detail-container">
+      <SEO
+        title={`${product.name} Rental Delhi NCR | ${product.price}${product.priceUnit} | Fast Delivery`}
+        description={`🎮 Rent ${product.name} in Delhi NCR starting ${product.price}${product.priceUnit}! ⚡ Same-day delivery in 2-4 hours. 💰 Affordable rental rates. Free setup included!`}
+        keywords={`${product.name} on rent near me, ${product.name} rental, ${product.category} rental Delhi NCR, ${product.name} rent, gaming console rental, affordable ${product.name} rental, ${product.name} rental near me, ${product.name} home delivery near me, rent ${product.name} nearby`}
+        ogTitle={`${product.name} Rental Delhi NCR | ${product.price}${product.priceUnit}`}
+        ogDescription={`🎮 Rent ${product.name} in Delhi NCR starting ${product.price}${product.priceUnit}! ⚡ Same-day delivery in 2-4 hours.`}
+        ogImage={product.image}
+        twitterTitle={`${product.name} Rental Delhi NCR | ${product.price}${product.priceUnit}`}
+        twitterDescription={`🎮 Rent ${product.name} starting ${product.price}${product.priceUnit}! ⚡ Same-day delivery in Delhi NCR.`}
+        canonical={`https://rentsmart.in/product/${product.id}`}
+        ogType="product"
+        ogUrl={`https://rentsmart.in/product/${product.id}`}
+      />
+
       <div className="product-detail-header">
         <button onClick={() => navigate("/")} className="back-button">
           <svg

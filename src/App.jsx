@@ -82,67 +82,7 @@ function AppContent() {
   };
 
   useEffect(() => {
-    // Update meta tags
-    document.title =
-      "PS5 Rental Delhi Same Day Delivery | Instant PS5 Rent Delhi NCR Zero Deposit | RentSmart";
-
-    // Update or create meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement("meta");
-      metaDescription.name = "description";
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.content =
-      "PS5 rental Delhi same day delivery! Instant PS5 rent Delhi NCR zero deposit. Rent PS5 in Gurugram, Noida, West Delhi, Dwarka. Affordable PS5 rental packages with games. PS5 home delivery, weekend deals available.";
-
-    // Update or create meta keywords
-    let metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (!metaKeywords) {
-      metaKeywords = document.createElement("meta");
-      metaKeywords.name = "keywords";
-      document.head.appendChild(metaKeywords);
-    }
-    metaKeywords.content =
-      "PS5 rental Delhi same day delivery, instant PS5 rent Delhi, PS5 rent Delhi NCR zero deposit, rent PS5 in Gurugram, PS5 on rent Noida, PS5 rent West Delhi, PS5 home delivery Dwarka, affordable PS5 rental Delhi, PS5 packages with games Delhi, PS5 rent weekend deal Delhi, PS5 on rent near me, PlayStation 5 rental service, Sony PS5 rent Delhi NCR, gaming console rental, flexible rental plans";
-
-    // Add Open Graph tags
-    const ogTags = [
-      {
-        property: "og:title",
-        content:
-          "PS5 Rental Delhi Same Day Delivery | Instant PS5 Rent Delhi NCR Zero Deposit | RentSmart",
-      },
-      {
-        property: "og:description",
-        content:
-          "PS5 rental Delhi same day delivery! Instant PS5 rent Delhi NCR zero deposit. Rent PS5 in Gurugram, Noida, West Delhi, Dwarka. Affordable PS5 rental packages with games available.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://rentsmart.in" },
-      { property: "og:image", content: "/images/sony_ps5.jpg" },
-    ];
-
-    ogTags.forEach((tag) => {
-      let metaTag = document.querySelector(`meta[property="${tag.property}"]`);
-      if (!metaTag) {
-        metaTag = document.createElement("meta");
-        metaTag.setAttribute("property", tag.property);
-        document.head.appendChild(metaTag);
-      }
-      metaTag.content = tag.content;
-    });
-
-    // Add canonical URL
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement("link");
-      canonicalLink.rel = "canonical";
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.href = "https://rentsmart.in";
-
-    // Add structured data
+    // Only add structured data once - let SEO component handle meta tags
     const script = document.createElement("script");
     script.type = "application/ld+json";
     script.text = JSON.stringify(structuredData);
@@ -150,7 +90,9 @@ function AppContent() {
 
     // Cleanup function
     return () => {
-      document.head.removeChild(script);
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
     };
   }, []);
 
