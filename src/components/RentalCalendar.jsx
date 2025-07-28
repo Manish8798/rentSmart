@@ -13,7 +13,7 @@ const RentalCalendar = ({
 }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
-  const [selectedPlan, setSelectedPlan] = useState("month");
+  const [selectedPlan, setSelectedPlan] = useState("single");
 
   // Default rental duration in days (1 month = 30 days)
   const DEFAULT_RENTAL_DAYS = 30;
@@ -154,8 +154,13 @@ const RentalCalendar = ({
           baseTotal = duration * 399;
           perDay = 399;
           tier = "ps5-combo-long-term";
+        } else if (duration >= 3 && duration <= 7) {
+          // Special fixed pricing for PS5 combo 3-7 days
+          baseTotal = 3499;
+          perDay = Math.round(3499 / duration);
+          tier = "ps5-combo-3-7-days-special";
         } else {
-          // For other durations (3-20 days), use daily rate of 499
+          // For other durations (8-20 days), use daily rate of 499
           baseTotal = duration * 499;
           perDay = 499;
           tier = "ps5-combo-custom";
@@ -171,17 +176,41 @@ const RentalCalendar = ({
           perDay = 1000;
           tier = "two-days";
         } else if (duration >= 3 && duration <= 7) {
-          // Special pricing for PS5 week plan
-          if (duration === 7 && isPS5) {
-            baseTotal = 2499;
-            perDay = Math.round(2499 / 7);
-            tier = "ps5-week-special";
+          // Special pricing for PS5
+          if (isPS5) {
+            if (duration >= 3 && duration <= 5) {
+              // PS5 3-5 days special pricing
+              baseTotal = 2499;
+              perDay = Math.round(2499 / duration);
+              tier = "ps5-3-5-days-special";
+            } else if (duration === 7) {
+              // PS5 week plan
+              baseTotal = 2499;
+              perDay = Math.round(2499 / 7);
+              tier = "ps5-week-special";
+            } else {
+              // PS5 6 days - use regular short-term rate
+              baseTotal = duration * 500;
+              perDay = 500;
+              tier = "short-term";
+            }
           } else {
             baseTotal = duration * 500;
             perDay = 500;
             tier = "short-term";
           }
-        } else if (duration >= 8 && duration <= 12) {
+        } else if (duration >= 8 && duration <= 10) {
+          // Special pricing for PS5 8-10 days
+          if (isPS5) {
+            baseTotal = 2999;
+            perDay = Math.round(2999 / duration);
+            tier = "ps5-8-10-days-special";
+          } else {
+            baseTotal = duration * price;
+            perDay = price;
+            tier = "medium-term";
+          }
+        } else if (duration >= 11 && duration <= 12) {
           baseTotal = duration * price;
           perDay = price;
           tier = "medium-term";
@@ -311,8 +340,8 @@ const RentalCalendar = ({
             ? pricing.discount + "% discount!"
             : "special rate"
         })`;
-      } else if (duration >= 3 && duration <= 6) {
-        return `Short-term rate (₹499/day)`;
+      } else if (duration >= 3 && duration <= 7) {
+        return `PS5 Combo 3-7 Days Special (₹3499 total)`;
       } else if (duration >= 8 && duration <= 20) {
         return `Extended rate (₹499/day)`;
       } else if (duration > 20 && duration < 30) {
@@ -326,12 +355,22 @@ const RentalCalendar = ({
       } else if (duration === 2) {
         return "Two day rate (₹1000/day)";
       } else if (duration >= 3 && duration <= 7) {
-        if (duration === 7 && isPS5) {
-          return "PS5 Week Special (₹2499 total)";
+        if (isPS5) {
+          if (duration >= 3 && duration <= 5) {
+            return "PS5 3-5 Days Special (₹2499 total)";
+          } else if (duration === 7) {
+            return "PS5 Week Special (₹2499 total)";
+          } else {
+            return "Short-term rate (₹500/day)";
+          }
         }
         return "Short-term rate (₹500/day)";
-      } else if (duration >= 8 && duration <= 12) {
-        return "Medium-term rate (8-12 days)";
+      } else if (duration >= 8 && duration <= 10) {
+        return isPS5
+          ? "PS5 8-10 Days Special (₹2999 total)"
+          : "Medium-term rate (8-10 days)";
+      } else if (duration >= 11 && duration <= 12) {
+        return "Medium-term rate (11-12 days)";
       } else if (duration >= 13 && duration <= 29) {
         return "Extended rate (₹249/day)";
       } else if (duration === DEFAULT_RENTAL_DAYS) {
@@ -348,15 +387,15 @@ const RentalCalendar = ({
   // Reset dates and plan when popup opens or product changes
   useEffect(() => {
     if (isOpen) {
-      // Always reset to month plan when popup opens
-      setSelectedPlan("month");
+      // Always reset to single day plan when popup opens
+      setSelectedPlan("single");
 
       const today = new Date();
       setStartDate(today);
 
-      // Set default end date to 1 month (30 days) from start date
+      // Set default end date to 1 day from start date
       const defaultEndDate = new Date(today);
-      defaultEndDate.setDate(today.getDate() + RENTAL_PLANS["month"].days);
+      defaultEndDate.setDate(today.getDate() + RENTAL_PLANS["single"].days);
       setEndDate(defaultEndDate);
     }
   }, [isOpen, productName]);
@@ -367,8 +406,11 @@ const RentalCalendar = ({
 
     // Update end date based on selected plan
     if (startDate) {
+      const planDays = RENTAL_PLANS[planKey].days;
+      // Ensure we don't exceed 30 days maximum
+      const daysToAdd = Math.min(planDays, 30);
       const newEndDate = new Date(startDate);
-      newEndDate.setDate(startDate.getDate() + RENTAL_PLANS[planKey].days);
+      newEndDate.setDate(startDate.getDate() + daysToAdd);
       setEndDate(newEndDate);
     }
   };
@@ -377,8 +419,11 @@ const RentalCalendar = ({
     setStartDate(date);
 
     // Update end date based on selected plan and new start date
+    const planDays = RENTAL_PLANS[selectedPlan].days;
+    // Ensure we don't exceed 30 days maximum
+    const daysToAdd = Math.min(planDays, 30);
     const newEndDate = new Date(date);
-    newEndDate.setDate(date.getDate() + RENTAL_PLANS[selectedPlan].days);
+    newEndDate.setDate(date.getDate() + daysToAdd);
     setEndDate(newEndDate);
   };
 
@@ -462,6 +507,11 @@ const RentalCalendar = ({
                 startDate={startDate}
                 endDate={endDate}
                 minDate={startDate}
+                maxDate={
+                  startDate
+                    ? new Date(startDate.getTime() + 30 * 24 * 60 * 60 * 1000)
+                    : null
+                }
                 dateFormat="dd/MM/yyyy"
               />
             </div>
